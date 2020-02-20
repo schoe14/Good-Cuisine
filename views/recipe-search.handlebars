@@ -1,25 +1,32 @@
 <h1>Recipe Search</h1>
 <div class="container my-4 savedContainer">
    <p style="font-style: italic;">I was thinking we could make these accordions or something</p>
-   <p style="font-style: italic;">Like maybe the checkboxes are hidden by accordion, but what user has chosen will display even if text boxes are hidden. I can explain more in person</p>
+   <p style="font-style: italic;">Like maybe the checkboxes are hidden by accordion, but what user has chosen
+      will display even if text boxes are hidden. I can explain more in person</p>
    <div class="row my-2 border">
       <div class="col-12 py-2">
          <p>
             Select dietary preferences from the given options:
-            {{!-- Client side js will append diet options to dietCheckbox class --}}
-            <div class="custom-control custom-checkbox dietCheckbox"></div>
+            <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+            <div class="dietCheckbox">
+            </div>
+            <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
          </p>
-         <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know what params for our API request)</p>
+         <button type="button" class="btn btn-primary" id="checkDiet">Log what is checked</button>
+         <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
+            what params for our API request)</p>
       </div>
    </div>
    <div class="row my-2 border">
       <div class="col-12 py-2">
          <p>
-            Redundant to give impression of page layout:
-            {{!-- Client side js will append diet options to dietCheckbox class --}}
-            <div class="custom-control custom-checkbox dietCheckbox"></div>
+            Cuisine Type
+            <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
+            <div class="custom-control custom-checkbox cuisineCheck"></div>
          </p>
+         <button type="button" class="btn btn-primary" id="checkCuisine">Log what is checked</button>
       </div>
    </div>
 </div>
-<script src="/js/recipe.js"></script>
+<button type="button" class="btn btn-primary" id="search">"Search using params"</button>
+<script src="../public/js/recipe.js"></script>
