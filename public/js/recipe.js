@@ -24,25 +24,113 @@ $(document).ready(function () {
          dietName: "Low Sodium",
          dietId: "low-sodium"
       }
+   ];
+   cuisineTypeArray = [
+      {
+         cuisineName: "American",
+         cuisineId: "american"
+      },
+      {
+         cuisineName: "Asian",
+         cuisineId: "asian"
+      },
+      {
+         cuisineName: "British",
+         cuisineId: "british"
+      },
+      {
+         cuisineName: "Caribbean",
+         cuisineId: "caribbean"
+      },
+      {
+         cuisineName: "Central Europe",
+         cuisineId: "central_europe"
+      }
    ]
 
-   dietNameArray.forEach(function(element) {
+   // keeping check box version just in case
+
+   // <input class="diet" type="checkbox" id=${element.dietId} name=${element.dietName} value=${element.dietId}>
+   // <label for=${element.dietId}>${element.dietName}</label>
+   // <br>
+
+   dietNameArray.forEach(function (element) {
       let dietOptions = /*html*/`
-      <input type="checkbox" id=${element.dietId} name=${element.dietName} value=${element.dietId}>
-      <label for=${element.id}>${element.dietName}</label>
-      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+         <input type="radio" class="custom-control-input diet" id=${element.dietId} name="dietRadio" value=${element.dietId}>
+         <label class="custom-control-label" for=${element.dietId}>${element.dietName}</label>
+      </div>
       `
       $('.dietCheckbox').append(dietOptions);
 
    });
 
-   $("input").click(function () {
-      if ($(this).is(":checked")) {
-         console.log($(this).val());
-      }
-      else {
-         console.log("Checkbox is unchecked.");
-      }
+   cuisineTypeArray.forEach(function (element) {
+      let cuisineOptions = /*html*/`
+      <input class="cuisine" type="checkbox" id=${element.cuisineId} name=${element.cuisineName} value=${element.cuisineId}>
+      <label for=${element.cuisineId}>${element.cuisineName}</label>
+      <br>
+      `
+      $('.cuisineCheck').append(cuisineOptions);
+
    });
+
+   $('#checkDiet').click(function () {
+      let query = ""
+      $('.diet').each(function() {
+         if ($(this).is(":checked")) {
+            console.log($(this).val());
+         }
+      });
+   });
+   $('#checkCuisine').click(function () {
+      $('.cuisine').each(function() {
+         if ($(this).is(":checked")) {
+            console.log($(this).val());
+         }
+      });
+   });
+
+
+   $('#search').click(function () {
+
+      let cuisine = []
+      let diet = []
+
+      $('.cuisine').each(function () {
+         if ($(this).is(":checked")) {
+            var checkedValue = $(this).val()
+            cuisine.push(checkedValue)
+         }
+      });
+      $('.diet').each(function () {
+         if ($(this).is(":checked")) {
+            var checkedValue = $(this).val()
+            diet.push(checkedValue)
+         }
+      });
+
+      var cuisineType = "";
+      cuisine.forEach(function (i) {
+         cuisineType += "&cuisineType=" + i
+      })
+
+      var dietType = "&diet=" + diet[0];
+
+      let test = "chicken"
+      let appId = "&app_id=587fc9a8";
+      let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
+      let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + cuisineType + dietType;
+      console.log(queryURL)
+      $.ajax({
+         url: queryURL,
+         method: "GET"
+      }).then(function (response) {
+         console.log(queryURL);
+         console.log(response);
+      });
+   });
+
+
 });
 
