@@ -6,6 +6,7 @@
       <div class="col-12 py-2">
          <p>
             Select dietary preferences from the given options:
+            {{!-- Client side js will append diet options to dietCheckbox class --}}
             <div class="custom-control custom-checkbox dietCheckbox"></div>
          </p>
          <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know what params for our API request)</p>
@@ -15,8 +16,10 @@
       <div class="col-12 py-2">
          <p>
             Redundant to give impression of page layout:
+            {{!-- Client side js will append diet options to dietCheckbox class --}}
             <div class="custom-control custom-checkbox dietCheckbox"></div>
          </p>
       </div>
    </div>
 </div>
+<script src="/js/recipe.js"></script>
