@@ -83,24 +83,24 @@ $(document).ready(function () {
    ];
    calorieAmountArray = [
       {
-         calorieDisplay: "1 to 100 Calories",
-         calorieId: "calorieOne",
-         calorieSearch: "&calories=1-100"
-      },
-      {
-         calorieDisplay: "100 to 300 Calories",
-         calorieId: "calorieTwo",
-         calorieSearch: "&calories=100-300"
-      },
-      {
-         calorieDisplay: "300 to 600 Calories",
-         calorieId: "calorieThree",
-         calorieSearch: "&calories=300-600"
-      },
-      {
          calorieDisplay: "Any",
          calorieId: "calorieFour",
          calorieSearch: "&calories=1-5000"
+      },
+      {
+         calorieDisplay: "1 to 200 Calories",
+         calorieId: "calorieOne",
+         calorieSearch: "&calories=1-200"
+      },
+      {
+         calorieDisplay: "200 to 600 Calories",
+         calorieId: "calorieTwo",
+         calorieSearch: "&calories=200-600"
+      },
+      {
+         calorieDisplay: "600 to 1000 Calories",
+         calorieId: "calorieThree",
+         calorieSearch: "&calories=600-1000"
       }
    ]
 
@@ -140,6 +140,17 @@ $(document).ready(function () {
 
    });
 
+   calorieAmountArray.forEach(function (element) {
+      let calorieAmount = /*html*/`
+      <div class="custom-control custom-radio custom-control-inline">
+         <input type="radio" class="custom-control-input calorieAmount" id=${element.calorieId} name="calorieRadio" value=${element.calorieSearch}>
+         <label class="custom-control-label" for=${element.calorieId}>${element.calorieDisplay}</label>
+      </div>
+      `
+      $('.calorieRadio').append(calorieAmount);
+
+   });
+
    $('#checkKey').click(function () {
       $('.keyWord').each(function() {
          if ($(this).is(":checked")) {
@@ -168,6 +179,7 @@ $(document).ready(function () {
       let key = [];
       let health = [];
       let diet = [];
+      let calorie = [];
 
       $('.keyWord').each(function () {
          if ($(this).is(":checked")) {
@@ -187,19 +199,25 @@ $(document).ready(function () {
             diet.push(checkedValue)
          }
       });
+      $('.calorieAmount').each(function () {
+         if ($(this).is(":checked")) {
+            var checkedValue = $(this).val()
+            calorie.push(checkedValue)
+         }
+      });
 
       var keyWord = key[0];
       var healthLabels = "";
       health.forEach(function (i) {
          healthLabels += "&healthLabel=" + i
-      })
-
+      });
       var dietType = "&diet=" + diet[0];
+      var calorieType = calorie[0];
 
       let test = "vegan"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
-      let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType;
+      let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType +calorieType;
       console.log(queryURL)
       $.ajax({
          url: queryURL,
