@@ -2,27 +2,27 @@ $(document).ready(function () {
    dietNameArray = [
       {
          dietName: "Balanced",
-         dietId: "balanced"
+         dietId: "&diet=balanced"
       },
       {
          dietName: "High in Protein",
-         dietId: "high-protein"
+         dietId: "&diet=high-protein"
       },
       {
          dietName: "High in Fiber",
-         dietId: "high-fiber"
+         dietId: "&diet=high-fiber"
       },
       {
          dietName: "Low in Fat",
-         dietId: "low-fat"
+         dietId: "&diet=low-fat"
       },
       {
          dietName: "Low in Carbs",
-         dietId: "low-carbs"
+         dietId: "&diet=low-carbs"
       },
       {
          dietName: "Low Sodium",
-         dietId: "low-sodium"
+         dietId: "&diet=low-sodium"
       }
    ];
    keyWordArray = [
@@ -177,44 +177,44 @@ $(document).ready(function () {
 
    $('#search').click(function () {
 
-      let key = [];
+      let key = "";
       let health = [];
-      let diet = [];
-      let calorie = [];
+      let diet = "";
+      let calorie = "";
 
       $('.keyWord').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            key.push(checkedValue)
+            key = checkedValue;
          }
       });
       $('.health').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            health.push(checkedValue)
+            health.push(checkedValue);
          }
       });
       $('.diet').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            diet.push(checkedValue)
+            diet =checkedValue;
          }
       });
       $('.calorieAmount').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            calorie.push(checkedValue)
+            calorie = checkedValue;
          }
       });
 
 
-      var keyWord = key[0];
+      var keyWord = key;
       var healthLabels = "";
       health.forEach(function (i) {
          healthLabels += "&healthLabel=" + i
       });
-      var dietType = "&diet=" + diet[0];
-      var calorieType = calorie[0];
+      var dietType = diet;
+      var calorieType = calorie;
 
       let test = "vegan"
       let appId = "&app_id=587fc9a8";
