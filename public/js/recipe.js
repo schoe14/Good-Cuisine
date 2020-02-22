@@ -250,20 +250,20 @@ $(document).ready(function () {
                <p>Ingredients:</p>
                <ul class="ingredients-list">
                ${ingredientLines.map(ingredient => (
-                  `<li>${ingredient}</li`
-               ))}
+                  `<li>${ingredient}</li>`
+               )).join("")}
                </ul>
                <p>Diet:</p>
                <ul class="diet-list">
                ${dietLabels.map(diets => (
-                  `<li>${diets}</li`
-               ))}
+                  `<li>${diets}</li>`
+               )).join("")}
                </ul>
                <p>Health:</p>
                <ul class="health-list">
                ${healthLabels.map(healths => (
-                  `<li>${healths}</li`
-               ))}
+                  `<li>${healths}</li>`
+               )).join("")}
                </ul>
                <a href="#" 
                id="saveRecipe1Btn"
@@ -288,18 +288,6 @@ $(document).ready(function () {
          }));
          $("#recipeResults").append(recipeCard);
          })
-
-         
-
-         // const recipeInfo = {
-         //    ingredients: recipeResult.recipe.ingredientLines
-         // };
-
-         // Adding an event listener for when the recipe is saved
-         // $(".save-recipe-btn").each(function(index, saveBtn) {
-         //    $(this).on("click", handleRecipeSave(recipeInfo));
-
-         // });
       }
 
       // error function that displays information to user if ajax request fails
@@ -329,13 +317,6 @@ $(document).ready(function () {
 // A function for handling what happens when the a new recipe is saved via "Save" button
 function handleRecipeSave(res) {
    console.log(res);
-   // Constructing a newSavedRecipe object to hand to the database
-   // var newSavedRecipe = {
-   //    image: response.hits[0].recipe.image,
-   //    title: response.hits[0].recipe.label
-   // };
-   // // Run submitPost to create a whole new post
-   //    submitPost(newSavedRecipe);
 }
 
 // Submits a saved recipe
