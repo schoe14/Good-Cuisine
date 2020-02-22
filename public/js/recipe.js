@@ -33,10 +33,10 @@ $(document).ready(function () {
       {
          keyWord: "Beef",
          keyId: "beef"
-      }
+      },
       {
-         keyWord: "Vegetarian",
-         keyId: "vegetarian"
+         keyWord: "Soup",
+         keyId: "soup"
       },
       {
          keyWord: "Fish",
@@ -47,10 +47,40 @@ $(document).ready(function () {
          keyId: "salad"
       },
       {
-         keyWord: "Vegan",
-         keyId: "vegan"
+         keyWord: "Pasta",
+         keyId: "Pasta"
       }
-   ]
+   ];
+   healthLabelsArray= [
+      {
+         healthLabel: "Vegetarian",
+         healthId: "vegetarian"
+      },
+      {
+         healthLabel: "Vegan",
+         healthId: "vegan"
+      },
+      {
+         healthLabel: "Paleo",
+         healthId: "paleo"
+      },
+      {
+         healthLabel: "Dairy Free",
+         healthId: "dairy-free"
+      },
+      {
+         healthLabel: "Gluten Free",
+         healthId: "gluten-free"
+      },
+      {
+         healthLabel: "Fat Free",
+         healthId: "fat-free"
+      },
+      {
+         healthLabel: "Low Sugar",
+         healthId: "low-sugar"
+      }
+   ];
 
    // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
    // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
@@ -123,7 +153,7 @@ $(document).ready(function () {
 
       var dietType = "&dietLabels=" + diet[0];
 
-      let test = "steak"
+      let test = "vegan"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + dietType;
