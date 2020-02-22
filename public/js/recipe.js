@@ -2,27 +2,27 @@ $(document).ready(function () {
    dietNameArray = [
       {
          dietName: "Balanced",
-         dietId: "balanced"
+         dietId: "&diet=balanced"
       },
       {
          dietName: "High in Protein",
-         dietId: "high-protein"
+         dietId: "&diet=high-protein"
       },
       {
          dietName: "High in Fiber",
-         dietId: "high-fiber"
+         dietId: "&diet=high-fiber"
       },
       {
          dietName: "Low in Fat",
-         dietId: "low-fat"
+         dietId: "&diet=low-fat"
       },
       {
          dietName: "Low in Carbs",
-         dietId: "low-carbs"
+         dietId: "&diet=low-carbs"
       },
       {
          dietName: "Low Sodium",
-         dietId: "low-sodium"
+         dietId: "&diet=low-sodium"
       }
    ];
    keyWordArray = [
@@ -51,7 +51,7 @@ $(document).ready(function () {
          keyId: "pasta"
       }
    ];
-   healthLabelsArray= [
+   healthLabelsArray = [
       {
          healthLabel: "Vegetarian",
          healthId: "vegetarian"
@@ -152,21 +152,24 @@ $(document).ready(function () {
    });
 
    $('#checkKey').click(function () {
-      $('.keyWord').each(function() {
+      $('.keyWord').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
+         }
+         else {
+            return console.log("undefined");
          }
       });
    });
    $('#checkDiet').click(function () {
-      $('.diet').each(function() {
+      $('.diet').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
          }
       });
    });
    $('#checkHealth').click(function () {
-      $('.health').each(function() {
+      $('.health').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
          }
@@ -174,67 +177,73 @@ $(document).ready(function () {
    });
 
 
+
    $('#search').click(function () {
 
-      let key = [];
+      let key = "";
       let health = [];
-      let diet = [];
-      let calorie = [];
+      let diet = "";
+      let calorie = "";
 
       $('.keyWord').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            key.push(checkedValue)
+            key = checkedValue;
          }
       });
       $('.health').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            health.push(checkedValue)
+            health.push(checkedValue);
          }
       });
       $('.diet').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            diet.push(checkedValue)
+            diet = checkedValue;
          }
       });
       $('.calorieAmount').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            calorie.push(checkedValue)
+            calorie = checkedValue;
          }
       });
 
-      var keyWord = key[0];
+
+      var keyWord = key;
       var healthLabels = "";
       health.forEach(function (i) {
          healthLabels += "&healthLabel=" + i
       });
-      var dietType = "&diet=" + diet[0];
-      var calorieType = calorie[0];
+      var dietType = diet;
+      var calorieType = calorie;
 
       let test = "vegan"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
-      console.log(queryURL)
 
-      function recipeSuccess (response) {
+      function recipeSuccess(response) {
          console.log(queryURL);
          console.log(response);
       }
 
-      function recipeError() {
-         alert("Test")
+      function recipeError(err) {
+         if (err) {
+            $("#ajax-error").modal("show");
+         }
       }
-
-      $.ajax({
-         url: queryURL,
-         method: "GET",
-         success: recipeSuccess,
-         error: recipeError
-      });
+      if (key === "") {
+         return $("#key-error").modal("show")
+      } else {
+         $.ajax({
+            url: queryURL,
+            method: "GET",
+            success: recipeSuccess,
+            error: recipeError
+         });
+      }
    });
 
 
