@@ -174,6 +174,7 @@ $(document).ready(function () {
    });
 
 
+
    $('#search').click(function () {
 
       let key = [];
@@ -206,6 +207,7 @@ $(document).ready(function () {
          }
       });
 
+
       var keyWord = key[0];
       var healthLabels = "";
       health.forEach(function (i) {
@@ -225,8 +227,10 @@ $(document).ready(function () {
          console.log(response);
       }
 
-      function recipeError() {
-         alert("Test")
+      function recipeError(err) {
+         if (err) {
+            $("#ajax-error").modal("show");
+         }
       }
 
       $.ajax({
