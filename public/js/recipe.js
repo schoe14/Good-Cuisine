@@ -81,6 +81,28 @@ $(document).ready(function () {
          healthId: "low-sugar"
       }
    ];
+   calorieAmountArray = [
+      {
+         calorieDisplay: "1 to 100 Calories",
+         calorieId: "calorieOne",
+         calorieSearch: "&calories=1-100"
+      },
+      {
+         calorieDisplay: "100 to 300 Calories",
+         calorieId: "calorieTwo",
+         calorieSearch: "&calories=100-300"
+      },
+      {
+         calorieDisplay: "300 to 600 Calories",
+         calorieId: "calorieThree",
+         calorieSearch: "&calories=300-600"
+      },
+      {
+         calorieDisplay: "Any",
+         calorieId: "calorieFour",
+         calorieSearch: "&calories=1-5000"
+      }
+   ]
 
    // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
    // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
