@@ -42,7 +42,11 @@ passport.use('local-signup', new LocalStrategy(
         else {
           db.User.create({
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            name: req.body.name,
+            city: req.body.city,
+            state: req.body.state,
+            preference: req.body.preference
           }).then(function (dbUser) {
             return done(null, dbUser);
           }).catch(function (err) {
@@ -136,8 +140,7 @@ passport.deserializeUser(function (uuid, done) {
 
     } else {
       // console.log("user.errors", user.errors)
-      done(user.errors, null);
-
+      done(null, false, { message: "error test" });
     }
 
   });

@@ -42,7 +42,7 @@ $("#sign-in").on("click", function (event) {
     event.preventDefault();
     const user = {
         email: $("#email").val().trim(),
-        password: $("#account_password").val().trim()
+        password: $("#password").val().trim()
     }
     $.post("/login", user, function (results) {
         if (results) {

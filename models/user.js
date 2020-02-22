@@ -11,6 +11,10 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: DataTypes.UUIDV1,
       isUnique: true
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,6 +22,18 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         isEmail: true
       }
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    preference: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     // The password cannot be null
     password: {

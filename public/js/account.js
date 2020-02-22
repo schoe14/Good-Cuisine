@@ -8,12 +8,16 @@ $("#add-account").on("click", function (event) {
     // make a newAccount obj
     const newAccount = {
         email: $("#inputEmail").val().trim(),
-        password: $("#inputPassword").val().trim()
+        password: $("#inputPassword").val().trim(),
+        name: $("#inputName").val().trim(),
+        city: $("#inputCity").val().trim(),
+        state: $("#inputState").val().trim(),
+        preference: $("#inputPreference").val().trim()
     };
 
     if (newAccount.email.length > 0 && newAccount.password.length > 0) {
         $.ajax({
-            type: "post",
+            type: "POST",
             url: "/signup",
             data: newAccount
         }).then(function (data) {
@@ -67,32 +71,37 @@ $("#add-account").on("click", function (event) {
 // });
 
 // DELETE   ***************************************************
-// $("#delete-account").on("click", function (event) {
-//     event.preventDefault();
-//     $("#err-msg").empty("");
-//     $("#delete-account-modal").modal("show");
-// });
+$("#delete-account").on("click", function (event) {
+    event.preventDefault();
+    console.log($("#account-number").data("accountemail"));
+    $("#err-msg").empty("");
+    $("#delete-account-modal").modal("show");
+});
 
-// $("#confirm-delete").on("click", function (event) {
-//     const deleteAccount = {
-//         account_id: $("#account_id").val().trim(),
-//         account_key: $("#account_password").val().trim(),
-//     }
-//     console.log(deleteAccount);
-//     if (deleteAccount.account_id.length > 0 && deleteAccount.account_key.length > 0) {
-//         $.ajax("/accounts/" + deleteAccount.account_id + "/" + deleteAccount.account_key, {
-//             type: "DELETE"
-//         }).then(
-//             function () {
-//                 console.log("deleted account", deleteAccount.account_id);
-//                 // Reload the page to get the updated list
-//                 location.reload();
-//             }
-
-//         );
-//     } else {
-//         console.log("fill out entire form");
-//         $("#err-msg").empty("").text("fill out entire form");
-//     }
-
-// });
+$("#confirm-delete").on("click", function (event) {
+    const deleteAccount = {
+        accountEntered: $("#account_id").val().trim(),
+        passwordEntered: $("#account_password").val().trim()
+    }
+    console.log(deleteAccount);
+    if (deleteAccount.accountEntered.length > 0 && deleteAccount.passwordEntered.length > 0) {
+        if (deleteAccount.accountEntered === $("#account-number").data("accountemail")) {
+            $.ajax({
+                type: "DELETE",
+                url: "/accounts/delete/",
+                data: deleteAccount
+            }).then(function (data) {
+                console.log(data)
+                console.log("data.message ", data.message)
+                $("#err-msg").empty("").text(data.message);
+                if (data.success) window.location.href = "/";
+            });
+        } else {
+            $("#err-msg").empty("").text("Invalid email");
+        }
+    }
+    else {
+        console.log("fill out entire form");
+        $("#err-msg").empty("").text("Email and password cannot be empty");
+    }
+});
