@@ -18,7 +18,7 @@ $(document).ready(function () {
       },
       {
          dietName: "Low in Carbs",
-         dietId: "&diet=low-carbs"
+         dietId: "&diet=low-carb"
       },
       {
          dietName: "Low Sodium",
@@ -228,24 +228,61 @@ $(document).ready(function () {
       function recipeSuccess(response) {
          console.log(queryURL);
          console.log(response);
+         const array = []
          // Display recipe results
-         $(".recipe-image").attr("src", response.hits[0].recipe.image);
-         $(".card-title").text(response.hits[0].recipe.label);
-         $(".recipe-link").attr("href", response.hits[0].recipe.url);
-         $(".calories").text((response.hits[0].recipe.calories/response.hits[0].recipe.yield).toFixed());
-         $(".total-time").text(response.hits[0].recipe.totalTime);
-         const ingredients = response.hits[0].recipe.ingredientLines;
-         $.each(ingredients, function(index, value){
-            $(".ingredients-list").append("<li>" + value + "</li>");
-         });
-         const diets = response.hits[0].recipe.dietLabels;
-         $.each(diets, function(index, value){
-            $(".diet-list").append("<li>" + value + "</li>");
-         });
-         const healths = response.hits[0].recipe.healthLabels;
-         $.each(healths, function(index, value){
-            $(".health-list").append("<li>" + value + "</li>");
-         });
+         for (var i = 0; i < response.hits.length; i++) {
+            // console.log(response.hits[i].recipe.image)
+            let image = response.hits[i].recipe.image
+            let title = response.hits[i].recipe.label
+            let url = response.hits[i].recipe.url;
+            let calories = (response.hits[i].recipe.calories / response.hits[i].recipe.yield).toFixed();
+            let time = response.hits[i].recipe.totalTime;
+            let ingredients = response.hits[i].recipe.ingredientLines
+            console.log(image, title, url, calories, time, ingredients)
+
+            let recipeCard = /*html*/ `
+               <div class="recipe-card card d-flex flex-row">
+                  <img src="${image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+                  <div class="card-body">
+                     <h5 class="recipe-name card-title">${title}</h5>
+                     <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
+                     <p>Calories(per serving): <span class="calories">${calories}</span></p>
+                     <p>Total Time: <span class="total-time">${time}</span></p>
+                     <p>Ingredients:</p>
+                     <ul class="ingredients-list">
+                     </ul>
+                     <p>Diet:</p>
+                     <ul class="diet-list">
+                     </ul>
+                     <p>Health:</p>
+                     <ul class="health-list">
+                     </ul>
+                     <a href="#" class="delete-recipe-btn btn btn-primary">Delete</a>
+                  </div>
+               </div> 
+            `
+            $('#recipeResults').append(recipeCard)
+            $.each(ingredients, function (index, value) {
+               $(".ingredients-list").append("<li>" + value + "</li>");
+            });
+            const diets = response.hits[i].recipe.dietLabels;
+            $.each(diets, function (index, value) {
+               $(".diet-list").append("<li>" + value + "</li>");
+            });
+            const healths = response.hits[i].recipe.healthLabels;
+            $.each(healths, function (index, value) {
+               $(".health-list").append("<li>" + value + "</li>");
+            });
+         }
+         // for (var i = 0; i < response.length; i++) {
+         // var image = response.hits[i].recipe.image;
+         // array.push(image)
+         // var title = $(".card-title").text(response.hits[i].recipe.label);
+         // var url = $(".recipe-link").attr("href", response.hits[i].recipe.url);
+         // var calories = $(".calories").text((response.hits[i].recipe.calories / response.hits[i].recipe.yield).toFixed());
+         // var time =$(".total-time").text(response.hits[i].recipe.totalTime);
+         // const ingredients = response.hits[i].recipe.ingredientLines;
+         // console.log(image, title, url, calories, time
       }
 
       // error function that displays information to user if ajax request fails
