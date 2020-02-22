@@ -224,6 +224,7 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // response that parses recipe information to display to page
       function recipeSuccess(response) {
          console.log(queryURL);
          console.log(response);
@@ -247,11 +248,14 @@ $(document).ready(function () {
          });
       }
 
+      // error function that displays information to user if ajax request fails
       function recipeError(err) {
          if (err) {
             $("#ajax-error").modal("show");
          }
       }
+
+      // catches if a user does not select a key word
       if (key === "") {
          return $("#key-error").modal("show")
       } else {
