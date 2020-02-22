@@ -217,17 +217,25 @@ $(document).ready(function () {
       let test = "vegan"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
-      let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType +calorieType;
+      let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
       console.log(queryURL)
-      $.ajax({
-         url: queryURL,
-         method: "GET"
-      }).then(function (response) {
+
+      function recipeSuccess (response) {
          console.log(queryURL);
          console.log(response);
+      }
+
+      function recipeError() {
+         alert("Test")
+      }
+
+      $.ajax({
+         url: queryURL,
+         method: "GET",
+         success: recipeSuccess,
+         error: recipeError
       });
    });
 
 
 });
-
