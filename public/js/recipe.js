@@ -51,7 +51,7 @@ $(document).ready(function () {
          keyId: "pasta"
       }
    ];
-   healthLabelsArray= [
+   healthLabelsArray = [
       {
          healthLabel: "Vegetarian",
          healthId: "vegetarian"
@@ -152,21 +152,24 @@ $(document).ready(function () {
    });
 
    $('#checkKey').click(function () {
-      $('.keyWord').each(function() {
+      $('.keyWord').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
+         }
+         else {
+            return console.log("undefined");
          }
       });
    });
    $('#checkDiet').click(function () {
-      $('.diet').each(function() {
+      $('.diet').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
          }
       });
    });
    $('#checkHealth').click(function () {
-      $('.health').each(function() {
+      $('.health').each(function () {
          if ($(this).is(":checked")) {
             console.log($(this).val());
          }
@@ -197,7 +200,7 @@ $(document).ready(function () {
       $('.diet').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            diet =checkedValue;
+            diet = checkedValue;
          }
       });
       $('.calorieAmount').each(function () {
@@ -220,9 +223,8 @@ $(document).ready(function () {
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
-      console.log(queryURL)
 
-      function recipeSuccess (response) {
+      function recipeSuccess(response) {
          console.log(queryURL);
          console.log(response);
       }
@@ -232,13 +234,16 @@ $(document).ready(function () {
             $("#ajax-error").modal("show");
          }
       }
-
-      $.ajax({
-         url: queryURL,
-         method: "GET",
-         success: recipeSuccess,
-         error: recipeError
-      });
+      if (key === "") {
+         return $("#key-error").modal("show")
+      } else {
+         $.ajax({
+            url: queryURL,
+            method: "GET",
+            success: recipeSuccess,
+            error: recipeError
+         });
+      }
    });
 
 
