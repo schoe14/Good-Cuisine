@@ -104,10 +104,6 @@ $(document).ready(function () {
       }
    ]
 
-   // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
-   // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
-   // keeping check box version just in case
-
    // <input class="diet" type="checkbox" id=${element.dietId} name=${element.dietName} value=${element.dietId}>
    // <label for=${element.dietId}>${element.dietName}</label>
    // <br>
@@ -123,15 +119,15 @@ $(document).ready(function () {
 
    });
 
-   // cuisineTypeArray.forEach(function (element) {
-   //    let cuisineOptions = /*html*/`
-   //    <input class="cuisine" type="checkbox" id=${element.cuisineId} name=${element.cuisineName} value=${element.cuisineId}>
-   //    <label for=${element.cuisineId}>${element.cuisineName}</label>
-   //    <br>
-   //    `
-   //    $('.cuisineCheck').append(cuisineOptions);
+   healthLabelsArray.forEach(function (element) {
+      let healthOptions = /*html*/`
+      <input class="health" type="checkbox" id=${element.healthId} name=${element.healthLabel} value=${element.healthId}>
+      <label for=${element.healthId}>${element.healthLabel}</label>
+      <br>
+      `
+      $('.healthCheck').append(healthOptions);
 
-   // });
+   });
 
    $('#checkDiet').click(function () {
       let query = ""
@@ -141,8 +137,8 @@ $(document).ready(function () {
          }
       });
    });
-   $('#checkCuisine').click(function () {
-      $('.cuisine').each(function() {
+   $('#checkHealth').click(function () {
+      $('.health').each(function() {
          if ($(this).is(":checked")) {
             console.log($(this).val());
          }
@@ -152,13 +148,13 @@ $(document).ready(function () {
 
    $('#search').click(function () {
 
-      let cuisine = []
+      let health = []
       let diet = []
 
-      $('.cuisine').each(function () {
+      $('.health').each(function () {
          if ($(this).is(":checked")) {
             var checkedValue = $(this).val()
-            cuisine.push(checkedValue)
+            health.push(checkedValue)
          }
       });
       $('.diet').each(function () {
@@ -168,9 +164,9 @@ $(document).ready(function () {
          }
       });
 
-      var cuisineType = "";
-      cuisine.forEach(function (i) {
-         cuisineType += "&cuisineType=" + i
+      var healthLabels = "";
+      health.forEach(function (i) {
+         healthLabels += "&healthLabel=" + i
       })
 
       var dietType = "&dietLabels=" + diet[0];
@@ -178,7 +174,7 @@ $(document).ready(function () {
       let test = "vegan"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
-      let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + dietType;
+      let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + healthLabels + dietType;
       console.log(queryURL)
       $.ajax({
          url: queryURL,
