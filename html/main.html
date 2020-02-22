@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- bootstrap links -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!-- materialize links -->
+      <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"> -->
+      <title>Good Cuisine</title>
+   </head>
+   <body>
+      <div class="navbar-container">
+         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">
+               <h4>Good Cuisine</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                     <a href="/recipes">Recipe Search</a>
+                  </li>
+                  <li class="nav-item active">
+                     <a href="/saved">Saved Searches</a>
+                  </li>
+                  <li class="nav-item active">
+                     <a href="/profile">Profile Settings</a>
+                  </li>
+                  <li class="nav-item active">
+                     <a href="/">Sign-up</a>
+                  </li>
+                  <li class="nav-item active">
+                     <a href="/login">Log-in</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </div>
+
+      
+      <h1>Welcome User</h1>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+         <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Search</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Saved Recipes</a>
+         </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="accordion" id="accordionExample">
+               <div class="card">
+                  <div class="card-header" id="headingOne">
+                     <div class="form-group">
+                        <div class="input-group mb-3">
+                           <input type="text" id="ca" name="general-search" class="form-control" placeholder="i.e. Chicken" aria-label="general-search" aria-describedby="button-addon2">
+                           <div class="input-group-append">
+                              <button class="general-search-btn" type="submit" id="button-addon2">Search</button>
+                           </div>
+                        </div>
+                     </div>
+                     <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Filters
+                        </button>
+                     </h2>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                     <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                     </div>
+                     <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                     </div>
+                     <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
+                        <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+                     </div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header" id="headingOne">
+                     <h3>There are no results that match your search</h3>
+                     <p>Please try adjusting your search keywords or filters.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+      </div>
+
+
+      <script src="/js/recipe.js"></script>
+      <!-- bootstrap scripts -->
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+         crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+         crossorigin="anonymous"></script>
+      <!-- materialize scripts -->
+      <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> -->
+   </body>
+</html>
