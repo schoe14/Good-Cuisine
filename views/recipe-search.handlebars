@@ -8,6 +8,20 @@
    <div class="row my-2 border">
       <div class="col-12 py-2">
          <p>
+            Select key word for search
+            <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+            <div class="keyRadio">
+            </div>
+            <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
+         </p>
+         <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button>
+         <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
+            what params for our API request)</p>
+      </div>
+   </div>
+   <div class="row my-2 border">
+      <div class="col-12 py-2">
+         <p>
             Select dietary preferences from the given options:
             <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
             <div class="dietCheckbox">
@@ -22,13 +36,27 @@
    <div class="row my-2 border">
       <div class="col-12 py-2">
          <p>
-            Cuisine Type
+            Health Options (for best results don't select more than 3):
             <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
-            <div class="custom-control custom-checkbox cuisineCheck"></div>
+            <div class="custom-control custom-checkbox healthCheck"></div>
          </p>
-         <button type="button" class="btn btn-primary" id="checkCuisine">Log what is checked</button>
+         <button type="button" class="btn btn-primary" id="checkHealth">Log what is checked</button>
+      </div>
+   </div>
+   <div class="row my-2 border">
+      <div class="col-12 py-2">
+         <p>
+            Select key word for search
+            <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+            <div class="calorieRadio">
+            </div>
+            <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
+         </p>
+         {{!-- <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button> --}}
+         {{!-- <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
+            what params for our API request)</p> --}}
       </div>
    </div>
 </div>
 <button type="button" class="btn btn-primary" id="search">"Search using params"</button>
-<script src="../public/js/recipe.js"></script>
+<script src="/js/recipe.js"></script>
