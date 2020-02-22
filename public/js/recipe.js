@@ -227,6 +227,24 @@ $(document).ready(function () {
       function recipeSuccess(response) {
          console.log(queryURL);
          console.log(response);
+         // Display recipe results
+         $(".recipe-image").attr("src", response.hits[0].recipe.image);
+         $(".card-title").text(response.hits[0].recipe.label);
+         $(".recipe-link").attr("href", response.hits[0].recipe.url);
+         $(".calories").text((response.hits[0].recipe.calories/response.hits[0].recipe.yield).toFixed());
+         $(".total-time").text(response.hits[0].recipe.totalTime);
+         const ingredients = response.hits[0].recipe.ingredientLines;
+         $.each(ingredients, function(index, value){
+            $(".ingredients-list").append("<li>" + value + "</li>");
+         });
+         const diets = response.hits[0].recipe.dietLabels;
+         $.each(diets, function(index, value){
+            $(".diet-list").append("<li>" + value + "</li>");
+         });
+         const healths = response.hits[0].recipe.healthLabels;
+         $.each(healths, function(index, value){
+            $(".health-list").append("<li>" + value + "</li>");
+         });
       }
 
       function recipeError(err) {
