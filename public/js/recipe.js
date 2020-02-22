@@ -39,16 +39,16 @@ $(document).ready(function () {
          keyId: "vegetarian"
       },
       {
-         keyWord: "Beef",
-         keyId: "beef"
+         keyWord: "Fish",
+         keyId: "fish"
       },
       {
-         keyWord: "Beef",
-         keyId: "beef"
+         keyWord: "Salad",
+         keyId: "salad"
       },
       {
-         keyWord: "Beef",
-         keyId: "beef"
+         keyWord: "Vegan",
+         keyId: "vegan"
       }
    ]
 
