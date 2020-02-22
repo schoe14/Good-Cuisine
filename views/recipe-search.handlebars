@@ -6,6 +6,20 @@
    <div class="row my-2 border">
       <div class="col-12 py-2">
          <p>
+            Select key word for search
+            <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+            <div class="keyRadio">
+            </div>
+            <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
+         </p>
+         <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button>
+         <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
+            what params for our API request)</p>
+      </div>
+   </div>
+   <div class="row my-2 border">
+      <div class="col-12 py-2">
+         <p>
             Select dietary preferences from the given options:
             <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
             <div class="dietCheckbox">
