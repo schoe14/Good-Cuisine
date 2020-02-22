@@ -16,12 +16,18 @@
       <div class="accordion" id="accordionExample">
          <div class="card">
             <div class="card-header" id="headingOne">
-               <div class="form-group">
-                  <div class="input-group mb-3">
-                     <input type="text" id="ca" name="general-search" class="form-control" placeholder="i.e. Chicken" aria-label="general-search" aria-describedby="button-addon2">
-                     <div class="input-group-append">
-                        <button class="general-search-btn" type="submit" id="button-addon2">Search</button>
-                     </div>
+               <div class="row my-2 border">
+                  <div class="col-12 py-2">
+                     <p>
+                        Select key word for search
+                        <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+                        <div class="keyRadio">
+                        </div>
+                        <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
+                     </p>
+                     <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button>
+                     <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
+                        what params for our API request)</p>
                   </div>
                </div>
                <h2 class="mb-0">
@@ -36,23 +42,6 @@
 
                   {{!-- Filters in collapsed container --}}
                   <div class="container my-4 savedContainer">
-                     <p style="font-style: italic;">I was thinking we could make these accordions or something</p>
-                     <p style="font-style: italic;">Like maybe the checkboxes are hidden by accordion, but what user has chosen
-                        will display even if text boxes are hidden. I can explain more in person</p>
-                     <div class="row my-2 border">
-                        <div class="col-12 py-2">
-                           <p>
-                              Select key word for search
-                              <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
-                              <div class="keyRadio">
-                              </div>
-                              <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
-                           </p>
-                           <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button>
-                           <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
-                              what params for our API request)</p>
-                        </div>
-                     </div>
                      <div class="row my-2 border">
                         <div class="col-12 py-2">
                            <p>
@@ -103,66 +92,19 @@
             <div class="card-header" id="headingOne">
                <h3>There are no results that match your search</h3>
                <p>Please try adjusting your search keywords or filters.</p>
-               <div class="receipe-card card d-flex flex-row">
-                  <img src="https://www.edamam.com/web-img/a8b/a8b0dc5dcd157d2d644e115355c4d402.jpg" class="recipe-image card-img-top w-25" alt="recipe-image">
-                  <div class="card-body">
-                     <h5 class="recipe-name card-title">2-Step Creamy Chicken and Pasta</h5>
-                     <p><a href="http://www.delish.com/cooking/recipe-ideas/recipes/a8903/2-step-creamy-chicken-pasta-recipe-campbells-1109/" target="_blank">View Recipe</a></p>
-                     <p>Ingredients</p>
-                     <ul>
-                        <li>1 tbsp. vegetable oil</li>
-                        <li>4 skinless, boneless chicken breast halves</li>
-                        <li>1 bag frozen vegetable pasta blend</li>
-                        <li>1 can Campbell's® Condensed Cream of Mushroom Soup</li>
-                        <li>½ c. water</li>
-                     </ul>
-                     <a href="#" class="save-recipe-btn btn btn-primary">Save</a>
-                  </div>
-               </div>
-                              <div class="receipe-card card d-flex flex-row">
-                  <img src="https://www.edamam.com/web-img/a8b/a8b0dc5dcd157d2d644e115355c4d402.jpg" class="recipe-image card-img-top w-25" alt="recipe-image">
-                  <div class="card-body">
-                     <h5 class="recipe-name card-title">2-Step Creamy Chicken and Pasta</h5>
-                     <p><a href="http://www.delish.com/cooking/recipe-ideas/recipes/a8903/2-step-creamy-chicken-pasta-recipe-campbells-1109/" target="_blank">View Recipe</a></p>
-                     <p>Ingredients</p>
-                     <ul>
-                        <li>1 tbsp. vegetable oil</li>
-                        <li>4 skinless, boneless chicken breast halves</li>
-                        <li>1 bag frozen vegetable pasta blend</li>
-                        <li>1 can Campbell's® Condensed Cream of Mushroom Soup</li>
-                        <li>½ c. water</li>
-                     </ul>
-                     <a href="#" class="save-recipe-btn btn btn-primary">Save</a>
-                  </div>
-               </div>
             </div>
          </div>
       </div>
    </div>
    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="receipe-card card d-flex flex-row">
-         <img src="https://www.edamam.com/web-img/a8b/a8b0dc5dcd157d2d644e115355c4d402.jpg" class="recipe-image card-img-top w-25" alt="recipe-image">
-         <div class="card-body">
-            <h5 class="recipe-name card-title">2-Step Creamy Chicken and Pasta</h5>
-            <p><a href="http://www.delish.com/cooking/recipe-ideas/recipes/a8903/2-step-creamy-chicken-pasta-recipe-campbells-1109/" target="_blank">View Recipe</a></p>
-            <p>Ingredients</p>
-            <ul>
-               <li>1 tbsp. vegetable oil</li>
-               <li>4 skinless, boneless chicken breast halves</li>
-               <li>1 bag frozen vegetable pasta blend</li>
-               <li>1 can Campbell's® Condensed Cream of Mushroom Soup</li>
-               <li>½ c. water</li>
-            </ul>
-            <a href="#" class="save-recipe-btn btn btn-primary">Delete</a>
-         </div>
-      </div>
-      
+      <p>Nothing saved yet</p>
    </div>
 </div>
 
 
 
-
+{{> Modal/recipeError-block}}
+{{> Modal/keyError-block}}
 
 <script src="/js/recipe.js"></script>
 
