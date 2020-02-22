@@ -25,29 +25,35 @@ $(document).ready(function () {
          dietId: "low-sodium"
       }
    ];
-   cuisineTypeArray = [
+   keyWordArray = [
       {
-         cuisineName: "American",
-         cuisineId: "american"
+         keyWord: "Chicken",
+         keyId: "chicken"
       },
       {
-         cuisineName: "Asian",
-         cuisineId: "asian"
+         keyWord: "Beef",
+         keyId: "beef"
+      }
+      {
+         keyWord: "Vegetarian",
+         keyId: "vegetarian"
       },
       {
-         cuisineName: "British",
-         cuisineId: "british"
+         keyWord: "Beef",
+         keyId: "beef"
       },
       {
-         cuisineName: "Caribbean",
-         cuisineId: "caribbean"
+         keyWord: "Beef",
+         keyId: "beef"
       },
       {
-         cuisineName: "Central Europe",
-         cuisineId: "central_europe"
+         keyWord: "Beef",
+         keyId: "beef"
       }
    ]
 
+   // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
+   // https://api.edamam.com/search?q=steak&app_id=587fc9a8&app_key=f056ebfd3a725524f2a06d2a64636a39&dietLabels=balanced
    // keeping check box version just in case
 
    // <input class="diet" type="checkbox" id=${element.dietId} name=${element.dietName} value=${element.dietId}>
@@ -65,15 +71,15 @@ $(document).ready(function () {
 
    });
 
-   cuisineTypeArray.forEach(function (element) {
-      let cuisineOptions = /*html*/`
-      <input class="cuisine" type="checkbox" id=${element.cuisineId} name=${element.cuisineName} value=${element.cuisineId}>
-      <label for=${element.cuisineId}>${element.cuisineName}</label>
-      <br>
-      `
-      $('.cuisineCheck').append(cuisineOptions);
+   // cuisineTypeArray.forEach(function (element) {
+   //    let cuisineOptions = /*html*/`
+   //    <input class="cuisine" type="checkbox" id=${element.cuisineId} name=${element.cuisineName} value=${element.cuisineId}>
+   //    <label for=${element.cuisineId}>${element.cuisineName}</label>
+   //    <br>
+   //    `
+   //    $('.cuisineCheck').append(cuisineOptions);
 
-   });
+   // });
 
    $('#checkDiet').click(function () {
       let query = ""
@@ -115,12 +121,12 @@ $(document).ready(function () {
          cuisineType += "&cuisineType=" + i
       })
 
-      var dietType = "&diet=" + diet[0];
+      var dietType = "&dietLabels=" + diet[0];
 
-      let test = "chicken"
+      let test = "steak"
       let appId = "&app_id=587fc9a8";
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
-      let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + cuisineType + dietType;
+      let queryURL = "https://api.edamam.com/search?q=" + test + appId + APIKey + dietType;
       console.log(queryURL)
       $.ajax({
          url: queryURL,
