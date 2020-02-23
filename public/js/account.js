@@ -83,6 +83,8 @@ $("#add-account").on("click", function (event) {
 $("#delete-account").on("click", function (event) {
     event.preventDefault();
     console.log($("#account-number").data("accountemail"));
+    $("#account_id").val("");
+    $("#account_password").val("");
     $("#err-msg-deletion").empty("");
     $("#delete-account-modal").modal("show");
 });
