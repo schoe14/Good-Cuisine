@@ -196,4 +196,33 @@ module.exports = function (app) {
   //     // });
   //   }
   // });
+    
+
+    // POST route for saving a new recipe
+    app.post("/api/savedRecipes", function(req, res) {
+      console.log(req.body);
+      console.log(req.body.image);
+      db.Recipe.create({
+        image: req.body.image,
+        label: req.body.label,
+        url: req.body.url,
+        calories: req.body.calories,
+        totalTime: req.body.totalTime,
+        ingredientLines: req.body.ingredientLines,
+        dietLabels: req.body.dietLabels,
+        healthLabels: req.body.healthLabels
+      })
+        .then(function(dbRecipe) {
+          res.json(dbRecipe);
+        });
+    });
+
+
+    // GET route for getting all of the recipes
+    app.get("/api/savedRecipes", function(req, res) {
+      db.Recipe.findAll({})
+        .then(function(dbRecipe) {
+          res.json(dbRecipe);
+        });
+    });
 };
