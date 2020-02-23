@@ -1,18 +1,16 @@
-console.log("Accounts.js loaded");
+console.log("accounts.js loaded");
 
 // ADD    ****************
 $("#add-account").on("click", function (event) {
     event.preventDefault();
-
     console.log("Entere'd add account button.")
-    // make a newAccount obj
     const newAccount = {
         email: $("#inputEmail").val().trim(),
         password: $("#inputPassword").val().trim(),
         name: $("#inputName").val().trim(),
         city: $("#inputCity").val().trim(),
-        state: $("#inputState").val().trim(),
-        preference: $("#inputPreference").val().trim()
+        state: $("#inputState").find(":selected").text(),
+        preference: $("#inputPreference").find(":selected").text()
     };
 
     if (newAccount.email.length > 0 && newAccount.password.length > 0) {

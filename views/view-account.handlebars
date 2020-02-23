@@ -95,7 +95,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" id="inputPassword" value="{{userInfo.password}}">
+                <input type="password" class="form-control" id="inputPassword" value="">
             </div>
         </div>
         <div>
@@ -104,7 +104,7 @@
             <button type="submit" id="view-account" class="btn btn-primary">REFRESH</button>
         </div>
     </form>
-
+    {{!-- Created delete-block to display this modal
     <div class="modal" id="delete-account-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -135,6 +135,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
+    </div> --}}
 </div>
+{{> Modal/delete-block}}

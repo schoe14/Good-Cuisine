@@ -1,8 +1,5 @@
-console.log("Home.js loaded");
+console.log("home.js loaded");
 
-// on click of each button with AJAX call based on predefined routes - look into Google doc for routes
-
-// when user clicks search button
 $("#search-recipe").on("click", function (event) {
     event.preventDefault();
     $("#search-recipe").animateCss('pulse', function () {
@@ -51,7 +48,6 @@ $("#sign-in").on("click", function (event) {
         } else {
             $("#account-info").modal("close");
             alert("oops something went wrong, please try again!");
-
         }
     })
 });

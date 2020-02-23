@@ -7,10 +7,10 @@
         <div>
             {{#if isloggedin}}
             <button type="submit" id="search-recipe" class="btn">Dashboard</button>
-            {{!-- <button type="submit" id="view-saved-recipes" class="btn">View Saved Recipes</button> --}}
             <button type="submit" id="view-account" class="btn">View Account</button>
             <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
             {{else}}
+            <button type="submit" id="search-recipe" class="btn">Search Recipes</button>
             <button type="submit" id="sign-in-modal" class="btn">Sign In!</button>
             <button type="submit" id="sign-up" class="btn">Sign Up!</button>
             {{/if}}

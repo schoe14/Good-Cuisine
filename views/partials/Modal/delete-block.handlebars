@@ -1,0 +1,29 @@
+<div class="modal" id="delete-account-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Re-Enter Credentials to delete account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="account_id">Email Address</label>
+                        <input type="text" class="form-control" id="account_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="account_password">Password</label>
+                        <input type="password" class="form-control" id="account_password">
+                    </div>
+                </form>
+                <h3 id="err-msg"></h3>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-delete" type="button" class="btn btn-primary">Confirm Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
+            </div>
+        </div>
+    </div>
+</div>

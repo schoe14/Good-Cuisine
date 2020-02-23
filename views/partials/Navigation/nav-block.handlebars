@@ -8,14 +8,11 @@
   <ul class="nav navbar-nav ml-auto">
     {{#if isloggedin}}
     <li class="nav-item">
-      <span class="navbar-text" data-search={{name}}>{{name}}</span>
+      <span class="navbar-text" data-name={{name}}>Hi, {{name}} </span>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/search" data-search={{search}}>DASHBOARD</a>
     </li>
-    {{!-- <li class="nav-item">
-      <a class="nav-link" href="/saved-recipes" data-view={{view}}>VIEW RECIPES</a>
-    </li> --}}
     <li class="nav-item">
       <a class="nav-link" href="/accounts/view" data-account={{account}}>ACCOUNT</a>
     </li>
@@ -23,6 +20,9 @@
       <a class="nav-link" href="/logout">LOGOUT</a>
     </li>
     {{else}}
+    <li class="nav-item">
+      <a class="nav-link" href="/search" data-view={{view}}>SEARCH RECIPES</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="#" id="sign-in-modal">SIGNIN</a>
     </li>
