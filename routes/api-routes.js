@@ -33,9 +33,10 @@ module.exports = function (app) {
         const user = {
           userInfo: dbUser.dataValues,
           id: req.session.passport.user,
-          isloggedin: req.isAuthenticated()
+          isloggedin: req.isAuthenticated(),
+          name: req.user.name
         }
-         res.render("view-account", user);
+        res.render("view-account", user);
       })
 
     }
@@ -49,8 +50,8 @@ module.exports = function (app) {
 
   });
 
-  app.post('/signup', function(req, res, next) {
-    passport.authenticate('local-signup', function(err, user, info) {
+  app.post('/signup', function (req, res, next) {
+    passport.authenticate('local-signup', function (err, user, info) {
       console.log("info", info);
       if (err) {
         console.log("passport err", err);
@@ -59,7 +60,7 @@ module.exports = function (app) {
       // Generate a JSON response reflecting authentication status
       if (!user) {
         console.log("user error", user);
-        return res.send({ success : false, message : 'authentication failed' });
+        return res.send({ success: false, message: 'authentication failed' });
       }
 
       req.login(user, loginErr => {
@@ -72,10 +73,9 @@ module.exports = function (app) {
         console.log("user-email", user.email);
         res.cookie('email', user.email);
         return res.redirect("/accounts/view");
-      });      
+      });
     })(req, res, next);
   });
-
 
   app.post('/login', function (req, res, next) {
     passport.authenticate('local-login', function (err, user, info) {
@@ -106,65 +106,94 @@ module.exports = function (app) {
     })(req, res, next);
   });
 
+  app.delete('/accounts/delete', function (req, res) {
+    if (req.isAuthenticated()) {
+      // const user = {
+      //    id: req.session.passport.user,
+      //    isloggedin: req.isAuthenticated()
+      //  }
+      console.log("req.session.passport.user ", req.session.passport.user);
+      db.User.findOne({
+        where: {
+          uuid: req.session.passport.user
+        }
+      }).then(function (user) {
+        console.log("password validation for deletion: " + user.validPassword(req.body.passwordEntered))
+        if (user && user.validPassword(req.body.passwordEntered)) {
+          db.User.destroy({
+            where: {
+              uuid: req.session.passport.user
+            }
+          }).then(function () {
+            res.send({ success: true, message: 'Deleted successfully' });
+          });
+        }
+        else {
+          res.send({ success: false, message: 'Invalid password' });
+        }
+      });
+    }
+    else {
+      res.send({ success: false, message: 'Not logged in' });
+    }
+  });
+
+
+  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
+  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+  // otherwise send back an error
+  // app.post("/api/signup", function (req, res) {
+  //   db.User.create({
+  //     email: req.body.email,
+  //     password: req.body.password
+  //   })
+  //     .then(function () {
+  //       res.redirect(307, "/api/login");
+  //     })
+  //     .catch(function (err) {
+  //       res.status(401).json(err);
+  //     });
+  // });
+
+  // Route for logging user out
+  // app.get("/logout", function (req, res) {
+  //   req.logout();
+  //   res.redirect("/");
+  // });
+
+  app.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+      req.logout();
+      res.clearCookie('email');
+      res.redirect('/');
+    })
+  });
+
+  // Route for getting some data about our user to be used client side
+  // app.get("/api/user_data", function (req, res) {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     // res.json({});
+  //     res.redirect("/");
+  //   } else {
+  //     // Otherwise send back the user's email and id
+  //     // Sending back a password, even a hashed password, isn't a good idea
+  //     console.log("line 43(api-routes): " + req.user.email); // test
+  //     db.User.findOne({
+  //       where: {
+  //         email: req.user.email
+  //       }
+  //     }).then(function (results) {
+  //       console.log("line 49(api-routes): " + results.email)
+  //       res.render("members", { email: results.email });
+  //     })
 
 
 
-// Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-// how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-// otherwise send back an error
-// app.post("/api/signup", function (req, res) {
-//   db.User.create({
-//     email: req.body.email,
-//     password: req.body.password
-//   })
-//     .then(function () {
-//       res.redirect(307, "/api/login");
-//     })
-//     .catch(function (err) {
-//       res.status(401).json(err);
-//     });
-// });
-
-// Route for logging user out
-// app.get("/logout", function (req, res) {
-//   req.logout();
-//   res.redirect("/");
-// });
-
-
-app.get('/logout', function (req, res) {
-  req.session.destroy(function (err) {
-    req.logout();
-    res.clearCookie('email');
-    res.redirect('/');
-  })
-});
-
-// Route for getting some data about our user to be used client side
-// app.get("/api/user_data", function (req, res) {
-//   if (!req.user) {
-//     // The user is not logged in, send back an empty object
-//     // res.json({});
-//     res.redirect("/");
-//   } else {
-//     // Otherwise send back the user's email and id
-//     // Sending back a password, even a hashed password, isn't a good idea
-//     console.log("line 43(api-routes): " + req.user.email); // test
-//     db.User.findOne({
-//       where: {
-//         email: req.user.email
-//       }
-//     }).then(function (results) {
-//       console.log("line 49(api-routes): " + results.email)
-//       res.render("members", { email: results.email });
-//     })
-
-
-
-//     // res.json({
-//     //   email: req.user.email,
-//     //   id: req.user.id
-//     // });
-//   }
-// });
+  //     // res.json({
+  //     //   email: req.user.email,
+  //     //   id: req.user.id
+  //     // });
+  //   }
+  // });
 };

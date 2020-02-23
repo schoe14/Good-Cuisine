@@ -10,7 +10,8 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       const user = {
         id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
+        isloggedin: req.isAuthenticated(),
+        name: req.user.name
       }
       res.render("home", user);
     }
@@ -23,7 +24,8 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       const user = {
         id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
+        isloggedin: req.isAuthenticated(),
+        name: req.user.name
       }
       res.render("recipe-search", user);
     }
@@ -32,18 +34,20 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/saved-recipes", function (req, res) {
-    if (req.isAuthenticated()) {
-      const user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      }
-      res.render("saved", user);
-    }
-    else {
-      res.redirect("/");
-    }
-  });
+  // ------------------------ Commented it out (extra route)
+  // app.get("/saved-recipes", function (req, res) {
+  //   if (req.isAuthenticated()) {
+  //     const user = {
+  //       id: req.session.passport.user,
+  //       isloggedin: req.isAuthenticated()
+  //     }
+  //     res.render("saved", user);
+  //   }
+  //   else {
+  //     res.redirect("/");
+  //   }
+  // });
+  // ----------------------------------------------------------
 
 
   // If the user already has an account send them to the members page
