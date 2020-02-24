@@ -212,7 +212,8 @@ module.exports = function (app) {
         totalTime: req.body.totalTime,
         ingredientLines: req.body.ingredientLines,
         dietLabels: req.body.dietLabels,
-        healthLabels: req.body.healthLabels
+        healthLabels: req.body.healthLabels,
+        UserId: req.body.userId
       })
         .then(function(dbRecipe) {
           res.json(dbRecipe);
