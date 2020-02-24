@@ -275,16 +275,15 @@ $(document).ready(function () {
             .addClass("recipe-card card d-flex flex-row")
             .attr("id", "recipeCard1")
             .html(recipeCardContent);
-         recipeCard.find(".save-recipe-btn").on("click", () => console.log({
-            image,
-            label,
-            url,
-            calories,
-            yield,
-            totalTime,
-            ingredientLines,
-            dietLabels,
-            healthLabels
+         recipeCard.find(".save-recipe-btn").on("click", () => submitPost({
+            image: image,
+            label: label,
+            url: url,
+            calories: (calories/yield).toFixed(),
+            totalTime: totalTime,
+            ingredientLines: ingredientLines.join(),
+            dietLabels: dietLabels.join(),
+            healthLabels: healthLabels.join()
          }));
          $("#recipeResults").append(recipeCard);
          })
@@ -321,8 +320,8 @@ function handleRecipeSave(res) {
 
 // Submits a saved recipe
 // Change console.log on line 278 to "submitPost"
-// function submitPost(recipe) {
-//    $.post("/api/savedRecipes", JSON.stringify(recipe), function() {
+function submitPost(recipe) {
+   $.post("/api/savedRecipes", recipe, function() {
 
-//    });
-// }
+   });
+}
