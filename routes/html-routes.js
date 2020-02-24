@@ -30,7 +30,7 @@ module.exports = function (app) {
       res.render("recipe-search", user);
     }
     else {
-      res.render("recipe-search");
+      res.render("public-recipe-search");
     }
   });
 

@@ -52,6 +52,8 @@ module.exports = function (app) {
 
   app.post('/signup', function (req, res, next) {
     passport.authenticate('local-signup', function (err, user, info) {
+      console.log("err", err);
+      console.log("user", user);
       console.log("info", info);
       if (err) {
         console.log("passport err", err);
@@ -59,8 +61,7 @@ module.exports = function (app) {
       }
       // Generate a JSON response reflecting authentication status
       if (!user) {
-        console.log("user error", user);
-        return res.send({ success: false, message: 'authentication failed' });
+        return res.send({ success: false, message: info });
       }
 
       req.login(user, loginErr => {
@@ -72,25 +73,25 @@ module.exports = function (app) {
         console.log('redirecting....');
         console.log("user-email", user.email);
         res.cookie('email', user.email);
-        return res.redirect("/accounts/view");
+        return res.send({ success: true });
+        // return res.redirect("/accounts/view");
       });
     })(req, res, next);
   });
 
   app.post('/login', function (req, res, next) {
     passport.authenticate('local-login', function (err, user, info) {
-      console.log("\n\n\n########userrrr", user)
+      console.log("err", err);
+      console.log("\n\n\n########userrrr", user);
+      console.log("info", info);
       if (err) {
         console.log("passport err", err);
         return next(err); // will generate a 500 error
       }
       // Generate a JSON response reflecting authentication status
-
       if (!user) {
-
-        return res.send({ success: false, message: 'authentication failed' });
+        return res.send({ success: false, message: info });
       }
-
       req.login(user, loginErr => {
         if (loginErr) {
           console.log("loginerr", loginErr)
@@ -99,9 +100,7 @@ module.exports = function (app) {
         //const userId = user.dataValues.id;
         console.log('redirecting....')
         res.cookie('email', user.email);
-
         return res.json(true);
-
       });
     })(req, res, next);
   });
