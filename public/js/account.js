@@ -41,43 +41,42 @@ $("#add-account").on("click", function (event) {
     }
 });
 
-
 // UPDATE      **********************
-// $("#update-account").on("click", function (event) {
-//     event.preventDefault();
+$("#update-account").on("click", function (event) {
+    event.preventDefault();
+    $("#update-err-msg").empty("");
 
-//     // capture All changes
-//     const changeAccount = {
-//         first_name: $("#inputFirst").val().trim(),
-//         city: $("#inputCity").val().trim(),
-//         state: $("#inputState").val().trim(),
-//         email: $("#inputEmail").val().trim(),
-//         password: $("#inputPassword").val().trim(),
-//         account_id: $("#account-number").attr("data-accountid")
-//     };
-//     $("#err-msg").empty("");
-//     // $("#change-account-modal").modal("show");
-//     console.log(changeAccount);
+    // capture All changes
+    const changeAccount = {
+        name: $("#inputName").val().trim(),
+        city: $("#inputCity").val().trim(),
+        state: $("#inputState").find(":selected").text(),
+        preference: $("#inputPreference").find(":selected").text(),
+        password: $("#inputPassword").val().trim()
+    };
+    $("#err-msg").empty("");
+    // $("#change-account-modal").modal("show");
+    console.log(changeAccount);
 
-//     if (changeAccount.first_name.length > 0 && changeAccount.city.length > 0 && changeAccount.state.length > 0 && changeAccount.email.length > 0 && changeAccount.password.length > 0 && changeAccount.first_name.length > 0, changeAccount.account_id.length) {
-//         $.ajax({
-//             type: "PUT",
-//             url: "/accounts/" + changeAccount.account_id + "/" + changeAccount.password,
-//             data: changeAccount
-//         }).then(
-//             function () {
-//                 console.log("Updated account", changeAccount);
-//                 // Reload the page to get the updated list
-//                 location.reload();
-//             }
-//         );
+    // if (changeAccount.first_name.length > 0 && changeAccount.city.length > 0 && changeAccount.state.length > 0 && changeAccount.email.length > 0 && changeAccount.password.length > 0 && changeAccount.first_name.length > 0, changeAccount.account_id.length) {
+    //     $.ajax({
+    //         type: "PUT",
+    //         url: "/accounts/" + changeAccount.account_id + "/" + changeAccount.password,
+    //         data: changeAccount
+    //     }).then(
+    //         function () {
+    //             console.log("Updated account", changeAccount);
+    //             // Reload the page to get the updated list
+    //             location.reload();
+    //         }
+    //     );
 
-//     } else {
-//         console.log("**Please fill out entire form**");
-//         $("#update-err-msg").empty("").text("**Please fill out entire form**");
-//     }
+    // } else {
+    //     console.log("**Please fill out entire form**");
+    //     $("#update-err-msg").empty("").text("**Please fill out entire form**");
+    // }
 
-// });
+});
 
 // DELETE   ***************************************************
 $("#delete-account").on("click", function (event) {
