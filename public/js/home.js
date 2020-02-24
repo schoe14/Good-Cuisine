@@ -48,7 +48,7 @@ $("#sign-in").on("click", function (event) {
         email: $("#email").val().trim(),
         password: $("#password").val().trim()
     }
-    console.log("email", user.email, "password", user.password);
+    console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
         $.ajax({
             type: "POST",

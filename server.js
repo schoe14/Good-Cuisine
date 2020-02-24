@@ -33,12 +33,12 @@ app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status
 // app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(session({
-    secret: "keyboard cat", resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000
-    }
-  }));
+  secret: "keyboard cat", resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -58,8 +58,8 @@ require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function () {
-    app.listen(PORT, function () {
-        console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-    });
+db.sequelize.sync({ force: false, alter: true }).then(function () {
+  app.listen(PORT, function () {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+  });
 });

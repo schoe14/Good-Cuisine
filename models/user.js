@@ -5,12 +5,12 @@ const uuid = require("uuid");
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
-    uuid: {
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
-      isUnique: true
-    },
+    // uuid: {
+    //   primaryKey: true,
+    //   type: DataTypes.UUID,
+    //   defaultValue: DataTypes.UUIDV1,
+    //   isUnique: true
+    // },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -55,13 +55,13 @@ module.exports = function (sequelize, DataTypes) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
 
-  // User.associate = function(models) {
-  //   // Associating User with Recipes
-  //   // When an User is deleted, also delete any associated Recipes
-  //   User.hasMany(models.Recipe, {
-  //     onDelete: "cascade"
-  //   });
-  // };
+  User.associate = function(models) {
+    // Associating User with Recipes
+    // When an User is deleted, also delete any associated Recipes
+    User.hasMany(models.Recipe, {
+      onDelete: "cascade"
+    });
+  };
 
   return User;
 };
