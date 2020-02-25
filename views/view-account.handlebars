@@ -12,15 +12,14 @@
     <form id="account-form">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" value="{{userInfo.name}}" placeholder="John">
+                <label for="inputName">Name *</label>
+                <input type="text" class="form-control" id="inputName" value="{{userInfo.name}}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" value="{{userInfo.city}}"
-                    placeholder="Your City">
+                <input type="text" class="form-control" id="inputCity" value="{{userInfo.city}}">
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">State</label>
@@ -82,9 +81,9 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPreference">Preference</label>
-                <select id="inputPreference" class="form-control" value="{{userInfo.preference}}">
-                    <option value="{{userInfo.preference}}">{{userInfo.preference}}</option>
+                <label for="inputPreference1">Cuisine Preference</label>
+                <select id="inputPreference1" class="form-control" value="{{userInfo.preference1}}">
+                    <option value="{{userInfo.preference1}}">{{userInfo.preference1}}</option>
                     <option value="American">American</option>
                     <option value="Mexican">Mexican</option>
                     <option value="Chinese">Chinese</option>
@@ -94,14 +93,28 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" id="inputPassword" value="">
+                <label for="inputPreference2">Dietary Preference</label>
+                <select id="inputPreference2" class="form-control" value="{{userInfo.preference2}}">
+                    <option value="{{userInfo.preference2}}">{{userInfo.preference2}}</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="protein">High in Protein</option>
+                    <option value="fiber">High in Fiber</option>
+                    <option value="fat">Low in Fat</option>
+                    <option value="carbs">Low in Carbs</option>
+                    <option value="sodium">Low Sodium</option>
+                </select>
             </div>
         </div>
-        <div>
-            <button type="submit" id="update-account" class="btn btn-primary">UPDATE</button>
-            <button type="submit" id="delete-account" class="btn btn-primary">DELETE</button>
-            <button type="submit" id="view-account" class="btn btn-primary">REFRESH</button>
+        <div class="form-row">
+            {{!-- <div class="form-group col-md-6">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" value="" placeholder="New Password">
+            </div> --}}
+            <div>
+                <button type="submit" id="update-information" class="btn btn-primary">UPDATE INFORMATION</button>
+                <button type="submit" id="update-password" class="btn btn-primary">UPDATE PASSWORD</button>
+                <button type="submit" id="delete-account" class="btn btn-primary">DELETE ACCOUNT</button>
+            </div>
         </div>
     </form>
 
@@ -138,3 +151,4 @@
     </div> --}}
 </div>
 {{> Modal/delete-account-block}}
+{{> Modal/update-password-block}}

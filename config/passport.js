@@ -33,7 +33,8 @@ passport.use('local-signup', new LocalStrategy(
             name: req.body.name,
             city: req.body.city,
             state: req.body.state,
-            preference: req.body.preference
+            preference1: req.body.preference1,
+            preference2: req.body.preference2
           }).then(function (dbUser) {
             return done(null, dbUser);
           }).catch(function (err) {

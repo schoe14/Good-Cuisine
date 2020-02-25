@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -11,9 +12,9 @@ module.exports = function (app) {
   //   res.json(req.user);
   // });
 
-  app.get("/signup", function (req, res) {
-    res.render("accounts");
-  });
+  // app.get("/signup", function (req, res) {
+  //   res.render("accounts");
+  // });
 
   app.get("/accounts/view", function (req, res) {
     console.log("%%%%%%%%% is logged in", req.isAuthenticated());
@@ -140,6 +141,80 @@ module.exports = function (app) {
     }
   });
 
+  app.put("/accounts/update/info", function (req, res) {
+    console.log(req.body);
+    if (req.isAuthenticated()) {
+      // const user = {
+      //    id: req.session.passport.user,
+      //    isloggedin: req.isAuthenticated()
+      //  }
+      console.log("req.session.passport.user ", req.session.passport.user);
+      db.User.update(
+        req.body,
+        {
+          where: {
+            id: req.session.passport.user
+            // uuid: req.session.passport.user
+          }
+        }).then(function (user, err) {
+          if (err) console.log("err(line:159)", err);
+          res.send({ success: true, message: 'Successfully updated' });
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+    else {
+      res.send({ success: false, message: 'Not logged in' });
+    }
+  });
+
+  app.put("/accounts/update/password", function (req, res) {
+    console.log(req.body);
+    if (req.isAuthenticated()) {
+      // const user = {
+      //    id: req.session.passport.user,
+      //    isloggedin: req.isAuthenticated()
+      //  }
+      console.log("req.session.passport.user ", req.session.passport.user);
+      db.User.findOne({
+        where: {
+          id: req.session.passport.user
+          // uuid: req.session.passport.user
+        }
+      }).then(function (user) {
+        const regEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&./])[A-Za-z\d@$!%*#?&./]{8,}$/;
+        if (!user.validPassword(req.body.oldPasswordEntered)) {
+          res.send({ success: false, message: 'Current password does not match' });
+        }
+        else if (!regEx.test(req.body.newPasswordEntered)) {
+          res.send({ success: false, message: "Password has to be minimum eight characters, at least one letter, one number and one special character" });
+        }
+        else {
+          const newHashedPassword = bcrypt.hashSync(req.body.newPasswordEntered, bcrypt.genSaltSync(10), null);
+          const newPassword = { password: newHashedPassword };
+          console.log("Hashed password: ", newHashedPassword);
+          db.User.update(
+            newPassword,
+            {
+              where: {
+                id: req.session.passport.user
+              }
+            }).then(function (user, err) {
+              if (err) console.log("err", err);
+              res.send({ success: true, message: "Password updated successfully" });
+            })
+            .catch(function (err) {
+              console.log(err);
+              res.send({ success: false, message: "Validation error" });
+            });
+        }
+      })
+    }
+    else {
+      res.send({ success: false, message: "Not logged in" });
+    }
+  });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -198,34 +273,34 @@ module.exports = function (app) {
   //     // });
   //   }
   // });
-    
-
-    // POST route for saving a new recipe
-    app.post("/api/savedRecipes", function(req, res) {
-      console.log(req.body);
-      console.log(req.body.image);
-      db.Recipe.create({
-        image: req.body.image,
-        label: req.body.label,
-        url: req.body.url,
-        calories: req.body.calories,
-        totalTime: req.body.totalTime,
-        ingredientLines: req.body.ingredientLines,
-        dietLabels: req.body.dietLabels,
-        healthLabels: req.body.healthLabels,
-        UserId: req.body.userId
-      })
-        .then(function(dbRecipe) {
-          res.json(dbRecipe);
-        });
-    });
 
 
-    // GET route for getting all of the recipes
-    app.get("/api/savedRecipes", function(req, res) {
-      db.Recipe.findAll({})
-        .then(function(dbRecipe) {
-          res.json(dbRecipe);
-        });
-    });
+  // POST route for saving a new recipe
+  app.post("/api/savedRecipes", function (req, res) {
+    console.log(req.body);
+    console.log(req.body.image);
+    db.Recipe.create({
+      image: req.body.image,
+      label: req.body.label,
+      url: req.body.url,
+      calories: req.body.calories,
+      totalTime: req.body.totalTime,
+      ingredientLines: req.body.ingredientLines,
+      dietLabels: req.body.dietLabels,
+      healthLabels: req.body.healthLabels,
+      UserId: req.body.userId
+    })
+      .then(function (dbRecipe) {
+        res.json(dbRecipe);
+      });
+  });
+
+
+  // GET route for getting all of the recipes
+  app.get("/api/savedRecipes", function (req, res) {
+    db.Recipe.findAll({})
+      .then(function (dbRecipe) {
+        res.json(dbRecipe);
+      });
+  });
 };
