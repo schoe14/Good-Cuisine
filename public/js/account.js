@@ -18,7 +18,8 @@ $("#add-account").on("click", function (event) {
         name: $("#inputName").val().trim(),
         city: $("#inputCity").val().trim(),
         state: $("#inputState").find(":selected").text(),
-        preference: $("#inputPreference").find(":selected").text()
+        preference1: $("#inputPreference1").find(":selected").text(),
+        preference2: $("#inputPreference2").find(":selected").text()
     };
     console.log(isEmpty(newAccount.name), isEmpty(newAccount.email), isEmpty(newAccount.password));
     if (!isEmpty(newAccount.name) && !isEmpty(newAccount.email) && !isEmpty(newAccount.password)) {
@@ -42,7 +43,7 @@ $("#add-account").on("click", function (event) {
 });
 
 // UPDATE      **********************
-$("#update-account").on("click", function (event) {
+$("#update-information").on("click", function (event) {
     event.preventDefault();
     $("#update-err-msg").empty("");
 
@@ -51,30 +52,29 @@ $("#update-account").on("click", function (event) {
         name: $("#inputName").val().trim(),
         city: $("#inputCity").val().trim(),
         state: $("#inputState").find(":selected").text(),
-        preference: $("#inputPreference").find(":selected").text(),
-        password: $("#inputPassword").val().trim()
+        preference1: $("#inputPreference1").find(":selected").text(),
+        preference2: $("#inputPreference2").find(":selected").text(),
     };
-    $("#err-msg").empty("");
     // $("#change-account-modal").modal("show");
     console.log(changeAccount);
 
     // if (changeAccount.first_name.length > 0 && changeAccount.city.length > 0 && changeAccount.state.length > 0 && changeAccount.email.length > 0 && changeAccount.password.length > 0 && changeAccount.first_name.length > 0, changeAccount.account_id.length) {
-    //     $.ajax({
-    //         type: "PUT",
-    //         url: "/accounts/" + changeAccount.account_id + "/" + changeAccount.password,
-    //         data: changeAccount
-    //     }).then(
-    //         function () {
-    //             console.log("Updated account", changeAccount);
-    //             // Reload the page to get the updated list
-    //             location.reload();
-    //         }
-    //     );
-
-    // } else {
-    //     console.log("**Please fill out entire form**");
-    //     $("#update-err-msg").empty("").text("**Please fill out entire form**");
-    // }
+    if (!isEmpty(changeAccount.name)) {
+        $.ajax({
+            type: "PUT",
+            url: "/accounts/update/info",
+            data: changeAccount
+        }).then(
+            function (data) {
+                console.log("Updated account", changeAccount);
+                // Reload the page to get the updated list
+                // location.reload();
+                console.log(data);
+            });
+    } else {
+        console.log("**Required fields cannot be empty**");
+        $("#update-err-msg").empty("").text("**Required fields cannot be empty**");
+    }
 
 });
 

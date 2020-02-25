@@ -11,9 +11,9 @@ module.exports = function (app) {
   //   res.json(req.user);
   // });
 
-  app.get("/signup", function (req, res) {
-    res.render("accounts");
-  });
+  // app.get("/signup", function (req, res) {
+  //   res.render("accounts");
+  // });
 
   app.get("/accounts/view", function (req, res) {
     console.log("%%%%%%%%% is logged in", req.isAuthenticated());
@@ -140,6 +140,30 @@ module.exports = function (app) {
     }
   });
 
+  app.put("/accounts/update/info", function (req, res) {
+    console.log(req.body);
+    if (req.isAuthenticated()) {
+      // const user = {
+      //    id: req.session.passport.user,
+      //    isloggedin: req.isAuthenticated()
+      //  }
+      console.log("req.session.passport.user ", req.session.passport.user);
+      db.User.update(
+        req.body,
+        {
+          where: {
+            id: req.session.passport.user
+            // uuid: req.session.passport.user
+          }
+        }).then(function (user, err) {
+          if (err) console.log("err(line:159)", err);
+          res.json(user);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+  });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -198,34 +222,34 @@ module.exports = function (app) {
   //     // });
   //   }
   // });
-    
-
-    // POST route for saving a new recipe
-    app.post("/api/savedRecipes", function(req, res) {
-      console.log(req.body);
-      console.log(req.body.image);
-      db.Recipe.create({
-        image: req.body.image,
-        label: req.body.label,
-        url: req.body.url,
-        calories: req.body.calories,
-        totalTime: req.body.totalTime,
-        ingredientLines: req.body.ingredientLines,
-        dietLabels: req.body.dietLabels,
-        healthLabels: req.body.healthLabels,
-        UserId: req.body.userId
-      })
-        .then(function(dbRecipe) {
-          res.json(dbRecipe);
-        });
-    });
 
 
-    // GET route for getting all of the recipes
-    app.get("/api/savedRecipes", function(req, res) {
-      db.Recipe.findAll({})
-        .then(function(dbRecipe) {
-          res.json(dbRecipe);
-        });
-    });
+  // POST route for saving a new recipe
+  app.post("/api/savedRecipes", function (req, res) {
+    console.log(req.body);
+    console.log(req.body.image);
+    db.Recipe.create({
+      image: req.body.image,
+      label: req.body.label,
+      url: req.body.url,
+      calories: req.body.calories,
+      totalTime: req.body.totalTime,
+      ingredientLines: req.body.ingredientLines,
+      dietLabels: req.body.dietLabels,
+      healthLabels: req.body.healthLabels,
+      UserId: req.body.userId
+    })
+      .then(function (dbRecipe) {
+        res.json(dbRecipe);
+      });
+  });
+
+
+  // GET route for getting all of the recipes
+  app.get("/api/savedRecipes", function (req, res) {
+    db.Recipe.findAll({})
+      .then(function (dbRecipe) {
+        res.json(dbRecipe);
+      });
+  });
 };

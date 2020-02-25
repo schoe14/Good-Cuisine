@@ -31,7 +31,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    preference: {
+    preference1: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    preference2: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -55,7 +59,7 @@ module.exports = function (sequelize, DataTypes) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     // Associating User with Recipes
     // When an User is deleted, also delete any associated Recipes
     User.hasMany(models.Recipe, {
