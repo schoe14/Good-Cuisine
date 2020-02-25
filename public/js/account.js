@@ -55,10 +55,8 @@ $("#update-information").on("click", function (event) {
         preference1: $("#inputPreference1").find(":selected").text(),
         preference2: $("#inputPreference2").find(":selected").text(),
     };
-    // $("#change-account-modal").modal("show");
     console.log(changeAccount);
 
-    // if (changeAccount.first_name.length > 0 && changeAccount.city.length > 0 && changeAccount.state.length > 0 && changeAccount.email.length > 0 && changeAccount.password.length > 0 && changeAccount.first_name.length > 0, changeAccount.account_id.length) {
     if (!isEmpty(changeAccount.name)) {
         $.ajax({
             type: "PUT",
@@ -67,15 +65,47 @@ $("#update-information").on("click", function (event) {
         }).then(
             function (data) {
                 console.log("Updated account", changeAccount);
+                console.log("data.message ", data.message)
+                $("#update-err-msg").empty("").text(data.message);
                 // Reload the page to get the updated list
-                // location.reload();
-                console.log(data);
+                location.reload();
             });
     } else {
         console.log("**Required fields cannot be empty**");
-        $("#update-err-msg").empty("").text("**Required fields cannot be empty**");
+        $("#update-err-msg").empty("").text("**Name field cannot be empty**");
     }
+});
 
+$("#update-password").on("click", function (event) {
+    event.preventDefault();
+    $("#update-err-msg").empty("");
+    $("#err-msg-update").empty("");
+    $("#current_password").val("");
+    $("#new_password").val("");
+    $("#update-password-modal").modal("show");
+});
+
+$("#confirm-password-update").on("click", function (event) {
+    event.preventDefault();
+    const updatePassword = {
+        oldPasswordEntered: $("#current_password").val().trim(),
+        newPasswordEntered: $("#new_password").val().trim()
+    }
+    if (!isEmpty(updatePassword.oldPasswordEntered) && !isEmpty(updatePassword.newPasswordEntered)) {
+        $.ajax({
+            type: "PUT",
+            url: "/accounts/update/password",
+            data: updatePassword
+        }).then(function (data) {
+            console.log("data.message ", data.message)
+            $("#err-msg-update").empty("").text(data.message);
+            if (data.success) window.location.href = "/";
+        });
+    }
+    else {
+        console.log("fill out entire form");
+        $("#err-msg-update").empty("").text("Password fields cannot be empty");
+    }
 });
 
 // DELETE   ***************************************************
@@ -84,6 +114,7 @@ $("#delete-account").on("click", function (event) {
     console.log($("#account-number").data("accountemail"));
     $("#account_id").val("");
     $("#account_password").val("");
+    $("#update-err-msg").empty("");
     $("#err-msg-deletion").empty("");
     $("#delete-account-modal").modal("show");
 });

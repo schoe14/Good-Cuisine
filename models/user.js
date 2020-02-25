@@ -46,6 +46,7 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         // Regex - Minimum eight characters, at least one letter, one number and one special character:
         // is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g
+        is: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&./])[A-Za-z\d@$!%*#?&./]{8,}$/g
       }
     }
   });
@@ -58,6 +59,10 @@ module.exports = function (sequelize, DataTypes) {
   User.addHook("beforeCreate", function (user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  // User.addHook('beforeBulkUpdate', function (user) {
+  //   user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+  // })
 
   User.associate = function (models) {
     // Associating User with Recipes
