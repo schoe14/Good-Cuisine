@@ -26,7 +26,8 @@ module.exports = function (app) {
       console.log("req.session.passport.user ", req.session.passport.user);
       db.User.findOne({
         where: {
-          uuid: req.session.passport.user
+          id: req.session.passport.user
+          // uuid: req.session.passport.user
         }
       }).then(function (dbUser) {
         console.log("dbUser.dataValues ", dbUser.dataValues)
@@ -114,14 +115,16 @@ module.exports = function (app) {
       console.log("req.session.passport.user ", req.session.passport.user);
       db.User.findOne({
         where: {
-          uuid: req.session.passport.user
+          id: req.session.passport.user
+          // uuid: req.session.passport.user
         }
       }).then(function (user) {
         console.log("password validation for deletion: " + user.validPassword(req.body.passwordEntered))
         if (user && user.validPassword(req.body.passwordEntered)) {
           db.User.destroy({
             where: {
-              uuid: req.session.passport.user
+              id: req.session.passport.user
+              // uuid: req.session.passport.user
             }
           }).then(function () {
             res.send({ success: true, message: 'Deleted successfully' });
@@ -209,7 +212,8 @@ module.exports = function (app) {
         totalTime: req.body.totalTime,
         ingredientLines: req.body.ingredientLines,
         dietLabels: req.body.dietLabels,
-        healthLabels: req.body.healthLabels
+        healthLabels: req.body.healthLabels,
+        UserId: req.body.userId
       })
         .then(function(dbRecipe) {
           res.json(dbRecipe);

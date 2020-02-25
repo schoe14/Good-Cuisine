@@ -103,13 +103,13 @@ passport.use('local-login', new LocalStrategy(
 
 // used to serialize the user for the session
 passport.serializeUser(function (user, done) {
-  // console.log("user.uuid",user.uuid);
-  done(null, user.uuid);
+  done(null, user.id);
+  // done(null, user.uuid);
 });
 
 // used to deserialize the user
-passport.deserializeUser(function (uuid, done) {
-  db.User.findByPk(uuid).then(function (user) {
+passport.deserializeUser(function (id, done) {
+  db.User.findByPk(id).then(function (user) {
 
     if (user) {
 

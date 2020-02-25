@@ -44,15 +44,15 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   
-    // Recipe.associate = function(models) {
-    //   // We're saying that a Recipe should belong to an User
-    //   // A Recipe can't be created without an User due to the foreign key constraint
-    //   Recipe.belongsTo(models.User, {
-    //     foreignKey: {
-    //       allowNull: false
-    //     }
-    //   });
-    // };
+    Recipe.associate = function(models) {
+      // We're saying that a Recipe should belong to an User
+      // A Recipe can't be created without an User due to the foreign key constraint
+      Recipe.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
   
     return Recipe;
   };
