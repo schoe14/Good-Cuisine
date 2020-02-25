@@ -1,0 +1,154 @@
+// =================================
+//	Variables
+// =================================
+//Font Stacks
+$f-font: 'Asap', sans-serif;
+
+// Breakpoints
+$mq-xxLarge: 1400px;
+$mq-xLarge: 1200px;
+$mq-large: 992px;
+$mq-medium: 768px;
+$mq-small: 576px;
+$mq-tiny: 400px;
+
+//Colors
+$c-theme: #28e500;
+$c-theme2: #646464;
+$c-theme3: #e0e0e0;
+$c-bg: #f9f9f9;
+$c-white: #fff;
+$c-black: #000;
+
+
+// =================================
+//	Mixins
+// =================================
+@mixin center($width, $max-width) {
+	width: $width;
+	max-width: $max-width;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin box-shadow {
+	-webkit-box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.15);
+	box-shadow: 0px 3px 5px -2px rgba(0,0,0,0.15);
+}
+
+@mixin box-shadow-right {
+    -webkit-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+}
+
+
+// =================================
+//	Type
+// =================================
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+      text-align: center;
+      color: $c-theme2;
+      margin: 0;
+      font-family: $f-font;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+    font-weight: bold;
+    color: $c-black;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    @media (min-width: $mq-small) {
+        font-size: 2em;
+    }
+  }
+  
+  
+  p,
+  ul,
+  ol,
+  blockquote,
+  address,
+  label {
+    margin: 0 0 1rem 0;
+    font-style: normal;
+    color: $c-theme2;
+  }
+  
+  ul,
+  ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: $c-theme2;
+  }
+  
+  a {
+      text-decoration: none;
+      color: $c-theme2;
+      transition: all .5s;
+  
+    &:hover,
+    &:focus {
+        color: $c-theme;
+    }
+  }
+
+
+  // =================================
+//	Buttons
+// =================================
+button {
+    background-color: $c-theme!important;
+    border: thin solid transparent!important;
+    border-radius: 6px;
+    color: $c-white;
+    font-weight: bold;
+    font-size: .8em;
+    text-transform: uppercase;
+    transition: all .5s;
+    &:focus, &:hover, &:active {
+        border: thin solid $c-theme;
+        background-color: transparent;
+        color: $c-theme;
+        outline: none !important;
+        box-shadow: none;
+    }
+}
+
+
+  // =================================
+//	Layout
+// =================================
+
+body {
+    background-color: $c-bg;
+    nav {
+        // border-bottom: thin solid $c-theme3;
+        @include box-shadow;
+        .navbar-brand {
+            #go-home {
+                width: 100%;
+                max-width: 6em;
+            }
+        }
+        .navbar-toggler {
+            background-color: white!important;
+        }
+    }
+}

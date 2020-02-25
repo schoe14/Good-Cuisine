@@ -11,15 +11,19 @@
     <form id="create-form">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputFirst">Name</label>
-                <input type="text" class="form-control" id="inputFirst" placeholder="John">
+                <label for="inputName">Name *</label>
+                <input type="text" class="form-control" id="inputName" placeholder="John">
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail">Email</label>
+                <label for="inputEmail">Email *</label>
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+            <div class="col-md-6 my-2">
+                <h7 id="err-msg-email">
+                </h7>
             </div>
         </div>
 
@@ -89,8 +93,40 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="password">
+                <label for="inputPreference1">Cuisine Preference</label>
+                <select id="inputPreference1" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="American">American</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Indian">Indian</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPreference2">Dietary Preference</label>
+                <select id="inputPreference2" class="form-control">
+                    <option selected>Choose...</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="protein">High in Protein</option>
+                    <option value="fiber">High in Fiber</option>
+                    <option value="fat">Low in Fat</option>
+                    <option value="carbs">Low in Carbs</option>
+                    <option value="sodium">Low Sodium</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword">Password *</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <div class="col-md-6 my-2">
+                <h7 id="err-msg-password">
+                </h7>
             </div>
         </div>
 
@@ -99,4 +135,11 @@
         </div>
 
         <button type="submit" id="add-account" class="btn btn-primary">Submit</button>
+
+        <div class="my-3">
+            <h7 id="instruction">
+                * fields are mandatory
+            </h7>
+        </div>
+
     </form>

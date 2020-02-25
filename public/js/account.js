@@ -1,98 +1,148 @@
-console.log("Accounts.js loaded");
+console.log("accounts.js loaded");
+
+// To check if input is null
+function isEmpty(value) {
+    return value === "";
+}
 
 // ADD    ****************
 $("#add-account").on("click", function (event) {
     event.preventDefault();
-
+    $("#create-err-msg").empty("");
+    $("#err-msg-email").empty("");
+    $("#err-msg-password").empty("");
     console.log("Entere'd add account button.")
-    // make a newAccount obj
     const newAccount = {
         email: $("#inputEmail").val().trim(),
-        password: $("#inputPassword").val().trim()
+        password: $("#inputPassword").val().trim(),
+        name: $("#inputName").val().trim(),
+        city: $("#inputCity").val().trim(),
+        state: $("#inputState").find(":selected").text(),
+        preference1: $("#inputPreference1").find(":selected").text(),
+        preference2: $("#inputPreference2").find(":selected").text()
     };
-
-    if (newAccount.email.length > 0 && newAccount.password.length > 0) {
+    console.log(isEmpty(newAccount.name), isEmpty(newAccount.email), isEmpty(newAccount.password));
+    if (!isEmpty(newAccount.name) && !isEmpty(newAccount.email) && !isEmpty(newAccount.password)) {
         $.ajax({
-            type: "post",
+            type: "POST",
             url: "/signup",
             data: newAccount
         }).then(function (data) {
-            console.log("data.message ", data.message)
-            window.location.href = "/";
-            // if(data.success) window.location.href = "/";
-            // else console.log("data.message " , data.message);
+            console.log("data.message ", data.message);
+            if (data.message === "email") { $("#err-msg-email").empty("").text("Invalid email form") }
+            else if (data.message === "password") { $("#err-msg-password").empty("").text("Password has to be minimum eight characters, at least one letter, one number and one special character") }
+            else { $("#err-msg-email").empty("").text(data.message) }
+            console.log(data.success);
+            // window.location.href = "/";
+            if (data.success) window.location.href = "/search";
         });
     } else {
-        console.log("**Please fill out entire form**");
-        $("#create-err-msg").empty("").text("**Please fill out entire form**");
+        console.log("**Please fill out the required fields**");
+        $("#create-err-msg").empty("").text("**Please fill out the required fields**");
     }
 });
 
-
 // UPDATE      **********************
-// $("#update-account").on("click", function (event) {
-//     event.preventDefault();
+$("#update-information").on("click", function (event) {
+    event.preventDefault();
+    $("#update-err-msg").empty("");
 
-//     // capture All changes
-//     const changeAccount = {
-//         first_name: $("#inputFirst").val().trim(),
-//         city: $("#inputCity").val().trim(),
-//         state: $("#inputState").val().trim(),
-//         email: $("#inputEmail").val().trim(),
-//         password: $("#inputPassword").val().trim(),
-//         account_id: $("#account-number").attr("data-accountid")
-//     };
-//     $("#err-msg").empty("");
-//     // $("#change-account-modal").modal("show");
-//     console.log(changeAccount);
+    // capture All changes
+    const changeAccount = {
+        name: $("#inputName").val().trim(),
+        city: $("#inputCity").val().trim(),
+        state: $("#inputState").find(":selected").text(),
+        preference1: $("#inputPreference1").find(":selected").text(),
+        preference2: $("#inputPreference2").find(":selected").text(),
+    };
+    console.log(changeAccount);
 
-//     if (changeAccount.first_name.length > 0 && changeAccount.city.length > 0 && changeAccount.state.length > 0 && changeAccount.email.length > 0 && changeAccount.password.length > 0 && changeAccount.first_name.length > 0, changeAccount.account_id.length) {
-//         $.ajax({
-//             type: "PUT",
-//             url: "/accounts/" + changeAccount.account_id + "/" + changeAccount.password,
-//             data: changeAccount
-//         }).then(
-//             function () {
-//                 console.log("Updated account", changeAccount);
-//                 // Reload the page to get the updated list
-//                 location.reload();
-//             }
-//         );
+    if (!isEmpty(changeAccount.name)) {
+        $.ajax({
+            type: "PUT",
+            url: "/accounts/update/info",
+            data: changeAccount
+        }).then(
+            function (data) {
+                console.log("Updated account", changeAccount);
+                console.log("data.message ", data.message)
+                $("#update-err-msg").empty("").text(data.message);
+                // Reload the page to get the updated list
+                location.reload();
+            });
+    } else {
+        console.log("**Required fields cannot be empty**");
+        $("#update-err-msg").empty("").text("**Name field cannot be empty**");
+    }
+});
 
-//     } else {
-//         console.log("**Please fill out entire form**");
-//         $("#update-err-msg").empty("").text("**Please fill out entire form**");
-//     }
+$("#update-password").on("click", function (event) {
+    event.preventDefault();
+    $("#update-err-msg").empty("");
+    $("#err-msg-update").empty("");
+    $("#current_password").val("");
+    $("#new_password").val("");
+    $("#update-password-modal").modal("show");
+});
 
-// });
+$("#confirm-password-update").on("click", function (event) {
+    event.preventDefault();
+    const updatePassword = {
+        oldPasswordEntered: $("#current_password").val().trim(),
+        newPasswordEntered: $("#new_password").val().trim()
+    }
+    if (!isEmpty(updatePassword.oldPasswordEntered) && !isEmpty(updatePassword.newPasswordEntered)) {
+        $.ajax({
+            type: "PUT",
+            url: "/accounts/update/password",
+            data: updatePassword
+        }).then(function (data) {
+            console.log("data.message ", data.message)
+            $("#err-msg-update").empty("").text(data.message);
+            if (data.success) window.location.href = "/";
+        });
+    }
+    else {
+        console.log("fill out entire form");
+        $("#err-msg-update").empty("").text("Password fields cannot be empty");
+    }
+});
 
 // DELETE   ***************************************************
-// $("#delete-account").on("click", function (event) {
-//     event.preventDefault();
-//     $("#err-msg").empty("");
-//     $("#delete-account-modal").modal("show");
-// });
+$("#delete-account").on("click", function (event) {
+    event.preventDefault();
+    console.log($("#account-number").data("accountemail"));
+    $("#account_id").val("");
+    $("#account_password").val("");
+    $("#update-err-msg").empty("");
+    $("#err-msg-deletion").empty("");
+    $("#delete-account-modal").modal("show");
+});
 
-// $("#confirm-delete").on("click", function (event) {
-//     const deleteAccount = {
-//         account_id: $("#account_id").val().trim(),
-//         account_key: $("#account_password").val().trim(),
-//     }
-//     console.log(deleteAccount);
-//     if (deleteAccount.account_id.length > 0 && deleteAccount.account_key.length > 0) {
-//         $.ajax("/accounts/" + deleteAccount.account_id + "/" + deleteAccount.account_key, {
-//             type: "DELETE"
-//         }).then(
-//             function () {
-//                 console.log("deleted account", deleteAccount.account_id);
-//                 // Reload the page to get the updated list
-//                 location.reload();
-//             }
-
-//         );
-//     } else {
-//         console.log("fill out entire form");
-//         $("#err-msg").empty("").text("fill out entire form");
-//     }
-
-// });
+$("#confirm-delete").on("click", function (event) {
+    const deleteAccount = {
+        accountEntered: $("#account_id").val().trim(),
+        passwordEntered: $("#account_password").val().trim()
+    }
+    console.log(deleteAccount);
+    if (!isEmpty(deleteAccount.accountEntered) && !isEmpty(deleteAccount.passwordEntered)) {
+        if (deleteAccount.accountEntered === $("#account-number").data("accountemail")) {
+            $.ajax({
+                type: "DELETE",
+                url: "/accounts/delete/",
+                data: deleteAccount
+            }).then(function (data) {
+                console.log(data)
+                console.log("data.message ", data.message)
+                $("#err-msg-deletion").empty("").text(data.message);
+                if (data.success) window.location.href = "/";
+            });
+        } else {
+            $("#err-msg-deletion").empty("").text("Invalid email");
+        }
+    }
+    else {
+        console.log("fill out entire form");
+        $("#err-msg-deletion").empty("").text("Email and password cannot be empty");
+    }
+});
