@@ -1,0 +1,103 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  color: #646464;
+  margin: 0;
+  font-family: "Asap", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  font-weight: bold;
+  color: #000;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+@media (min-width: 576px) {
+  h2 {
+    font-size: 2em;
+  }
+}
+
+p,
+ul,
+ol,
+blockquote,
+address,
+label {
+  margin: 0 0 1rem 0;
+  font-style: normal;
+  color: #646464;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: #646464;
+}
+
+a {
+  text-decoration: none;
+  color: #646464;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+a:hover, a:focus {
+  color: #28e500;
+}
+
+button {
+  background-color: #28e500 !important;
+  border: thin solid transparent !important;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: .8em;
+  text-transform: uppercase;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+button:focus, button:hover, button:active {
+  border: thin solid #28e500;
+  background-color: transparent;
+  color: #28e500;
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+body nav {
+  -webkit-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.15);
+}
+
+body nav .navbar-brand #go-home {
+  width: 100%;
+  max-width: 6em;
+}
+
+body nav .navbar-toggler {
+  background-color: white !important;
+}
+/*# sourceMappingURL=style.css.map */
