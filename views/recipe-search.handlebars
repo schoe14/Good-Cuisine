@@ -23,11 +23,7 @@
                         <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
                         <div class="keyRadio">
                         </div>
-                        <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
                      </p>
-                     <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button>
-                     <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
-                        what params for our API request)</p>
                   </div>
                </div>
                <h2 class="mb-0">
@@ -49,11 +45,7 @@
                               <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
                               <div class="dietCheckbox">
                               </div>
-                              <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
                            </p>
-                           <button type="button" class="btn btn-primary" id="checkDiet">Log what is checked</button>
-                           <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
-                              what params for our API request)</p>
                         </div>
                      </div>
                      <div class="row my-2 border">
@@ -63,7 +55,6 @@
                               <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
                               <div class="custom-control custom-checkbox healthCheck"></div>
                            </p>
-                           <button type="button" class="btn btn-primary" id="checkHealth">Log what is checked</button>
                         </div>
                      </div>
                      <div class="row my-2 border">
@@ -73,11 +64,7 @@
                               <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
                               <div class="calorieRadio">
                               </div>
-                              <!-- <div class="custom-control custom-checkbox dietCheckbox"></div> -->
                            </p>
-                           {{!-- <button type="button" class="btn btn-primary" id="checkKey">Log what is checked</button> --}}
-                           {{!-- <p style="font-style: italic;">(check console to see which one is chosen, we will use this to know
-                              what params for our API request)</p> --}}
                         </div>
                      </div>
                   </div>
@@ -105,6 +92,7 @@
 
 {{> Modal/recipeerror-block}}
 {{> Modal/keyError-block}}
+{{> Modal/saveRecipeError-block}}
 
 <script src="/js/recipe.js"></script>
 
