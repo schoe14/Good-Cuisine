@@ -1,90 +1,93 @@
 {{> Navigation/nav-block search=false view=false account=false signup=true}}
 
-<h1>User's Dashboard</h1>
+<div class="recipe-search-block" id="members-search-block">
+   <div class="welcome">
+      <h1>Your Dashboard</h1>
+   </div>
 
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-   <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Search</a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Saved Recipes</a>
-   </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="accordion" id="accordionExample">
-         <div class="card">
-            <div class="card-header" id="headingOne">
-               <div class="row my-2 border">
-                  <div class="col-12 py-2">
-                     <p>
-                        Select key word for search
-                        <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
-                        <div class="keyRadio">
-                        </div>
-                     </p>
-                  </div>
-               </div>
-               <h2 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Filters
-                  </button>
-               </h2>
-            </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-               <div class="card-body">
-
-
-                  {{!-- Filters in collapsed container --}}
-                  <div class="container my-4 savedContainer">
-                     <div class="row my-2 border">
-                        <div class="col-12 py-2">
-                           <p>
-                              Select dietary preferences from the given options:
-                              <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
-                              <div class="dietCheckbox">
-                              </div>
-                           </p>
-                        </div>
-                     </div>
-                     <div class="row my-2 border">
-                        <div class="col-12 py-2">
-                           <p>
-                              Health Options (for best results don't select more than 3):
-                              <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
-                              <div class="custom-control custom-checkbox healthCheck"></div>
-                           </p>
-                        </div>
-                     </div>
-                     <div class="row my-2 border">
-                        <div class="col-12 py-2">
-                           <p>
-                              Select key word for search
-                              <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
-                              <div class="calorieRadio">
-                              </div>
-                           </p>
-                        </div>
+   <ul class="nav nav-tabs"  id="myTab" role="tablist">
+      <li class="nav-item">
+         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Search</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Saved Recipes</a>
+      </li>
+   </ul>
+   <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+         <div class="accordion" id="accordionExample">
+            <div class="card" id="searchCard">
+               <div class="card-header p-5" id="headingOne">
+                  <div class="row">
+                     <div class="col-12">
+                        <p>
+                           Select key word for search
+                           <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+                           <div class="keyRadio">
+                           </div>
+                        </p>
                      </div>
                   </div>
-                  <button type="button" class="btn btn-primary" id="search">"Search using params"</button>
+                  <h2 class="mb-0">
+                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                     Filters
+                     </button>
+                  </h2>
+               </div>
+               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+
+
+                     {{!-- Filters in collapsed container --}}
+                     <div class="container search-filters">
+                        <div class="row">
+                           <div class="col-12">
+                              <p>
+                                 Select dietary preferences from the given options:
+                                 <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+                                 <div class="dietCheckbox">
+                                 </div>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-12">
+                              <p>
+                                 Health Options (for best results don't select more than 3):
+                                 <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
+                                 <div class="custom-control custom-checkbox healthCheck"></div>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-12">
+                              <p>
+                                 Select key word for search
+                                 <!-- {{!-- Client side js will append diet options to dietCheckbox class --}} -->
+                                 <div class="calorieRadio">
+                                 </div>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <button type="button" class="btn btn-primary" id="search">Search for Recipes</button>
 
 
 
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="card" id="recipeResults">
-            <div class="card-header" id="headingOne">
-               <h3>There are no results that match your search</h3>
-               <p>Please try adjusting your search keywords or filters.</p>
+            <div class="card" id="recipeResults">
+               <div class="card-text m-5" id="noResultsMessage">
+                  <h3>There are no results that match your search</h3>
+                  <p>Please try adjusting your search keywords or filters.</p>
+               </div>
             </div>
          </div>
       </div>
-   </div>
-   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <p>Nothing saved yet</p>
+      <div class="tab-pane fade saved-recipes p-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+         <h3>Nothing saved yet.</h3>
+      </div>
    </div>
 </div>
 

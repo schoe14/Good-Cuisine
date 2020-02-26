@@ -71,10 +71,24 @@ $c-black: #000;
     color: $c-black;
   }
 
+  h1 {
+      font-size: 1.8em;
+      @media (min-width: $mq-small) {
+          font-size: 2.2em;
+      }
+  }
+
   h2 {
     font-size: 1.6em;
     @media (min-width: $mq-small) {
         font-size: 2em;
+    }
+  }
+
+  h3 {
+    font-size: 1.4em;
+    @media (min-width: $mq-small) {
+        font-size: 1.8em;
     }
   }
   
@@ -113,21 +127,22 @@ $c-black: #000;
   // =================================
 //	Buttons
 // =================================
-button {
+button, .btn {
     background-color: $c-theme!important;
     border: thin solid transparent!important;
     border-radius: 6px;
-    color: $c-white;
+    color: $c-white!important;
     font-weight: bold;
-    font-size: .8em;
     text-transform: uppercase;
+    outline: none !important;
+    box-shadow: none;
     transition: all .5s;
     &:focus, &:hover, &:active {
-        border: thin solid $c-theme;
-        background-color: transparent;
-        color: $c-theme;
+        border: thin solid $c-theme!important;
+        background-color: transparent!important;
+        color: $c-theme!important;
         outline: none !important;
-        box-shadow: none;
+        box-shadow: none!important;
     }
 }
 
@@ -149,6 +164,48 @@ body {
         }
         .navbar-toggler {
             background-color: white!important;
+        }
+    }
+}
+
+  // =================================
+//	Recipe Search Pages (Members and Non-Members)
+// =================================
+
+.recipe-search-block {
+    @include center(90%, $mq-large);
+    .welcome {
+        margin: 10% 0;
+    }
+    .tab-pane {
+        border-top: none;
+        &:last-child {
+            border: 1px solid rgba(0,0,0,.125);
+            background-color: $c-white;
+            border-top: none;
+        }
+    }
+    .accordion {
+        .col-12 {
+            padding: 2em 0 1em;
+        }
+        .search-filters {
+            .row {
+                border-top: thin solid $c-theme3;
+            }
+        }
+        #searchCard {
+            border-top: none;
+            .card-header {
+                background-color: $c-white;
+                border: none;
+                padding: 0;
+            }
+        }
+        #search {
+            margin-bottom: 3em;
+        }
+        .saved-recipes {
         }
     }
 }
