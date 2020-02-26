@@ -133,13 +133,13 @@ $(document).ready(function () {
                      </ul>
                   <p>Diet:</p>
                   <ul class="diet-list">
-                  ${recipes[i].dietLabels.map(diets => (
+                  ${dietArray.map(diets => (
             `<li>${diets}</li>`
          )).join("")}
                   </ul>
                   <p>Health:</p>
                   <ul class="health-list">
-                     ${recipes[i].healthLabels.map(healths => (
+                     ${healthArray.map(healths => (
             `<li>${healths}</li>`
          )).join("")}
                   </ul>
