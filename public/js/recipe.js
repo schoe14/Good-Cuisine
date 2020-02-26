@@ -272,16 +272,6 @@ $(document).ready(function () {
       });
    });
 
-   $("#sign-in").click(function () {
-      console.log("test")
-      // event.preventDefault();
-      // $("#email").val("");
-      // $("#password").val("");
-      // $("#err-msg").empty("");
-      $("#account-info").modal("show");
-   });
-
-
 
    $('#search').click(function () {
 
