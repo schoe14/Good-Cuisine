@@ -5,19 +5,19 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-// const test = 'production';
+const test = 'production';
 const config = require(__dirname + '/../config/config.json')[env];
-// const config2 = require(__dirname + '/../config/config.json')[test];
+const config2 = require(__dirname + '/../config/config.json')[test];
 const db = {};
 
 let sequelize;
 if (process.env.JAWSDB_URL) {
-  // sequelize = new Sequelize(process.env.JAWSDB_URL, config2);
-  sequelize = new Sequelize(process.env.JAWSDB_DATABASE, process.env.JAWSDB_USER, process.env.JAWSDB_PASS,
-    {
-      "host": process.env.JAWSDB_HOST,
-      "dialect": "mysql"
-    });
+  sequelize = new Sequelize(process.env.JAWSDB_URL, config2);
+  // sequelize = new Sequelize(process.env.JAWSDB_DATABASE, process.env.JAWSDB_USER, process.env.JAWSDB_PASS,
+  //   {
+  //     "host": process.env.JAWSDB_HOST,
+  //     "dialect": "mysql"
+  //   });
 }
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
