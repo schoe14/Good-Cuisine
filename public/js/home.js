@@ -50,30 +50,26 @@ $("#sign-in").on("click", function (event) {
     }
     console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: user
-        }).then(function (data) {
-            console.log(data);
+        $.post("/login", user, function (data) {
             console.log("data.message ", data.message);
             $("#err-msg").empty("").text(data.message);
             if (data === true) window.location.href = "/search";
-        });
+        })
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/login",
+        //     data: user
+        // }).then(function (data) {
+        //     console.log(data);
+        //     console.log("data.message ", data.message);
+        //     $("#err-msg").empty("").text(data.message);
+        //     if (data === true) window.location.href = "/search";
+        // });
     }
     else {
         console.log("fill out entire form");
         $("#err-msg").empty("").text("Email and password cannot be empty");
     }
-    // $.post("/login", user, function (results) {
-    //     if (results) {
-    //         // $(location).attr('href', '/accounts/view')
-    //         $(location).attr('href', '/')
-    //     } else {
-    //         $("#account-info").modal("close");
-    //         alert("oops something went wrong, please try again!");
-    //     }
-    // })
 });
 
 $("#view-account").on("click", function (event) {

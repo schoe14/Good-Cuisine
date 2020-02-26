@@ -68,7 +68,8 @@ module.exports = function (sequelize, DataTypes) {
     // Associating User with Recipes
     // When an User is deleted, also delete any associated Recipes
     User.hasMany(models.Recipe, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      hooks: true
     });
   };
 
