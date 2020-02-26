@@ -132,9 +132,11 @@ $(document).ready(function () {
 
    healthLabelsArray.forEach(function (element) {
       let healthOptions = /*html*/`
-      <input class="health" type="checkbox" id=${element.healthId} name=${element.healthLabel} value=${element.healthId}>
-      <label for=${element.healthId}>${element.healthLabel}</label>
-      <br>
+      <div class="custom-control custom-checkbox custom-control-inline">
+         <input class="health" type="checkbox" id=${element.healthId} name=${element.healthLabel} value=${element.healthId}>
+         <label for=${element.healthId}>${element.healthLabel}</label>
+         <br>
+      <div>
       `
       $('.healthCheck').append(healthOptions);
 
@@ -246,7 +248,7 @@ $(document).ready(function () {
             if (userId === "none") {
 
                const recipeCardContent = `
-               <img src="${image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+               <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
                <div class="card-body">
                   <h5 class="recipe-name card-title">${label}</h5>
                   <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
@@ -283,7 +285,7 @@ $(document).ready(function () {
 
             } else {
                const recipeCardContent = `
-                  <img src="${image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+               <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${label}</h5>
                      <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
