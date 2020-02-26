@@ -248,7 +248,7 @@ $(document).ready(function () {
             if (userId === "none") {
 
                const recipeCardContent = `
-               <img src="${image}" class="recipe-image card-img-top" alt="recipe-image">
+               <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
                <div class="card-body">
                   <h5 class="recipe-name card-title">${label}</h5>
                   <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
@@ -285,7 +285,7 @@ $(document).ready(function () {
 
             } else {
                const recipeCardContent = `
-                  <img src="${image}" class="recipe-image card-img-top" alt="recipe-image">
+               <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${label}</h5>
                      <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
