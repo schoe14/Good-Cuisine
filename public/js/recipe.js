@@ -173,6 +173,15 @@ $(document).ready(function () {
       });
    });
 
+   $("#sign-in").click(function () {
+      console.log("test")
+      // event.preventDefault();
+      // $("#email").val("");
+      // $("#password").val("");
+      // $("#err-msg").empty("");
+      $("#account-info").modal("show");
+  });
+
 
 
    $('#search').click(function () {
@@ -336,18 +345,17 @@ $(document).ready(function () {
                   .html(recipeCardContent);
 
                // 
-               // recipeCard.find(".save-recipe-btn").on("click", () => submitPost({
-               //    image: image,
-               //    label: label,
-               //    url: url,
-               //    calories: (calories / yield).toFixed(),
-               //    totalTime: totalTime,
-               //    ingredientLines: ingredientLines.join(),
-               //    dietLabels: dietLabels.join(),
-               //    healthLabels: healthLabels.join(),
-               //    userId: userId
-               // }));
-
+               recipeCard.find(".save-recipe-btn").on("click", () => submitPost({
+                  image: image,
+                  label: label,
+                  url: url,
+                  calories: (calories / yield).toFixed(),
+                  totalTime: totalTime,
+                  ingredientLines: ingredientLines.join(),
+                  dietLabels: dietLabels.join(),
+                  healthLabels: healthLabels.join(),
+                  userId: userId
+               }));
 
                // appends cards to page
                $("#recipeResults").prepend(recipeCard);
