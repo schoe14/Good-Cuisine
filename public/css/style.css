@@ -165,4 +165,36 @@ body nav .navbar-toggler {
 .recipe-search-block .accordion #search {
   margin-bottom: 3em;
 }
+
+.custom-control {
+  width: 100%;
+}
+
+.custom-control input {
+  margin: 4px 8px 0 0;
+}
+
+.custom-control label {
+  margin: 0;
+}
+
+@media (min-width: 576px) {
+  .custom-control {
+    display: inline;
+  }
+}
+
+.healthCheck {
+  padding: 0;
+}
+
+.healthCheck .custom-control {
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .healthCheck .custom-control {
+    display: inline-block;
+  }
+}
 /*# sourceMappingURL=style.css.map */

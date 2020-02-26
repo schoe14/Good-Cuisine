@@ -209,3 +209,26 @@ body {
         }
     }
 }
+
+.custom-control {
+    width: 100%;
+    input {
+        margin: 4px 8px 0 0;
+    }
+    label {
+        margin: 0;
+    }
+    @media (min-width: $mq-small) {
+        display: inline;
+    }
+}
+
+.healthCheck {
+    padding: 0;
+    .custom-control {
+        padding: 0;
+        @media (min-width: $mq-small) {
+            display: inline-block;
+        }
+    }
+}

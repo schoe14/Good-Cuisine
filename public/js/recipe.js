@@ -132,9 +132,11 @@ $(document).ready(function () {
 
    healthLabelsArray.forEach(function (element) {
       let healthOptions = /*html*/`
-      <input class="health" type="checkbox" id=${element.healthId} name=${element.healthLabel} value=${element.healthId}>
-      <label for=${element.healthId}>${element.healthLabel}</label>
-      <br>
+      <div class="custom-control custom-checkbox custom-control-inline">
+         <input class="health" type="checkbox" id=${element.healthId} name=${element.healthLabel} value=${element.healthId}>
+         <label for=${element.healthId}>${element.healthLabel}</label>
+         <br>
+      <div>
       `
       $('.healthCheck').append(healthOptions);
 
