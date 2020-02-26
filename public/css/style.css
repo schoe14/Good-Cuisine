@@ -22,6 +22,16 @@ h6 {
   color: #000;
 }
 
+h1 {
+  font-size: 1.8em;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2.2em;
+  }
+}
+
 h2 {
   font-size: 1.6em;
 }
@@ -29,6 +39,16 @@ h2 {
 @media (min-width: 576px) {
   h2 {
     font-size: 2em;
+  }
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+@media (min-width: 576px) {
+  h3 {
+    font-size: 1.8em;
   }
 }
 
@@ -62,25 +82,27 @@ a:hover, a:focus {
   color: #28e500;
 }
 
-button {
+button, .btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
-  color: #fff;
+  color: #fff !important;
   font-weight: bold;
-  font-size: .8em;
   text-transform: uppercase;
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   -webkit-transition: all .5s;
   transition: all .5s;
 }
 
-button:focus, button:hover, button:active {
-  border: thin solid #28e500;
-  background-color: transparent;
-  color: #28e500;
+button:focus, button:hover, button:active, .btn:focus, .btn:hover, .btn:active {
+  border: thin solid #28e500 !important;
+  background-color: transparent !important;
+  color: #28e500 !important;
   outline: none !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 body {
@@ -88,8 +110,8 @@ body {
 }
 
 body nav {
-  -webkit-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
 body nav .navbar-brand #go-home {
@@ -99,5 +121,127 @@ body nav .navbar-brand #go-home {
 
 body nav .navbar-toggler {
   background-color: white !important;
+}
+
+.recipe-search-block {
+  width: 90%;
+  max-width: 992px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recipe-search-block .welcome {
+  margin: 10% 0;
+}
+
+.recipe-search-block .nav-tabs .active {
+  color: #28e500;
+}
+
+.recipe-search-block .tab-pane {
+  border-top: none;
+}
+
+.recipe-search-block .tab-pane:last-child {
+  border: 1px solid rgba(77, 41, 41, 0.125);
+  background-color: #fff;
+  border-top: none;
+}
+
+.recipe-search-block .accordion .col-12 {
+  padding: 2em 0 1em;
+}
+
+.recipe-search-block .accordion .search-filters .row {
+  border-top: thin solid #e0e0e0;
+}
+
+.recipe-search-block .accordion #searchCard {
+  border-top: none;
+}
+
+.recipe-search-block .accordion #searchCard .card-header {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card {
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border: none !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  position: relative;
+  width: 90%;
+  margin: 2% auto;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card .recipe-image {
+  width: 100%;
+  height: 13em;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body {
+  text-align: left;
+  padding: 10%;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link {
+  color: #28e500;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:focus {
+  color: #646464;
+}
+
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body button, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .save-recipe-btn {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block .accordion #recipeResults .recipe-card {
+    width: 43%;
+  }
+}
+
+.recipe-search-block .accordion #search {
+  margin-bottom: 3em;
+}
+
+.recipe-search-block .accordion .custom-control {
+  width: 100%;
+}
+
+.recipe-search-block .accordion .custom-control input {
+  margin: 4px 8px 0 0;
+}
+
+.recipe-search-block .accordion .custom-control label {
+  margin: 0;
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block .accordion .custom-control {
+    display: inline;
+  }
+}
+
+.recipe-search-block .accordion .healthCheck {
+  padding: 0;
+}
+
+.recipe-search-block .accordion .healthCheck .custom-control {
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block .accordion .healthCheck .custom-control {
+    display: inline-block;
+  }
 }
 /*# sourceMappingURL=style.css.map */
