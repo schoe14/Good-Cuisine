@@ -104,6 +104,17 @@ $(document).ready(function () {
       }
    ]
 
+   const id = $('#userId').data("userid");
+   $.get("/api/savedRecipes/" +id, function (data) {
+      
+      let recipes = [];
+      // let recipes = data[0].Recipes
+      for (var i = 0; i < data[0].Recipes.length; i++) {
+         recipes.push(data[0].Recipes[i]);
+      }
+      console.log(recipes);
+   });
+
 
    keyWordArray.forEach(function (element) {
       let keyWord = /*html*/`
@@ -180,7 +191,7 @@ $(document).ready(function () {
       // $("#password").val("");
       // $("#err-msg").empty("");
       $("#account-info").modal("show");
-  });
+   });
 
 
 
@@ -383,20 +394,20 @@ $(document).ready(function () {
                      <p>Ingredients:</p>
                      <ul class="ingredients-list">
                      ${saveArray[i].ingredientLines.map(ingredient => (
-                     `<li>${ingredient}</li>`
-                  )).join("")}
+               `<li>${ingredient}</li>`
+            )).join("")}
                         </ul>
                         <p>Diet:</p>
                         <ul class="diet-list">
                         ${saveArray[i].dietLabels.map(diets => (
-                        `<li>${diets}</li>`
-                     )).join("")}
+               `<li>${diets}</li>`
+            )).join("")}
                         </ul>
                         <p>Health:</p>
                         <ul class="health-list">
                         ${saveArray[i].healthLabels.map(healths => (
-                        `<li>${healths}</li>`
-                     )).join("")}
+               `<li>${healths}</li>`
+            )).join("")}
                         </ul>
                         <div id=${userId}></div>
                      </div>

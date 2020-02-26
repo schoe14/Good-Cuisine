@@ -274,6 +274,19 @@ module.exports = function (app) {
   //   }
   // });
 
+  // GET route for recipes
+  app.get("/api/savedRecipes/:id", function (req, res) {
+    db.User.findAll({
+      where :{
+        id: req.params.id
+      },
+      include: [db.Recipe]
+    }).then(function (dbRecipe) {
+      console.log(dbRecipe)
+      res.json(dbRecipe);
+    })
+  })
+
 
   // POST route for saving a new recipe
   app.post("/api/savedRecipes", function (req, res) {
@@ -300,6 +313,7 @@ module.exports = function (app) {
   app.get("/api/savedRecipes", function (req, res) {
     db.Recipe.findAll({})
       .then(function (dbRecipe) {
+        console.log(dbRecipe)
         res.json(dbRecipe);
       });
   });
