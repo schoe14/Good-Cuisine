@@ -30,49 +30,12 @@
           <a class="nav-link" href="#" id="sign-in-modal">SIGN IN</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/signup" data-signup={{signup}}>SIGN UP</a>
+          <a class="nav-link sign-up-btn" href="/signup" data-signup={{signup}}>SIGN UP</a>
         </li>
         {{/if}}
       </ul>
     </div>
   </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-white">
-          <a class="navbar-brand" href="/">
-              <img id="go-home" border="0" src="/images/Good_Cuisine_logo.png" alt="Good-Cuisine" >
-          </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {{#if isloggedin}}
-                <li class="nav-item">
-                  <span class="navbar-text" id="userId" data-userid={{id}}>Hi, {{name}} </span>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/search" data-search={{search}}>DASHBOARD</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/accounts/view" data-account={{account}}>ACCOUNT</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/logout">LOGOUT</a>
-                </li>
-                {{else}}
-                <li class="nav-item">
-                  <a class="nav-link" href="/search" data-view={{view}}>SEARCH RECIPES</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" id="sign-in-modal">SIGN IN</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link sign-up-btn" href="/signup" data-signup={{signup}}>SIGN UP</a>
-                </li>
-                {{/if}}
-            </ul>
-        </div>
-    </nav>
 </div>
 
 {{> Modal/signin-block}}
