@@ -13,7 +13,11 @@ const db = {};
 let sequelize;
 if (process.env.JAWSDB_URL) {
   // sequelize = new Sequelize(process.env.JAWSDB_URL, config2);
-  sequelize = new Sequelize(process.env.JAWSDB_URL, process.env.JAWSDB_DATABASE, process.env.JAWSDB_USER, process.env.JAWSDB_PASS, config.production);
+  sequelize = new Sequelize(process.env.JAWSDB_DATABASE, process.env.JAWSDB_USER, process.env.JAWSDB_PASS,
+    {
+      host: process.env.JAWSDB_HOST,
+      dialect: "mysql"
+    });
 }
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
