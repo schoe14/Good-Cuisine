@@ -107,24 +107,26 @@ $(document).ready(function () {
    let recipes = [];
    let id = $('#userId').data("userid");
    $.get("/api/savedRecipes/" + id, function (data) {
-      // console.log(data[0].Recipes);
-      // console.log(recipes[1].ingredientLines)
-      console.log(data[0].Recipes.length)
+
       for (var i = 0; i < data[0].Recipes.length; i++) {
          recipes.push(data[0].Recipes);
-         console.log(recipes);
+
+         console.log(recipes[0][i]);
+         // console.log(recipes[0][i].image)
+
          var ingredientArray = recipes[0][i].ingredientLines.split(',');
          var dietArray = recipes[0][i].dietLabels.split(',');
          var healthArray = recipes[0][i].healthLabels.split(',');
-         console.log(ingredientArray, dietArray, healthArray);
+         // console.log(ingredientArray, dietArray, healthArray);
+
 
          let recipeCardContent = `
-         <img src="${recipes[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+         <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
          <div class="card-body">
-            <h5 class="recipe-name card-title">${recipes[i].label}</h5>
-               <p><a href="${recipes[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
-               <p>Calories(per serving): <span class="calories">${(recipes[i].calories / recipes[i].yield).toFixed()}</span></p>
-               <p>Total Time: <span class="total-time">${recipes[i].totalTime}</span></p>
+            <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
+               <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
+               <p>Calories(per serving): <span class="calories">${(recipes[0][i].calories).toFixed()}</span></p>
+               <p>Total Time: <span class="total-time">${recipes[0][i].totalTime}</span></p>
                <p>Ingredients:</p>
                   <ul class="ingredients-list">
                      ${ingredientArray.map(ingredient => (
