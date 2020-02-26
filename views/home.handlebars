@@ -1,19 +1,21 @@
-<div id="main-container" class="container">
-    <div class="jumbotron text-center header-wrap" align="center">
-        <img src="" alt="logo" class="mb-4" style="width:210px;">
-        <p class="lead">Welcome to <strong>Good-Cuisine</strong>{{#if isloggedin}}, {{name}} {{/if}}</p>
-        <hr class="my-4">
-        <p class="lead">Start your search</p>
-        <div>
-            {{#if isloggedin}}
-            <button type="submit" id="search-recipe" class="btn">Dashboard</button>
-            <button type="submit" id="view-account" class="btn">View Account</button>
-            <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-            {{else}}
-            <button type="submit" id="search-recipe" class="btn">Search Recipes</button>
-            <button type="submit" id="sign-in-modal" class="btn">Sign In!</button>
-            <button type="submit" id="sign-up" class="btn">Sign Up!</button>
-            {{/if}}
+<div id="main-container" class="home-page d-flex align-items-center justify-content-center">
+    <div class="text-center main " align="center">
+        <div class="wrapper">
+            <img src="/images/Good_Cuisine_logo.png" alt="Good-Cuisine" class="mb-5" style="width:210px;">
+            <h1>Welcome to <strong>Good Cuisine</strong>{{#if isloggedin}}, {{name}} {{/if}}</h1>
+            <hr class="my-4">
+            <p class="mb-2">A place to search and save recipes!</p>
+            <div class="home-btns">
+                {{#if isloggedin}}
+                <button type="submit" id="search-recipe" class="btn">Dashboard</button>
+                <button type="submit" id="view-account" class="btn">View Account</button>
+                <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
+                {{else}}
+                <button type="submit" id="search-recipe" class="btn">Search Recipes</button>
+                <button type="submit" id="sign-in-modal" class="btn">Sign In</button>
+                <button type="submit" id="sign-up" class="btn">Sign Up</button>
+                {{/if}}
+            </div>
         </div>
     </div>
 </div>

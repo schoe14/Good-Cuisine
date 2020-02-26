@@ -211,14 +211,40 @@ body {
             background-color: white!important;
             transition: all .4s;
             width: 3em;
+            border: none!important;
             &:hover, &:focus {
                 outline: none !important;
                 box-shadow: none;
+                border: none!important;
+                opacity: .5;
             }
         }
     }
 }
 
+
+
+// =================================
+//	Home Page
+// =================================
+
+.home-page {
+    margin-top: 5%;
+    .main {
+        @include center(90%, $mq-medium);
+        @include box-shadow;
+        background-color: $c-white;
+        .wrapper {
+            padding: 10%;
+            .home-btns {
+                margin-top: 2em;
+                button {
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+}
 
 
 // =================================
@@ -337,8 +363,6 @@ body {
                     display: inline-block;
                 }
             }
-        }
-        .saved-recipes {
         }
     }
 }

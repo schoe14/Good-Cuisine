@@ -165,12 +165,41 @@ body nav .navbar-toggler {
   -webkit-transition: all .4s;
   transition: all .4s;
   width: 3em;
+  border: none !important;
 }
 
 body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
   outline: none !important;
   -webkit-box-shadow: none;
           box-shadow: none;
+  border: none !important;
+  opacity: .5;
+}
+
+.home-page {
+  margin-top: 5%;
+}
+
+.home-page .main {
+  width: 90%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.home-page .main .wrapper {
+  padding: 10%;
+}
+
+.home-page .main .wrapper .home-btns {
+  margin-top: 2em;
+}
+
+.home-page .main .wrapper .home-btns button {
+  margin-top: 1em;
 }
 
 .singup-page .header-wrap {
