@@ -82,7 +82,7 @@ a:hover, a:focus {
   color: #28e500;
 }
 
-button, .btn {
+button, .btn, .sign-up-btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
@@ -96,13 +96,24 @@ button, .btn {
   transition: all .5s;
 }
 
-button:focus, button:hover, button:active, .btn:focus, .btn:hover, .btn:active {
+button:focus, button:hover, .btn:focus, .btn:hover, .sign-up-btn:focus, .sign-up-btn:hover {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+}
+
+.modal .close {
+  border: none !important;
+  background-color: #fff !important;
+  color: #28e500 !important;
+}
+
+.modal .close:hover, .modal .close:focus {
+  border: none !important;
+  color: #646464 !important;
 }
 
 body {
@@ -119,8 +130,22 @@ body nav .navbar-brand #go-home {
   max-width: 6em;
 }
 
+@media (min-width: 768px) {
+  body nav .navbar-nav li:last-child {
+    margin-left: 1em;
+  }
+}
+
 body nav .navbar-toggler {
   background-color: white !important;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .recipe-search-block {

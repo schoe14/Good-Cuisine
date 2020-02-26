@@ -127,7 +127,7 @@ $c-black: #000;
   // =================================
 //	Buttons
 // =================================
-button, .btn {
+button, .btn, .sign-up-btn {
     background-color: $c-theme!important;
     border: thin solid transparent!important;
     border-radius: 6px;
@@ -137,13 +137,28 @@ button, .btn {
     outline: none !important;
     box-shadow: none;
     transition: all .5s;
-    &:focus, &:hover, &:active {
+    &:focus, &:hover {
         border: thin solid $c-theme!important;
         background-color: transparent!important;
         color: $c-theme!important;
         outline: none !important;
         box-shadow: none!important;
     }
+}
+
+  // =================================
+//	Modals
+// =================================
+.modal {
+    .close {
+        border: none!important;
+        background-color: $c-white!important;
+        color: $c-theme!important;
+        &:hover, &:focus {
+            border: none!important;
+            color: $c-theme2!important;
+        }
+    }   
 }
 
 
@@ -162,8 +177,20 @@ body {
                 max-width: 6em;
             }
         }
+        .navbar-nav {
+            @media (min-width: $mq-medium) {
+                li:last-child {
+                    margin-left: 1em;
+                }
+            }
+        }
         .navbar-toggler {
             background-color: white!important;
+            transition: all .4s;
+            &:hover, &:focus {
+                outline: none !important;
+                box-shadow: none;
+            }
         }
     }
 }
