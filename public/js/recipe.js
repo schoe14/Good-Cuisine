@@ -146,8 +146,9 @@ $(document).ready(function () {
          )).join("")}
                   </ul>
                <div id=${id}></div>
+               <button data-dataid:${id} data-userid:${id}>Delete</button>
             </div>
-            <button data-dataid:${id} data-userid:${}
+            
             `;
 
          let recipeCard = $("<div>")
@@ -194,7 +195,6 @@ $(document).ready(function () {
    //             <div id=${userId}></div>
    //          </div>
    //          `;
-
    //    let recipeCard = $("<div>")
    //       .addClass("recipe-card card d-flex flex-row")
    //       .attr("id", "recipeCard1")
