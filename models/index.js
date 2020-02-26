@@ -15,8 +15,8 @@ if (process.env.JAWSDB_URL) {
   // sequelize = new Sequelize(process.env.JAWSDB_URL, config2);
   sequelize = new Sequelize(process.env.JAWSDB_DATABASE, process.env.JAWSDB_USER, process.env.JAWSDB_PASS,
     {
-      host: process.env.JAWSDB_HOST,
-      dialect: "mysql"
+      "host": process.env.JAWSDB_HOST,
+      "dialect": "mysql"
     });
 }
 // if (config.use_env_variable) {
