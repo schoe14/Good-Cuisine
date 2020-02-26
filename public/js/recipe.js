@@ -147,6 +147,7 @@ $(document).ready(function () {
                   </ul>
                <div id=${id}></div>
             </div>
+            <button data-dataid:${id} data-userid:${}
             `;
 
          let recipeCard = $("<div>")
@@ -157,6 +158,9 @@ $(document).ready(function () {
       }
    });
 
+   /////////////////////
+   //  WORK IN PROGRESS
+   ////////////////////
    // function appendRecipes() {
    //    let i = this.id
    //    console.log(saveArray[i].label)
