@@ -134,6 +134,10 @@ body nav .navbar-toggler {
   margin: 10% 0;
 }
 
+.recipe-search-block .nav-tabs .active {
+  color: #28e500;
+}
+
 .recipe-search-block .tab-pane {
   border-top: none;
 }
@@ -166,34 +170,34 @@ body nav .navbar-toggler {
   margin-bottom: 3em;
 }
 
-.custom-control {
+.recipe-search-block .accordion .custom-control {
   width: 100%;
 }
 
-.custom-control input {
+.recipe-search-block .accordion .custom-control input {
   margin: 4px 8px 0 0;
 }
 
-.custom-control label {
+.recipe-search-block .accordion .custom-control label {
   margin: 0;
 }
 
 @media (min-width: 576px) {
-  .custom-control {
+  .recipe-search-block .accordion .custom-control {
     display: inline;
   }
 }
 
-.healthCheck {
+.recipe-search-block .accordion .healthCheck {
   padding: 0;
 }
 
-.healthCheck .custom-control {
+.recipe-search-block .accordion .healthCheck .custom-control {
   padding: 0;
 }
 
 @media (min-width: 576px) {
-  .healthCheck .custom-control {
+  .recipe-search-block .accordion .healthCheck .custom-control {
     display: inline-block;
   }
 }
