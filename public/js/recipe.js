@@ -104,17 +104,97 @@ $(document).ready(function () {
       }
    ]
 
-   const id = $('#userId').data("userid");
-   $.get("/api/savedRecipes/" +id, function (data) {
-      
-      let recipes = [];
-      // let recipes = data[0].Recipes
+   let recipes = [];
+   let id = $('#userId').data("userid");
+   $.get("/api/savedRecipes/" + id, function (data) {
+      // console.log(data[0].Recipes);
+      // console.log(recipes[1].ingredientLines)
+      console.log(data[0].Recipes.length)
       for (var i = 0; i < data[0].Recipes.length; i++) {
-         recipes.push(data[0].Recipes[i]);
+         recipes.push(data[0].Recipes);
+         console.log(recipes);
+         var ingredientArray = recipes[0][i].ingredientLines.split(',');
+         var dietArray = recipes[0][i].dietLabels.split(',');
+         var healthArray = recipes[0][i].healthLabels.split(',');
+         console.log(ingredientArray, dietArray, healthArray);
+
+         let recipeCardContent = `
+         <img src="${recipes[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+         <div class="card-body">
+            <h5 class="recipe-name card-title">${recipes[i].label}</h5>
+               <p><a href="${recipes[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
+               <p>Calories(per serving): <span class="calories">${(recipes[i].calories / recipes[i].yield).toFixed()}</span></p>
+               <p>Total Time: <span class="total-time">${recipes[i].totalTime}</span></p>
+               <p>Ingredients:</p>
+                  <ul class="ingredients-list">
+                     ${ingredientArray.map(ingredient => (
+            `<li>${ingredient}</li>`
+         )).join("")}
+                     </ul>
+                  <p>Diet:</p>
+                  <ul class="diet-list">
+                  ${recipes[i].dietLabels.map(diets => (
+            `<li>${diets}</li>`
+         )).join("")}
+                  </ul>
+                  <p>Health:</p>
+                  <ul class="health-list">
+                     ${recipes[i].healthLabels.map(healths => (
+            `<li>${healths}</li>`
+         )).join("")}
+                  </ul>
+               <div id=${id}></div>
+            </div>
+            `;
+
+         let recipeCard = $("<div>")
+            .addClass("recipe-card card d-flex flex-row")
+            .attr("id", "recipeCard1")
+            .html(recipeCardContent);
+         $("#savedRecipes").prepend(recipeCard);
       }
-      console.log(recipes);
    });
 
+   // function appendRecipes() {
+   //    let i = this.id
+   //    console.log(saveArray[i].label)
+   //    // console.log(saveArray)
+
+   //    let recipeCardContent = `
+   //       <img src="${saveArray[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+   //       <div class="card-body">
+   //          <h5 class="recipe-name card-title">${saveArray[i].label}</h5>
+   //             <p><a href="${saveArray[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
+   //             <p>Calories(per serving): <span class="calories">${(saveArray[i].calories / saveArray[i].yield).toFixed()}</span></p>
+   //             <p>Total Time: <span class="total-time">${saveArray[i].totalTime}</span></p>
+   //             <p>Ingredients:</p>
+   //                <ul class="ingredients-list">
+   //                   ${saveArray[i].ingredientLines.map(ingredient => (
+   //       `<li>${ingredient}</li>`
+   //    )).join("")}
+   //                   </ul>
+   //                <p>Diet:</p>
+   //                <ul class="diet-list">
+   //                ${saveArray[i].dietLabels.map(diets => (
+   //       `<li>${diets}</li>`
+   //    )).join("")}
+   //                </ul>
+   //                <p>Health:</p>
+   //                <ul class="health-list">
+   //                   ${saveArray[i].healthLabels.map(healths => (
+   //       `<li>${healths}</li>`
+   //    )).join("")}
+   //                </ul>
+   //             <div id=${userId}></div>
+   //          </div>
+   //          `;
+
+   //    let recipeCard = $("<div>")
+   //       .addClass("recipe-card card d-flex flex-row")
+   //       .attr("id", "recipeCard1")
+   //       .html(recipeCardContent);
+   //    $("#savedRecipes").prepend(recipeCard);
+   // }
 
    keyWordArray.forEach(function (element) {
       let keyWord = /*html*/`
