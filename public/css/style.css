@@ -267,8 +267,10 @@ body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
   padding: 0;
 }
 
-.recipe-search-block .accordion #recipeResults #resultsMessage {
-  width: 100%;
+@media (min-width: 576px) {
+  .recipe-search-block .accordion #recipeResults .results-message {
+    width: 100%;
+  }
 }
 
 .recipe-search-block .accordion #recipeResults .recipe-card {

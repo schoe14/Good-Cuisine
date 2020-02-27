@@ -312,8 +312,10 @@ body {
             }
         }
         #recipeResults {
-            #resultsMessage {
-                width: 100%;
+            .results-message {
+                @media (min-width: $mq-small) {
+                    width: 100%;
+                }
             }
             .recipe-card {
                 @include box-shadow;
