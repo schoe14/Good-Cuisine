@@ -123,34 +123,33 @@ $(document).ready(function () {
 
          let recipeCardContent = `
          <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
-         <div class="card-body">
-            <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
+            <div class="card-body">
+               <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
                <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
-               <p>Calories(per serving): <span class="calories">${(recipes[0][i].calories).toFixed()}</span></p>
+               <p>Calories(per serving): <span class="calories">${recipes[0][i].calories}</span></p>
                <p>Total Time: <span class="total-time">${recipes[0][i].totalTime}</span></p>
                <p>Ingredients:</p>
-                  <ul class="ingredients-list">
-                     ${ingredientArray.map(ingredient => (
+               <ul class="ingredients-list">
+               ${ingredientArray.map(ingredient => (
             `<li>${ingredient}</li>`
          )).join("")}
-                     </ul>
-                  <p>Diet:</p>
-                  <ul class="diet-list">
-                  ${dietArray.map(diets => (
+               </ul>
+               <p>Diet:</p>
+               <ul class="diet-list">
+               ${dietArray.map(diets => (
             `<li>${diets}</li>`
          )).join("")}
-                  </ul>
-                  <p>Health:</p>
-                  <ul class="health-list">
-                     ${healthArray.map(healths => (
+               </ul>
+               <p>Health:</p>
+               <ul class="health-list">
+               ${healthArray.map(healths => (
             `<li>${healths}</li>`
          )).join("")}
-                  </ul>
-               <div id=${id}></div>
-               <button data-dataid:${id} data-userid:${id}>Delete</button>
+               </ul>
+               <div id=${userId}></div>
+               <button data-userid=${recipes[0][i].UserId} data-recipeid=${recipes[0][i].id}>Delete</button>
             </div>
-            
-            `;
+         `;
 
          let recipeCard = $("<div>")
             .addClass("recipe-card card d-flex flex-row")
@@ -389,7 +388,7 @@ $(document).ready(function () {
             //creating recipe card literals
             let recipeCard = $("<div>")
                .addClass("recipe-card card d-flex flex-row")
-               .attr("id", "recipeCard1")
+               .attr("id", "${index}")
                .html(recipeCardContent);
 
             // 
@@ -408,15 +407,18 @@ $(document).ready(function () {
             // appends cards to page
             $("#recipeResults").prepend(recipeCard);
 
-         })
+         });
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
 
             let i = this.id
+            var q = saveArray[i].label.split(' ');
+            console.log(q)
             console.log(saveArray[i].label)
             // console.log(saveArray)
 
             let recipeCardContent = `
+               <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
                   <img src="${saveArray[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${saveArray[i].label}</h5>
@@ -442,17 +444,21 @@ $(document).ready(function () {
             )).join("")}
                         </ul>
                         <div id=${userId}></div>
+                        <button type="button" id="delete" class="delete-recipe-btn btn" data-recipeid=${i + q[0]}>Delete</button>
                      </div>
+                  </div>
                   `;
+            $("#savedRecipes").prepend(recipeCardContent);
+         });
 
-            let recipeCard = $("<div>")
-               .addClass("recipe-card card d-flex flex-row")
-               .attr("id", "recipeCard1")
-               .html(recipeCardContent);
-            $("#savedRecipes").prepend(recipeCard);
-
-         })
       }
+      $('#delete').on("click", function() {
+         console.log("success")
+         // event.preventDefault();
+         // var id = $(this).id;
+         // console.log(id)
+         // $(id).remove();
+      });
 
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
