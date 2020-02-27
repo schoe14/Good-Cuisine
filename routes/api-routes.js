@@ -4,239 +4,329 @@ const passport = require("../config/passport");
 const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
-  // GET route for member-only account page
-  app.get("/accounts/view", function (req, res) {
-    console.log("%%%%%%%%% is logged in", req.isAuthenticated());
+   // Using the passport.authenticate middleware with our local strategy.
+   // If the user has valid login credentials, send them to the members page.
+   // Otherwise the user will be sent an error
 
-    if (req.isAuthenticated()) {
-      console.log("req.session.passport.user ", req.session.passport.user);
-      db.User.findOne({
-        where: {
-          id: req.session.passport.user
-          // uuid: req.session.passport.user
-        }
-      }).then(function (dbUser) {
-        console.log("dbUser.dataValues ", dbUser.dataValues)
-        const user = {
-          userInfo: dbUser.dataValues,
-          id: req.session.passport.user,
-          isLoggedIn: req.isAuthenticated(),
-          name: req.user.name
-        };
-        res.render("view-account", user);
-      });
-    } else {
-      const user = {
-        id: null,
-        isLoggedIn: req.isAuthenticated()
-      };
-      res.redirect("/");
-    }
-  });
+   // app.post("/api/login", passport.authenticate("local", {failureFlash: true}), function (req, res) {
+   //   res.json(req.user);
+   // });
 
-  // POST route for signup
-  app.post("/signup", function (req, res, next) {
-    // Using the passport.authenticate middleware with our local strategy
-    passport.authenticate("local-signup", function (err, user, info) {
-      console.log("err", err);
-      console.log("user", user);
-      console.log("info", info);
+   // app.get("/signup", function (req, res) {
+   //   res.render("accounts");
+   // });
 
-      if (err) {
-        console.log("passport err", err);
-        return next(err);
-      }
-      if (!user) {
-        return res.send({ success: false, message: info });
-      }
+   app.get("/accounts/view", function (req, res) {
+      console.log("%%%%%%%%% is logged in", req.isAuthenticated());
 
-      req.login(user, loginErr => {
-        if (loginErr) {
-          console.log("loginerr", loginerr);
-          return next(loginErr);
-        }
-        //const userId = user.dataValues.id;
-        console.log("redirecting....");
-        console.log("user-email", user.email);
-        res.cookie("email", user.email);
-        return res.send({ success: true });
-      });
-    })(req, res, next);
-  });
-
-  // POST route for login
-  app.post("/login", function (req, res, next) {
-    // Using the passport.authenticate middleware with our local strategy.
-    passport.authenticate("local-login", function (err, user, info) {
-      console.log("err", err);
-      console.log("\n\n\n########userrrr", user);
-      console.log("info", info);
-
-      if (err) {
-        console.log("passport err", err);
-        return next(err);
-      }
-      if (!user) {
-        return res.send({ success: false, message: info });
-      }
-
-      req.login(user, loginErr => {
-        if (loginErr) {
-          console.log("loginerr", loginErr)
-          return next(loginErr);
-        }
-        //const userId = user.dataValues.id;
-        console.log("redirecting....")
-        res.cookie("email", user.email);
-        return res.json(true);
-      });
-    })(req, res, next);
-  });
-
-  // DELETE route for deleting user account
-  app.delete("/accounts/delete", function (req, res) {
-    if (req.isAuthenticated()) {
-      console.log("req.session.passport.user ", req.session.passport.user);
-      db.User.findOne({
-        where: {
-          id: req.session.passport.user
-          // uuid: req.session.passport.user
-        }
-      }).then(function (user) {
-        console.log("password validation for deletion: " + user.validPassword(req.body.passwordEntered));
-        if (user && user.validPassword(req.body.passwordEntered)) {
-          db.User.destroy({
+      if (req.isAuthenticated()) {
+         // const user = {
+         //    id: req.session.passport.user,
+         //    isloggedin: req.isAuthenticated()
+         //  }
+         console.log("req.session.passport.user ", req.session.passport.user);
+         db.User.findOne({
             where: {
-              id: req.session.passport.user
-              // uuid: req.session.passport.user
+               id: req.session.passport.user
+               // uuid: req.session.passport.user
             }
-          }).then(function () {
-            res.send({ success: true, message: "Deleted successfully" });
-          });
-        } else {
-          res.send({ success: false, message: "Invalid password" });
-        }
-      });
-    } else {
-      res.send({ success: false, message: "Not logged in" });
-    }
-  });
+         }).then(function (dbUser) {
+            console.log("dbUser.dataValues ", dbUser.dataValues)
+            const user = {
+               userInfo: dbUser.dataValues,
+               id: req.session.passport.user,
+               isloggedin: req.isAuthenticated(),
+               name: req.user.name
+            }
+            res.render("view-account", user);
+         })
 
-  // PUT route for updating user information
-  app.put("/accounts/update/info", function (req, res) {
-    console.log(req.body);
-    if (req.isAuthenticated()) {
-      console.log("req.session.passport.user ", req.session.passport.user);
-      db.User.update(
-        req.body,
-        {
-          where: {
-            id: req.session.passport.user
-            // uuid: req.session.passport.user
-          }
-        }).then(function (user, err) {
-          if (err) console.log("err", err);
-          res.send({ success: true, message: "Successfully updated" });
-        }).catch(function (err) {
-          console.log(err);
-        });
-    } else {
-      res.send({ success: false, message: "Not logged in" });
-    }
-  });
+      }
+      else {
+         const user = {
+            id: null,
+            isloggedin: req.isAuthenticated()
+         }
+         res.redirect("/");
+      }
 
-  // PUT route for updating user password
-  app.put("/accounts/update/password", function (req, res) {
-    console.log(req.body);
-    if (req.isAuthenticated()) {
-      console.log("req.session.passport.user ", req.session.passport.user);
-      db.User.findOne({
-        where: {
-          id: req.session.passport.user
-          // uuid: req.session.passport.user
-        }
-      }).then(function (user) {
-        const regEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&./])[A-Za-z\d@$!%*#?&./]{8,}$/;
-        if (!user.validPassword(req.body.oldPasswordEntered)) {
-          res.send({ success: false, message: "Current password does not match" });
-        }
-        else if (!regEx.test(req.body.newPasswordEntered)) {
-          res.send({ success: false, message: "Password has to be minimum eight characters, at least one letter, one number and one special character" });
-        }
-        else {
-          const newHashedPassword = bcrypt.hashSync(req.body.newPasswordEntered, bcrypt.genSaltSync(10), null);
-          const newPassword = { password: newHashedPassword };
-          console.log("Hashed password: ", newHashedPassword);
-          db.User.update(
-            newPassword,
+   });
+
+   app.post('/signup', function (req, res, next) {
+      passport.authenticate('local-signup', function (err, user, info) {
+         console.log("err", err);
+         console.log("user", user);
+         console.log("info", info);
+         if (err) {
+            console.log("passport err", err);
+            return next(err); // will generate a 500 error
+         }
+         // Generate a JSON response reflecting authentication status
+         if (!user) {
+            return res.send({ success: false, message: info });
+         }
+
+         req.login(user, loginErr => {
+            if (loginErr) {
+               console.log("loginerr", loginerr)
+               return next(loginErr);
+            }
+            //const userId = user.dataValues.id;
+            console.log('redirecting....');
+            console.log("user-email", user.email);
+            res.cookie('email', user.email);
+            return res.send({ success: true });
+            // return res.redirect("/accounts/view");
+         });
+      })(req, res, next);
+   });
+
+   app.post('/login', function (req, res, next) {
+      passport.authenticate('local-login', function (err, user, info) {
+         console.log("err", err);
+         console.log("\n\n\n########userrrr", user);
+         console.log("info", info);
+         if (err) {
+            console.log("passport err", err);
+            return next(err); // will generate a 500 error
+         }
+         // Generate a JSON response reflecting authentication status
+         if (!user) {
+            return res.send({ success: false, message: info });
+         }
+         req.login(user, loginErr => {
+            if (loginErr) {
+               console.log("loginerr", loginErr)
+               return next(loginErr);
+            }
+            //const userId = user.dataValues.id;
+            console.log('redirecting....')
+            res.cookie('email', user.email);
+            return res.json(true);
+         });
+      })(req, res, next);
+   });
+
+   // deleting User accounts and all associated recipes
+   app.delete('/accounts/delete', function (req, res) {
+      if (req.isAuthenticated()) {
+         // const user = {
+         //    id: req.session.passport.user,
+         //    isloggedin: req.isAuthenticated()
+         //  }
+         console.log("req.session.passport.user ", req.session.passport.user);
+         db.User.findOne({
+            where: {
+               id: req.session.passport.user
+               // uuid: req.session.passport.user
+            }
+         }).then(function (user) {
+            console.log("password validation for deletion: " + user.validPassword(req.body.passwordEntered))
+            if (user && user.validPassword(req.body.passwordEntered)) {
+               db.User.destroy({
+                  where: {
+                     id: req.session.passport.user
+                     // uuid: req.session.passport.user
+                  }
+               }).then(function () {
+                  res.send({ success: true, message: 'Deleted successfully' });
+               });
+            }
+            else {
+               res.send({ success: false, message: 'Invalid password' });
+            }
+         });
+      }
+      else {
+         res.send({ success: false, message: 'Not logged in' });
+      }
+   });
+
+   // deleting a single recipe
+   app.delete('/api/savedRecipes:id', function (req, res) {
+      db.Recipe.destroy({
+         where: {
+            id: req.params.id
+         }
+      }).then(function () {
+         res.send({ success: true, message: "Deleted saved recipe" });
+      })
+   })
+
+   app.put("/accounts/update/info", function (req, res) {
+      console.log(req.body);
+      if (req.isAuthenticated()) {
+         // const user = {
+         //    id: req.session.passport.user,
+         //    isloggedin: req.isAuthenticated()
+         //  }
+         console.log("req.session.passport.user ", req.session.passport.user);
+         db.User.update(
+            req.body,
             {
-              where: {
-                id: req.session.passport.user
-              }
+               where: {
+                  id: req.session.passport.user
+                  // uuid: req.session.passport.user
+               }
             }).then(function (user, err) {
-              if (err) console.log("err", err);
-              res.send({ success: true, message: "Password updated successfully" });
-            }).catch(function (err) {
-              console.log(err);
-              res.send({ success: false, message: "Validation error" });
+               if (err) console.log("err(line:159)", err);
+               res.send({ success: true, message: 'Successfully updated' });
+            })
+            .catch(function (err) {
+               console.log(err);
             });
-        }
-      });
-    } else {
-      res.send({ success: false, message: "Not logged in" });
-    }
-  });
+      }
+      else {
+         res.send({ success: false, message: 'Not logged in' });
+      }
+   });
 
-  // GET route for logout
-  app.get("/logout", function (req, res) {
-    req.session.destroy(function (err) {
-      req.logout();
-      res.clearCookie("email");
-      res.redirect("/");
-    })
-  });
+   app.put("/accounts/update/password", function (req, res) {
+      console.log(req.body);
+      if (req.isAuthenticated()) {
+         // const user = {
+         //    id: req.session.passport.user,
+         //    isloggedin: req.isAuthenticated()
+         //  }
+         console.log("req.session.passport.user ", req.session.passport.user);
+         db.User.findOne({
+            where: {
+               id: req.session.passport.user
+               // uuid: req.session.passport.user
+            }
+         }).then(function (user) {
+            const regEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&./])[A-Za-z\d@$!%*#?&./]{8,}$/;
+            if (!user.validPassword(req.body.oldPasswordEntered)) {
+               res.send({ success: false, message: 'Current password does not match' });
+            }
+            else if (!regEx.test(req.body.newPasswordEntered)) {
+               res.send({ success: false, message: "Password has to be minimum eight characters, at least one letter, one number and one special character" });
+            }
+            else {
+               const newHashedPassword = bcrypt.hashSync(req.body.newPasswordEntered, bcrypt.genSaltSync(10), null);
+               const newPassword = { password: newHashedPassword };
+               console.log("Hashed password: ", newHashedPassword);
+               db.User.update(
+                  newPassword,
+                  {
+                     where: {
+                        id: req.session.passport.user
+                     }
+                  }).then(function (user, err) {
+                     if (err) console.log("err", err);
+                     res.send({ success: true, message: "Password updated successfully" });
+                  })
+                  .catch(function (err) {
+                     console.log(err);
+                     res.send({ success: false, message: "Validation error" });
+                  });
+            }
+         })
+      }
+      else {
+         res.send({ success: false, message: "Not logged in" });
+      }
+   });
 
-  // GET route for recipes
-  app.get("/api/savedRecipes/:id", function (req, res) {
-    db.User.findAll({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Recipe]
-    }).then(function (dbRecipe) {
-      console.log(dbRecipe)
-      res.json(dbRecipe);
-    })
-  })
+   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
+   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
+   // otherwise send back an error
+   // app.post("/api/signup", function (req, res) {
+   //   db.User.create({
+   //     email: req.body.email,
+   //     password: req.body.password
+   //   })
+   //     .then(function () {
+   //       res.redirect(307, "/api/login");
+   //     })
+   //     .catch(function (err) {
+   //       res.status(401).json(err);
+   //     });
+   // });
+
+   // Route for logging user out
+   // app.get("/logout", function (req, res) {
+   //   req.logout();
+   //   res.redirect("/");
+   // });
+
+   app.get('/logout', function (req, res) {
+      req.session.destroy(function (err) {
+         req.logout();
+         res.clearCookie('email');
+         res.redirect('/');
+      })
+   });
+
+   // Route for getting some data about our user to be used client side
+   // app.get("/api/user_data", function (req, res) {
+   //   if (!req.user) {
+   //     // The user is not logged in, send back an empty object
+   //     // res.json({});
+   //     res.redirect("/");
+   //   } else {
+   //     // Otherwise send back the user's email and id
+   //     // Sending back a password, even a hashed password, isn't a good idea
+   //     console.log("line 43(api-routes): " + req.user.email); // test
+   //     db.User.findOne({
+   //       where: {
+   //         email: req.user.email
+   //       }
+   //     }).then(function (results) {
+   //       console.log("line 49(api-routes): " + results.email)
+   //       res.render("members", { email: results.email });
+   //     })
 
 
-  // POST route for saving a new recipe
-  app.post("/api/savedRecipes", function (req, res) {
-    console.log(req.body);
-    console.log(req.body.image);
-    db.Recipe.create({
-      image: req.body.image,
-      label: req.body.label,
-      url: req.body.url,
-      calories: req.body.calories,
-      totalTime: req.body.totalTime,
-      ingredientLines: req.body.ingredientLines,
-      dietLabels: req.body.dietLabels,
-      healthLabels: req.body.healthLabels,
-      UserId: req.body.userId
-    })
-      .then(function (dbRecipe) {
-        res.json(dbRecipe);
-      });
-  });
+
+   //     // res.json({
+   //     //   email: req.user.email,
+   //     //   id: req.user.id
+   //     // });
+   //   }
+   // });
+
+   // GET route for recipes
+   app.get("/api/savedRecipes/:id", function (req, res) {
+      db.User.findAll({
+         where: {
+            id: req.params.id
+         },
+         include: [db.Recipe]
+      }).then(function (dbRecipe) {
+         console.log(dbRecipe)
+         res.json(dbRecipe);
+      })
+   })
 
 
-  // GET route for getting all of the recipes
-  app.get("/api/savedRecipes", function (req, res) {
-    db.Recipe.findAll({})
-      .then(function (dbRecipe) {
-        console.log(dbRecipe)
-        res.json(dbRecipe);
-      });
-  });
+   // POST route for saving a new recipe
+   app.post("/api/savedRecipes", function (req, res) {
+      console.log(req.body);
+      console.log(req.body.image);
+      db.Recipe.create({
+         image: req.body.image,
+         label: req.body.label,
+         url: req.body.url,
+         calories: req.body.calories,
+         totalTime: req.body.totalTime,
+         ingredientLines: req.body.ingredientLines,
+         dietLabels: req.body.dietLabels,
+         healthLabels: req.body.healthLabels,
+         UserId: req.body.userId
+      })
+         .then(function (dbRecipe) {
+            res.json(dbRecipe);
+         });
+   });
+
+
+   // GET route for getting all of the recipes
+   app.get("/api/savedRecipes", function (req, res) {
+      db.Recipe.findAll({})
+         .then(function (dbRecipe) {
+            console.log(dbRecipe)
+            res.json(dbRecipe);
+         });
+   });
 };
