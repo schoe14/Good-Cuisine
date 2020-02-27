@@ -104,6 +104,16 @@ $(document).ready(function () {
       }
    ]
 
+   // Hide saved recipe cards from search page when the search tab is active
+   // if ($("#searchTab").hasClass("active")) {
+   //    // $("#savedRecipes").attr("style", "display:none;");
+   //    console.log("Search Tab active!");
+   // }
+   // if ($("#savedTab").hasClass("active")) {
+   //    // $("#savedRecipes").attr("style", "display:block;");
+   //    console.log("Saved Tab active!");
+   // }
+
    let recipes = [];
    let getID = $('#userId').data("userid");
    $.get("/api/savedRecipes/" + getID, function (data) {
