@@ -22,7 +22,7 @@ module.exports = function (app) {
       if (req.isAuthenticated()) {
          // const user = {
          //    id: req.session.passport.user,
-         //    isloggedin: req.isAuthenticated()
+         //    isLoggedIn: req.isAuthenticated()
          //  }
          console.log("req.session.passport.user ", req.session.passport.user);
          db.User.findOne({
@@ -35,7 +35,7 @@ module.exports = function (app) {
             const user = {
                userInfo: dbUser.dataValues,
                id: req.session.passport.user,
-               isloggedin: req.isAuthenticated(),
+               isLoggedIn: req.isAuthenticated(),
                name: req.user.name
             }
             res.render("view-account", user);
@@ -45,7 +45,7 @@ module.exports = function (app) {
       else {
          const user = {
             id: null,
-            isloggedin: req.isAuthenticated()
+            isLoggedIn: req.isAuthenticated()
          }
          res.redirect("/");
       }
@@ -112,7 +112,7 @@ module.exports = function (app) {
       if (req.isAuthenticated()) {
          // const user = {
          //    id: req.session.passport.user,
-         //    isloggedin: req.isAuthenticated()
+         //    isLoggedIn: req.isAuthenticated()
          //  }
          console.log("req.session.passport.user ", req.session.passport.user);
          db.User.findOne({
@@ -158,7 +158,7 @@ module.exports = function (app) {
       if (req.isAuthenticated()) {
          // const user = {
          //    id: req.session.passport.user,
-         //    isloggedin: req.isAuthenticated()
+         //    isLoggedIn: req.isAuthenticated()
          //  }
          console.log("req.session.passport.user ", req.session.passport.user);
          db.User.update(
@@ -186,7 +186,7 @@ module.exports = function (app) {
       if (req.isAuthenticated()) {
          // const user = {
          //    id: req.session.passport.user,
-         //    isloggedin: req.isAuthenticated()
+         //    isLoggedIn: req.isAuthenticated()
          //  }
          console.log("req.session.passport.user ", req.session.passport.user);
          db.User.findOne({

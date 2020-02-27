@@ -10,7 +10,7 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       const user = {
         id: req.session.passport.user,
-        isloggedin: req.isAuthenticated(),
+        isLoggedIn: req.isAuthenticated(),
         name: req.user.name
       }
       res.render("home", user);
@@ -24,7 +24,7 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       const user = {
         id: req.session.passport.user,
-        isloggedin: req.isAuthenticated(),
+        isLoggedIn: req.isAuthenticated(),
         name: req.user.name
       }
       res.render("recipe-search", user);
@@ -39,7 +39,7 @@ module.exports = function (app) {
   //   if (req.isAuthenticated()) {
   //     const user = {
   //       id: req.session.passport.user,
-  //       isloggedin: req.isAuthenticated()
+  //       isLoggedIn: req.isAuthenticated()
   //     }
   //     res.render("saved", user);
   //   }

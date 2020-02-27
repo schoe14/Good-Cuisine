@@ -117,7 +117,7 @@ $(document).ready(function () {
    let recipes = [];
    let getID = $('#userId').data("userid");
    $.get("/api/savedRecipes/" + getID, function (data) {
-
+      console.log(data)
       for (var i = 0; i < data[0].Recipes.length; i++) {
 
          recipes.push(data[0].Recipes);
