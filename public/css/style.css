@@ -155,6 +155,9 @@ body nav .navbar-brand #go-home {
 }
 
 @media (min-width: 768px) {
+  body nav .navbar-nav li:not(:last-child) {
+    margin-left: 1em;
+  }
   body nav .navbar-nav li:last-child {
     margin-left: 1em;
   }
@@ -262,6 +265,10 @@ body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
   background-color: #fff;
   border: none;
   padding: 0;
+}
+
+.recipe-search-block .accordion #recipeResults #resultsMessage {
+  width: 100%;
 }
 
 .recipe-search-block .accordion #recipeResults .recipe-card {
