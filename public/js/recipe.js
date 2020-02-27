@@ -109,10 +109,10 @@ $(document).ready(function () {
    $.get("/api/savedRecipes/" + id, function (data) {
 
       for (var i = 0; i < data[0].Recipes.length; i++) {
-         console.log(data[0].Recipes)
+         // console.log(data[0].Recipes)
          recipes.push(data[0].Recipes);
-         console.log(recipes)
-         console.log(recipes[0][i]);
+         // console.log(recipes)
+         // console.log(recipes[0][i]);
          // console.log(recipes[0][i].image)
 
          var ingredientArray = recipes[0][i].ingredientLines.split(',');
@@ -413,8 +413,8 @@ $(document).ready(function () {
 
             let i = this.id
             var q = saveArray[i].label.split(' ');
-            console.log(q)
-            console.log(saveArray[i].label)
+            // console.log(q)
+            // console.log(saveArray[i].label)
             // console.log(saveArray)
 
             let recipeCardContent = `
@@ -452,13 +452,6 @@ $(document).ready(function () {
          });
 
       }
-      $('#delete').on("click", function() {
-         console.log("success")
-         // event.preventDefault();
-         // var id = $(this).id;
-         // console.log(id)
-         // $(id).remove();
-      });
 
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
@@ -479,8 +472,35 @@ $(document).ready(function () {
          });
       }
    });
+   $('#delete').on("click", function() {
+      console.log("success")
+      // event.preventDefault();
+      // var id = $(this).id;
+      // console.log(id)
+      // $(id).remove();
+   });
+   $('#delete').click( function() {
+      console.log("success")
+      // event.preventDefault();
+      // var id = $(this).id;
+      // console.log(id)
+      // $(id).remove();
+   });
 });
-
+$('#delete').on("click", function() {
+   console.log("success")
+   // event.preventDefault();
+   // var id = $(this).id;
+   // console.log(id)
+   // $(id).remove();
+});
+$('#delete').click( function() {
+   console.log("success")
+   // event.preventDefault();
+   // var id = $(this).id;
+   // console.log(id)
+   // $(id).remove();
+});
 
 // A function for handling what happens when the a new recipe is saved via "Save" button
 function handleRecipeSave(res) {
