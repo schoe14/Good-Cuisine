@@ -352,47 +352,8 @@ $(document).ready(function () {
             console.log(index)
 
             // searches for value of #userID  
-            // displays public or member cards 
-            if (userId === "none") {
-
-               const recipeCardContent = `
-               <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
-               <div class="card-body">
-                  <h5 class="recipe-name card-title">${label}</h5>
-                  <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
-                  <p>Calories(per serving): <span class="calories">${(calories / yield).toFixed()}</span></p>
-                  <p>Total Time: <span class="total-time">${totalTime}</span></p>
-                  <p>Ingredients:</p>
-                  <ul class="ingredients-list">
-                  ${ingredientLines.map(ingredient => (
-                  `<li>${ingredient}</li>`
-               )).join("")}
-                  </ul>
-                  <p>Diet:</p>
-                  <ul class="diet-list">
-                  ${dietLabels.map(diets => (
-                  `<li>${diets}</li>`
-               )).join("")}
-                  </ul>
-                  <p>Health:</p>
-                  <ul class="health-list">
-                  ${healthLabels.map(healths => (
-                  `<li>${healths}</li>`
-               )).join("")}
-                  </ul>
-                  <div id=${userId}></div>
-                  <button class="btn btn-primary disabled">Save</button>
-               </div>
-            `;
-
-               let recipeCard = $("<div>")
-                  .addClass("recipe-card card d-flex flex-row")
-                  .attr("id", "recipeCard1")
-                  .html(recipeCardContent);
-               $("#recipeResults").prepend(recipeCard);
-
-            } else {
-               const recipeCardContent = `
+            // displays public or member cards
+            const recipeCardContent = `
                <div class="recipe-image card-img-top" style="background: lightblue url(${image}) no-repeat center/cover";></div>
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${label}</h5>
@@ -402,20 +363,20 @@ $(document).ready(function () {
                      <p>Ingredients:</p>
                      <ul class="ingredients-list">
                      ${ingredientLines.map(ingredient => (
-                  `<li>${ingredient}</li>`
-               )).join("")}
+               `<li>${ingredient}</li>`
+            )).join("")}
                      </ul>
                      <p>Diet:</p>
                      <ul class="diet-list">
                      ${dietLabels.map(diets => (
-                  `<li>${diets}</li>`
-               )).join("")}
+               `<li>${diets}</li>`
+            )).join("")}
                      </ul>
                      <p>Health:</p>
                      <ul class="health-list">
                      ${healthLabels.map(healths => (
-                  `<li>${healths}</li>`
-               )).join("")}
+               `<li>${healths}</li>`
+            )).join("")}
                      </ul>
                      <div id=${userId}></div>
                      <a href="#" 
@@ -425,33 +386,28 @@ $(document).ready(function () {
                   </div>
                `;
 
-               //creating recipe card literals
-               let recipeCard = $("<div>")
-                  .addClass("recipe-card card d-flex flex-row")
-                  .attr("id", "recipeCard1")
-                  .html(recipeCardContent);
+            //creating recipe card literals
+            let recipeCard = $("<div>")
+               .addClass("recipe-card card d-flex flex-row")
+               .attr("id", "recipeCard1")
+               .html(recipeCardContent);
 
-               // 
-               recipeCard.find(".save-recipe-btn").on("click", () => submitPost({
-                  image: image,
-                  label: label,
-                  url: url,
-                  calories: (calories / yield).toFixed(),
-                  totalTime: totalTime,
-                  ingredientLines: ingredientLines.join(),
-                  dietLabels: dietLabels.join(),
-                  healthLabels: healthLabels.join(),
-                  userId: userId
-               }));
+            // 
+            recipeCard.find(".save-recipe-btn").on("click", () => submitPost({
+               image: image,
+               label: label,
+               url: url,
+               calories: (calories / yield).toFixed(),
+               totalTime: totalTime,
+               ingredientLines: ingredientLines.join(),
+               dietLabels: dietLabels.join(),
+               healthLabels: healthLabels.join(),
+               userId: userId
+            }));
 
-               // appends cards to page
-               $("#recipeResults").prepend(recipeCard);
-            }
-            // if class disabled exists on buttons, open sign up modal
-            $('.disabled').click(function () {
-               console.log("test")
-               return $("#saveError").modal("show");
-            })
+            // appends cards to page
+            $("#recipeResults").prepend(recipeCard);
+
          })
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
