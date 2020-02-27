@@ -109,8 +109,9 @@ $(document).ready(function () {
    $.get("/api/savedRecipes/" + id, function (data) {
 
       for (var i = 0; i < data[0].Recipes.length; i++) {
+         console.log(data[0].Recipes)
          recipes.push(data[0].Recipes);
-
+         console.log(recipes)
          console.log(recipes[0][i]);
          // console.log(recipes[0][i].image)
 
@@ -330,8 +331,6 @@ $(document).ready(function () {
             saveArray.push(response.hits[i].recipe);
          }
          console.log(saveArray);
-         const b = 2;
-         console.log(saveArray[b]);
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
