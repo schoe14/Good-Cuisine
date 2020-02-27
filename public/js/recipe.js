@@ -104,6 +104,16 @@ $(document).ready(function () {
       }
    ]
 
+   // Hide saved recipe cards from search page when the search tab is active
+   // if ($("#searchTab").hasClass("active")) {
+   //    // $("#savedRecipes").attr("style", "display:none;");
+   //    console.log("Search Tab active!");
+   // }
+   // if ($("#savedTab").hasClass("active")) {
+   //    // $("#savedRecipes").attr("style", "display:block;");
+   //    console.log("Saved Tab active!");
+   // }
+
    let recipes = [];
    let id = $('#userId').data("userid");
    $.get("/api/savedRecipes/" + id, function (data) {
@@ -390,7 +400,11 @@ $(document).ready(function () {
                   .addClass("recipe-card card d-flex flex-row")
                   .attr("id", "recipeCard1")
                   .html(recipeCardContent);
+
+               // appends cards to non-memebers page
                $("#recipeResults").prepend(recipeCard);
+               // removed empty results message
+               $(".results-message").attr("style", "display:none;");
 
             } else {
                const recipeCardContent = `
@@ -445,8 +459,10 @@ $(document).ready(function () {
                   userId: userId
                }));
 
-               // appends cards to page
+               // appends cards to memebers page
                $("#recipeResults").prepend(recipeCard);
+               // removed empty results message
+               $(".results-message").attr("style", "display:none;");
             }
             // if class disabled exists on buttons, open sign up modal
             $('.disabled').click(function () {
@@ -494,6 +510,8 @@ $(document).ready(function () {
                .addClass("recipe-card card d-flex flex-row")
                .attr("id", "recipeCard1")
                .html(recipeCardContent);
+
+            // appends cards to page
             $("#savedRecipes").prepend(recipeCard);
 
          })

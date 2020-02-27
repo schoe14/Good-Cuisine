@@ -202,6 +202,9 @@ body {
         }
         .navbar-nav {
             @media (min-width: $mq-medium) {
+                li:not(:last-child) {
+                    margin-left: 1em;
+                }
                 li:last-child {
                     margin-left: 1em;
                 }
@@ -309,6 +312,11 @@ body {
             }
         }
         #recipeResults {
+            .results-message {
+                @media (min-width: $mq-small) {
+                    width: 100%;
+                }
+            }
             .recipe-card {
                 @include box-shadow;
                 border: none!important;
