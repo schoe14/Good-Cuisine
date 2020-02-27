@@ -115,11 +115,14 @@ $(document).ready(function () {
          var ingredientArray = recipes[0][i].ingredientLines.split(',');
          var dietArray = recipes[0][i].dietLabels.split(',');
          var healthArray = recipes[0][i].healthLabels.split(',');
-
+         console.log(recipes[0][i].UserId);
+         console.log(recipes[0][i].id)
+         var id = ("recipe" + recipes[0][i].id +"user" +recipes[0][i].UserId);
+         console.log(id)
 
 
          let recipeCardContent = `
-         <div class="recipe-card card d-flex flex-row" id=${recipes[0][i].UserId, recipes[0][i].id}>
+         <div class="recipe-card card d-flex flex-row" id=${id}>
             <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
                <div class="card-body">
                   <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
@@ -145,15 +148,15 @@ $(document).ready(function () {
             )).join("")}
                   </ul>
                   <div id=${userId}></div>
-                  <button type="button" class="saved-delete btn btn-primary" id=${recipes[0][i].UserId, recipes[0][i].id} data-recipeid=${recipes[0][i].id}>Delete</button>
+                  <button type="button" class="saved-delete btn btn-primary" id=${id} data-recipeid=${recipes[0][i].id}>Delete</button>
                </div>
             `;
 
-         let recipeCard = $("<div>")
-            .addClass("recipe-card card d-flex flex-row")
-            .attr("id", "recipeCard1")
-            .html(recipeCardContent);
-         $("#savedRecipes").prepend(recipeCard);
+         // let recipeCard = $("<div>")
+         //    .addClass("recipe-card card d-flex flex-row")
+         //    .attr("id", "recipeCard1")
+         //    .html(recipeCardContent);
+         $("#savedRecipes").prepend(recipeCardContent);
       }
    });
    
@@ -162,12 +165,14 @@ $(document).ready(function () {
       console.log(deleteId);
       var id = "#" + this.id;
       console.log(id)
+      $(id).remove();
+      var query = "/api/savedRecipes/" + deleteId;
+      console.log(query)
       $.ajax({
          method: "DELETE",
-         url: "/api/savedRecipes/" + deleteId
+         url: query
       }).then(function() {
          event.preventDefault();
-         $(id).remove();
       });
    });
 

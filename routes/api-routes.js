@@ -143,7 +143,7 @@ module.exports = function (app) {
    });
 
    // deleting a single recipe
-   app.delete('/api/savedRecipes:id', function (req, res) {
+   app.delete('/api/savedRecipes/:id', function (req, res) {
       db.Recipe.destroy({
          where: {
             id: req.params.id
