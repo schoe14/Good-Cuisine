@@ -5,36 +5,29 @@ function isEmpty(value) {
     return value === "";
 }
 
-$("#go-home").on("click", function (event) {
+$("#go-home").on("click", event => {
     event.preventDefault();
-    console.log("hello")
-    $("#go-home").animateCss('pulse', function () {
+    console.log("hello");
+    $("#go-home").animateCss("pulse", function () {
         window.location.href = "/"
     });
 });
 
-$("#search-recipe").on("click", function (event) {
+$("#search-recipe").on("click", event => {
     event.preventDefault();
-    $("#search-recipe").animateCss('pulse', function () {
+    $("#search-recipe").animateCss("pulse", function () {
         window.location.href = "/search"
     });
 });
 
-// $("#view-saved-recipes").on("click", function (event) {
-//     event.preventDefault();
-//     $("#view-saved-recipes").animateCss('pulse', function () {
-//         window.location.href = "/saved-recipes"
-//     });
-// });
-
-$("#sign-up").on("click", function (event) {
+$("#sign-up").on("click", event => {
     event.preventDefault();
-    $("#sign-up").animateCss('pulse', function () {
+    $("#sign-up").animateCss("pulse", function () {
         window.location.href = "/signup"
     });
 });
 
-$("#sign-in-modal").on("click", function (event) {
+$("#sign-in-modal").on("click", event => {
     event.preventDefault();
     $("#email").val("");
     $("#password").val("");
@@ -42,7 +35,7 @@ $("#sign-in-modal").on("click", function (event) {
     $("#account-info").modal("show");
 });
 
-$("#sign-in").on("click", function (event) {
+$("#sign-in").on("click", event => {
     event.preventDefault();
     const user = {
         email: $("#email").val().trim(),
@@ -50,36 +43,31 @@ $("#sign-in").on("click", function (event) {
     }
     console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: user
-        }).then(function (data) {
-            console.log(data);
+        $.post("/login", user, data => {
             console.log("data.message ", data.message);
             $("#err-msg").empty("").text(data.message);
             if (data === true) window.location.href = "/search";
         });
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/login",
+        //     data: user
+        // }).then(function (data) {
+        //     console.log(data);
+        //     console.log("data.message ", data.message);
+        //     $("#err-msg").empty("").text(data.message);
+        //     if (data === true) window.location.href = "/search";
+        // });
     }
     else {
         console.log("fill out entire form");
         $("#err-msg").empty("").text("Email and password cannot be empty");
     }
-    // $.post("/login", user, function (results) {
-    //     if (results) {
-    //         // $(location).attr('href', '/accounts/view')
-    //         $(location).attr('href', '/')
-    //     } else {
-    //         $("#account-info").modal("close");
-    //         alert("oops something went wrong, please try again!");
-    //     }
-    // })
 });
 
-$("#view-account").on("click", function (event) {
+$("#view-account").on("click", event => {
     event.preventDefault();
-    console.log("hello")
-    $("#view-account").animateCss('pulse', function () {
-        $(location).attr('href', '/accounts/view')
+    $("#view-account").animateCss("pulse", function () {
+        $(location).attr("href", "/accounts/view");
     });
 });
