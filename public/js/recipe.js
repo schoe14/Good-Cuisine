@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 
          let recipeCardContent = `
-         <div class="recipe-card card d-flex flex-row" id=${recipes[0][i].UserId + recipes[0][i].id}>
+         <div class="recipe-card card d-flex flex-row" id=${recipes[0][i].UserId, recipes[0][i].id}>
             <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
                <div class="card-body">
                   <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
@@ -145,7 +145,7 @@ $(document).ready(function () {
             )).join("")}
                   </ul>
                   <div id=${userId}></div>
-                  <button type="button" class="saved-delete btn btn-primary" id=${recipes[0][i].UserId + recipes[0][i].id} data-recipeid=${recipes[0][i].id}>Delete</button>
+                  <button type="button" class="saved-delete btn btn-primary" id=${recipes[0][i].UserId, recipes[0][i].id} data-recipeid=${recipes[0][i].id}>Delete</button>
                </div>
             `;
 
@@ -159,7 +159,9 @@ $(document).ready(function () {
    
    $('#savedRecipes').on("click", '.saved-delete', function(event) {
       let deleteId = $(this).data("recipeid");
+      console.log(deleteId);
       var id = "#" + this.id;
+      console.log(id)
       $.ajax({
          method: "DELETE",
          url: "/api/savedRecipes/" + deleteId
