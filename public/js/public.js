@@ -195,6 +195,7 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // Add loader before results load
       $("#recipeResults").prepend(`
       <div id="loader">
          <div class="icon"></div>
