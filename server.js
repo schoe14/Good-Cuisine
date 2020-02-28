@@ -46,12 +46,6 @@ app.use(flash());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// local host "/" will display INDEX, /recipes and /saved show handlebars
-// my thinking is that "/"" will be the passport / login page
-// app.get('/', (req, res) => res.send('INDEX'));
-// app.use('/recipes', require('./routes/recipes-search'));
-// app.use('/saved', require('./routes/saved-searches'));
-
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
