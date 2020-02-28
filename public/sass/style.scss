@@ -92,7 +92,6 @@ $c-black: #000;
     }
   }
   
-  
   p,
   ul,
   ol,
@@ -117,8 +116,7 @@ $c-black: #000;
       color: $c-theme2;
       transition: all .5s;
   
-    &:hover,
-    &:focus {
+    &:hover {
         color: $c-theme;
     }
   }
@@ -138,7 +136,7 @@ button, .btn, .sign-up-btn {
     outline: none !important;
     box-shadow: none;
     transition: all .5s;
-    &:focus, &:hover {
+    &:hover {
         border: thin solid $c-theme!important;
         background-color: transparent!important;
         color: $c-theme!important;
@@ -154,15 +152,13 @@ button, .btn, .sign-up-btn {
 // =================================
 //	Forms
 // =================================
-input:hover,
-input:focus {
+input:hover {
     border: thin solid #ddd;
     border-left: 8px solid $c-theme;
     outline: none !important;
     box-shadow: none!important;
 }
-select:hover,
-select:focus {
+select:hover {
     outline: none !important;
     box-shadow: none!important;
 }
@@ -179,7 +175,7 @@ select:focus {
             background-color: $c-white!important;
             color: $c-theme!important;
             width: 3em;
-            &:hover, &:focus {
+            &:hover {
                 border: none!important;
                 color: $c-theme2!important;
             }
@@ -196,36 +192,41 @@ select:focus {
 // =================================
 
 body {
-    background-color: $c-bg;
-    nav {
-        // border-bottom: thin solid $c-theme3;
+    .navbar-container {
         @include box-shadow;
-        .navbar-brand {
-            #go-home {
-                width: 100%;
-                max-width: 6em;
-            }
-        }
-        .navbar-nav {
-            @media (min-width: $mq-medium) {
-                li:not(:last-child) {
-                    margin-left: 1em;
-                }
-                li:last-child {
-                    margin-left: 1em;
+        background-color: $c-white;
+        // max-width: $mq-large;
+        // margin: auto;
+        nav {
+            max-width: $mq-large;
+            margin: auto;
+            .navbar-brand {
+                #go-home {
+                    width: 100%;
+                    max-width: 6em;
                 }
             }
-        }
-        .navbar-toggler {
-            background-color: white!important;
-            transition: all .4s;
-            width: 3em;
-            border: none!important;
-            &:hover, &:focus {
-                outline: none !important;
-                box-shadow: none;
+            .navbar-nav {
+                @media (min-width: $mq-medium) {
+                    li:not(:last-child) {
+                        margin-left: 1em;
+                    }
+                    li:last-child {
+                        margin-left: 1em;
+                    }
+                }
+            }
+            .navbar-toggler {
+                background-color: white!important;
+                transition: all .4s;
+                width: 3em;
                 border: none!important;
-                opacity: .5;
+                &:hover {
+                    outline: none !important;
+                    box-shadow: none;
+                    border: none!important;
+                    opacity: .5;
+                }
             }
         }
     }
@@ -380,7 +381,7 @@ body {
                     padding: 10%;
                     .recipe-link {
                         color: $c-theme;
-                        &:hover, &:focus {
+                        &:hover {
                             color: $c-theme2;
                         }
                     }

@@ -78,7 +78,7 @@ a {
   transition: all .5s;
 }
 
-a:hover, a:focus {
+a:hover {
   color: #28e500;
 }
 
@@ -97,7 +97,7 @@ button, .btn, .sign-up-btn {
   transition: all .5s;
 }
 
-button:focus, button:hover, .btn:focus, .btn:hover, .sign-up-btn:focus, .sign-up-btn:hover {
+button:hover, .btn:hover, .sign-up-btn:hover {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
@@ -112,8 +112,7 @@ button:focus, button:hover, .btn:focus, .btn:hover, .sign-up-btn:focus, .sign-up
   }
 }
 
-input:hover,
-input:focus {
+input:hover {
   border: thin solid #ddd;
   border-left: 8px solid #28e500;
   outline: none !important;
@@ -121,8 +120,7 @@ input:focus {
           box-shadow: none !important;
 }
 
-select:hover,
-select:focus {
+select:hover {
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
@@ -139,7 +137,7 @@ select:focus {
   width: 3em;
 }
 
-.modal-header .close:hover, .modal-header .close:focus {
+.modal-header .close:hover {
   border: none !important;
   color: #646464 !important;
 }
@@ -148,30 +146,32 @@ select:focus {
   border: none;
 }
 
-body {
-  background-color: #f9f9f9;
-}
-
-body nav {
+body .navbar-container {
   -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-body nav .navbar-brand #go-home {
+body .navbar-container nav {
+  max-width: 992px;
+  margin: auto;
+}
+
+body .navbar-container nav .navbar-brand #go-home {
   width: 100%;
   max-width: 6em;
 }
 
 @media (min-width: 768px) {
-  body nav .navbar-nav li:not(:last-child) {
+  body .navbar-container nav .navbar-nav li:not(:last-child) {
     margin-left: 1em;
   }
-  body nav .navbar-nav li:last-child {
+  body .navbar-container nav .navbar-nav li:last-child {
     margin-left: 1em;
   }
 }
 
-body nav .navbar-toggler {
+body .navbar-container nav .navbar-toggler {
   background-color: white !important;
   -webkit-transition: all .4s;
   transition: all .4s;
@@ -179,7 +179,7 @@ body nav .navbar-toggler {
   border: none !important;
 }
 
-body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
+body .navbar-container nav .navbar-toggler:hover {
   outline: none !important;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -359,7 +359,7 @@ body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
   color: #28e500;
 }
 
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:focus {
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover {
   color: #646464;
 }
 
