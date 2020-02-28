@@ -50,9 +50,9 @@ passport.use("local-login", new LocalStrategy(
   {
     usernameField: "email",
     passwordField: "password",
-    passReqToCallback: true // Allows us to pass back the entire request to the callback
+    passReqToCallback: true
   },
-  function (req, email, password, done) { // Callback with email and password from our form
+  function (req, email, password, done) {
     // Find a user whose email is the same as the forms email
     // We are checking to see if the user trying to login already exists
     db.User.findOne({
@@ -60,10 +60,6 @@ passport.use("local-login", new LocalStrategy(
         email: req.body.email
       }
     }).then(function (user, err) {
-      // console.log("user", user);
-      // console.log("&&&",err);
-      // console.log("****",!user)
-
       // If there are any errors, return the error before anything else
       if (err) {
         console.log("err", err);
@@ -78,7 +74,7 @@ passport.use("local-login", new LocalStrategy(
 
       // If the user is found but the password is wrong
       if (user && !user.validPassword(req.body.password)) {
-        return done(null, false, "Oops! Wrong password"); // create the loginMessage and save it to session as flashdata
+        return done(null, false, "Oops! Wrong password");
       }
 
       // All is well, return successful user
@@ -98,7 +94,6 @@ passport.deserializeUser(function (id, done) {
     if (user) {
       done(null, user.get());
     } else {
-      // console.log("user.errors", user.errors)
       done(null, false, { message: "error test" });
     }
   });
