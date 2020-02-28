@@ -2,10 +2,14 @@
 
 ## Screenshots of Application
 
+:: Tag line here ::
+
 ## Live Link
 - Launch the application [here](https://good-cuisine.herokuapp.com/)
 
 ## Technologies Used
+
+:: Technology list here ::
 
 ## Features
 - Create a user account
@@ -28,8 +32,6 @@
   - For members only, recipes can be saved
   - Saved recipe page displays all recipes a user with an account has saved
   
-
-
 ## User Story
 - As someone who eats
   - I want new recipe ideas
