@@ -5,29 +5,29 @@ function isEmpty(value) {
     return value === "";
 }
 
-$("#go-home").on("click", event => {
+$("#go-home").on("click", function (event) {
     event.preventDefault();
     console.log("hello");
     $("#go-home").animateCss("pulse", function () {
-        window.location.href = "/"
+        window.location.href = "/";
     });
 });
 
-$("#search-recipe").on("click", event => {
+$("#search-recipe").on("click", function (event) {
     event.preventDefault();
     $("#search-recipe").animateCss("pulse", function () {
-        window.location.href = "/search"
+        window.location.href = "/search";
     });
 });
 
-$("#sign-up").on("click", event => {
+$("#sign-up").on("click", function (event) {
     event.preventDefault();
     $("#sign-up").animateCss("pulse", function () {
-        window.location.href = "/signup"
+        window.location.href = "/signup";
     });
 });
 
-$("#sign-in-modal").on("click", event => {
+$("#sign-in-modal").on("click", function (event) {
     event.preventDefault();
     $("#email").val("");
     $("#password").val("");
@@ -35,37 +35,31 @@ $("#sign-in-modal").on("click", event => {
     $("#account-info").modal("show");
 });
 
-$("#sign-in").on("click", event => {
+$("#sign-in").on("click", function (event) {
     event.preventDefault();
     const user = {
         email: $("#email").val().trim(),
         password: $("#password").val().trim()
     }
+
     console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
-        $.post("/login", user, data => {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: user
+        }).then(function (data) {
             console.log("data.message ", data.message);
             $("#err-msg").empty("").text(data.message);
             if (data === true) window.location.href = "/search";
         });
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/login",
-        //     data: user
-        // }).then(function (data) {
-        //     console.log(data);
-        //     console.log("data.message ", data.message);
-        //     $("#err-msg").empty("").text(data.message);
-        //     if (data === true) window.location.href = "/search";
-        // });
-    }
-    else {
+    } else {
         console.log("fill out entire form");
         $("#err-msg").empty("").text("Email and password cannot be empty");
     }
 });
 
-$("#view-account").on("click", event => {
+$("#view-account").on("click", function (event) {
     event.preventDefault();
     $("#view-account").animateCss("pulse", function () {
         $(location).attr("href", "/accounts/view");

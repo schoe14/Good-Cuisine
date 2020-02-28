@@ -16,32 +16,30 @@ module.exports = function (app) {
           // uuid: req.session.passport.user
         }
       }).then(function (dbUser) {
-        console.log("dbUser.dataValues ", dbUser.dataValues)
+        console.log("dbUser.dataValues ", dbUser.dataValues);
         const user = {
           userInfo: dbUser.dataValues,
           id: req.session.passport.user,
           isLoggedIn: req.isAuthenticated(),
           name: req.user.name
-        };
+        }
         res.render("view-account", user);
       });
     } else {
       const user = {
         id: null,
         isLoggedIn: req.isAuthenticated()
-      };
+      }
       res.redirect("/");
     }
   });
 
-  // POST route for signup
+  // POST route for user sign-up
   app.post("/signup", function (req, res, next) {
-    // Using the passport.authenticate middleware with our local strategy
     passport.authenticate("local-signup", function (err, user, info) {
       console.log("err", err);
       console.log("user", user);
       console.log("info", info);
-
       if (err) {
         console.log("passport err", err);
         return next(err);
@@ -55,7 +53,6 @@ module.exports = function (app) {
           console.log("loginerr", loginerr);
           return next(loginErr);
         }
-        //const userId = user.dataValues.id;
         console.log("redirecting....");
         console.log("user-email", user.email);
         res.cookie("email", user.email);
@@ -64,14 +61,11 @@ module.exports = function (app) {
     })(req, res, next);
   });
 
-  // POST route for login
   app.post("/login", function (req, res, next) {
-    // Using the passport.authenticate middleware with our local strategy.
     passport.authenticate("local-login", function (err, user, info) {
       console.log("err", err);
       console.log("\n\n\n########userrrr", user);
       console.log("info", info);
-
       if (err) {
         console.log("passport err", err);
         return next(err);
@@ -85,7 +79,6 @@ module.exports = function (app) {
           console.log("loginerr", loginErr)
           return next(loginErr);
         }
-        //const userId = user.dataValues.id;
         console.log("redirecting....")
         res.cookie("email", user.email);
         return res.json(true);
@@ -93,7 +86,7 @@ module.exports = function (app) {
     })(req, res, next);
   });
 
-  // DELETE route for deleting user account
+  // deleting User accounts and all associated recipes
   app.delete("/accounts/delete", function (req, res) {
     if (req.isAuthenticated()) {
       console.log("req.session.passport.user ", req.session.passport.user);
@@ -113,7 +106,8 @@ module.exports = function (app) {
           }).then(function () {
             res.send({ success: true, message: "Deleted successfully" });
           });
-        } else {
+        }
+        else {
           res.send({ success: false, message: "Invalid password" });
         }
       });
@@ -121,6 +115,17 @@ module.exports = function (app) {
       res.send({ success: false, message: "Not logged in" });
     }
   });
+
+  // deleting a single recipe
+  app.delete("/api/savedRecipes/:id", function (req, res) {
+    db.Recipe.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function () {
+      res.send({ success: true, message: "Deleted saved recipe" });
+    })
+  })
 
   // PUT route for updating user information
   app.put("/accounts/update/info", function (req, res) {
@@ -135,9 +140,10 @@ module.exports = function (app) {
             // uuid: req.session.passport.user
           }
         }).then(function (user, err) {
-          if (err) console.log("err", err);
+          if (err) console.log("err(line:159)", err);
           res.send({ success: true, message: "Successfully updated" });
-        }).catch(function (err) {
+        })
+        .catch(function (err) {
           console.log(err);
         });
     } else {
@@ -162,8 +168,7 @@ module.exports = function (app) {
         }
         else if (!regEx.test(req.body.newPasswordEntered)) {
           res.send({ success: false, message: "Password has to be minimum eight characters, at least one letter, one number and one special character" });
-        }
-        else {
+        } else {
           const newHashedPassword = bcrypt.hashSync(req.body.newPasswordEntered, bcrypt.genSaltSync(10), null);
           const newPassword = { password: newHashedPassword };
           console.log("Hashed password: ", newHashedPassword);
@@ -176,7 +181,8 @@ module.exports = function (app) {
             }).then(function (user, err) {
               if (err) console.log("err", err);
               res.send({ success: true, message: "Password updated successfully" });
-            }).catch(function (err) {
+            })
+            .catch(function (err) {
               console.log(err);
               res.send({ success: false, message: "Validation error" });
             });
@@ -187,13 +193,13 @@ module.exports = function (app) {
     }
   });
 
-  // GET route for logout
+  // GET route for logging out the user
   app.get("/logout", function (req, res) {
     req.session.destroy(function (err) {
       req.logout();
       res.clearCookie("email");
       res.redirect("/");
-    })
+    });
   });
 
   // GET route for recipes

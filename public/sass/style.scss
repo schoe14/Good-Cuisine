@@ -125,11 +125,10 @@ $c-black: #000;
   // =================================
 //	Buttons
 // =================================
-button, .btn, .sign-up-btn {
+button, .btn {
     background-color: $c-theme!important;
     border: thin solid transparent!important;
     border-radius: 6px;
-    padding: .25em 2em;
     color: $c-white!important;
     font-weight: bold;
     text-transform: uppercase;
@@ -330,7 +329,7 @@ body {
     padding-bottom: 8%;
     @include center(90%, $mq-large);
     .welcome {
-        padding: 8% 0;
+        margin: 10% 0;
     }
     .nav-tabs {
         .active {
@@ -423,6 +422,8 @@ body {
                     display: inline-block;
                 }
             }
+        }
+        .saved-recipes {
         }
     }
 }

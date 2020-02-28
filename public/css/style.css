@@ -82,11 +82,10 @@ a:hover {
   color: #28e500;
 }
 
-button, .btn, .sign-up-btn {
+button, .btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
-  padding: .25em 2em;
   color: #fff !important;
   font-weight: bold;
   text-transform: uppercase;
@@ -97,7 +96,7 @@ button, .btn, .sign-up-btn {
   transition: all .5s;
 }
 
-button:hover, .btn:hover, .sign-up-btn:hover {
+button:hover, .btn:hover {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
@@ -106,14 +105,14 @@ button:hover, .btn:hover, .sign-up-btn:hover {
           box-shadow: none !important;
 }
 
-button:focus, .btn:focus, .sign-up-btn:focus {
+button:focus, .btn:focus {
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
 
 @media (max-width: 768px) {
-  button, .btn, .sign-up-btn {
+  button, .btn {
     width: 100%;
   }
 }
@@ -296,7 +295,7 @@ body .navbar-container nav .navbar-toggler:hover {
 }
 
 .recipe-search-block .welcome {
-  padding: 8% 0;
+  margin: 10% 0;
 }
 
 .recipe-search-block .nav-tabs .active {

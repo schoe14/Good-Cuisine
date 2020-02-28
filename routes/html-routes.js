@@ -1,6 +1,6 @@
 module.exports = function (app) {
+
   // GET route for our landing page
-  // If user is loggedin, we will have user information from the server-side
   app.get("/", function (req, res) {
     if (req.isAuthenticated()) {
       const user = {
@@ -9,14 +9,12 @@ module.exports = function (app) {
         name: req.user.name
       }
       res.render("home", user);
-    }
-    else {
+    } else {
       res.render("home");
     }
   });
 
   // GET route for search page
-  // If user is loggedin, we will have user information from the server-side
   app.get("/search", function (req, res) {
     if (req.isAuthenticated()) {
       const user = {
@@ -25,8 +23,7 @@ module.exports = function (app) {
         name: req.user.name
       }
       res.render("recipe-search", user);
-    }
-    else {
+    } else {
       res.render("public-recipe-search");
     }
   });

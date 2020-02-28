@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
-// const Recipe = require('../models')
+// const express = require('express');
+// const router = express.Router();
+// // const Recipe = require('../models')
 
-router.get('/', (req, res) => res.render('recipe-search'));
-
-
+// router.get('/', (req, res) => res.render('recipe-search'));
 
 
-module.exports = router
+
+
+// module.exports = router
