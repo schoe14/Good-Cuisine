@@ -255,6 +255,7 @@ body {
 // =================================
 
 .singup-page {
+    @include center(90%, $mq-medium);
     .header-wrap {
         padding: 8% 0; 
         h1, h3 {
@@ -272,11 +273,50 @@ body {
     }
 }
 
+
+// =================================
+//	Account Info Page
+// =================================
+#viewAccountPage {
+    padding-bottom: 8%;
+    @include center(90%, $mq-medium);
+    .header-wrap {
+        padding: 8% 0; 
+        h1, h3 {
+            margin: 0;
+        }
+    }
+    .form-row {
+        label {
+            margin-bottom: .25em;
+        }
+        @media (min-width: $mq-medium) {
+            width: 48%;
+            margin: 1%;
+        }
+    }
+    .submit-btns-row {
+        width: 100%;
+        margin: 2em auto 0;
+    }
+    .update-btns {
+        margin: auto;
+        button:not(:last-child) {
+            @media (max-width: $mq-medium) {
+                margin-bottom: 1em;
+            }
+        }
+    }
+}
+
+
+
   // =================================
 //	Recipe Search Pages (Members and Non-Members)
 // =================================
 
 .recipe-search-block {
+    padding-bottom: 8%;
     @include center(90%, $mq-large);
     .welcome {
         padding: 8% 0;

@@ -1,112 +1,117 @@
 {{> Navigation/nav-block search=false view=false account=true signup=false}}
 
-<div class="container">
+<div class="container" id="viewAccountPage">
     <header align="center" class="header-wrap">
-        <h1>View or update your account</h1>
+        <h1>Welcome, {{userInfo.name}}</h1>
         <div class="accountInfo">
-            <h3>Welcome, {{userInfo.name}}</h3>
-            <h5 id="account-number" data-accountemail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+            <h5 id="account-number"  class="mt-1" data-accountemail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+            <p class="mt-4">View or edit your information here</p>
+            
         </div>
         <h3 id="update-err-msg"></h3>
     </header>
     <form id="account-form">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputName">Name *</label>
-                <input type="text" class="form-control" id="inputName" value="{{userInfo.name}}">
+        <div class="form-fields d-md-flex flex-md-wrap">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputName">Name *</label>
+                    <input type="text" class="form-control" id="inputName" value="{{userInfo.name}}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity" value="{{userInfo.city}}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control" value="{{userInfo.state}}">
+                        <option value="{{userInfo.state}}">{{userInfo.state}}</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputPreference1">Cuisine Preference</label>
+                    <select id="inputPreference1" class="form-control" value="{{userInfo.preference1}}">
+                        <option value="{{userInfo.preference1}}">{{userInfo.preference1}}</option>
+                        <option value="American">American</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Indian">Indian</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputPreference2">Dietary Preference</label>
+                    <select id="inputPreference2" class="form-control" value="{{userInfo.preference2}}">
+                        <option value="{{userInfo.preference2}}">{{userInfo.preference2}}</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="protein">High in Protein</option>
+                        <option value="fiber">High in Fiber</option>
+                        <option value="fat">Low in Fat</option>
+                        <option value="carbs">Low in Carbs</option>
+                        <option value="sodium">Low Sodium</option>
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity" value="{{userInfo.city}}">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control" value="{{userInfo.state}}">
-                    <option value="{{userInfo.state}}">{{userInfo.state}}</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputPreference1">Cuisine Preference</label>
-                <select id="inputPreference1" class="form-control" value="{{userInfo.preference1}}">
-                    <option value="{{userInfo.preference1}}">{{userInfo.preference1}}</option>
-                    <option value="American">American</option>
-                    <option value="Mexican">Mexican</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Indian">Indian</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputPreference2">Dietary Preference</label>
-                <select id="inputPreference2" class="form-control" value="{{userInfo.preference2}}">
-                    <option value="{{userInfo.preference2}}">{{userInfo.preference2}}</option>
-                    <option value="balanced">Balanced</option>
-                    <option value="protein">High in Protein</option>
-                    <option value="fiber">High in Fiber</option>
-                    <option value="fat">Low in Fat</option>
-                    <option value="carbs">Low in Carbs</option>
-                    <option value="sodium">Low Sodium</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div>
+        <div class="form-row submit-btns-row">
+            <div class="update-btns">
                 <button type="submit" id="update-information" class="btn btn-primary">UPDATE INFORMATION</button>
                 <button type="submit" id="update-password" class="btn btn-primary">UPDATE PASSWORD</button>
                 <button type="submit" id="delete-account" class="btn btn-primary">DELETE ACCOUNT</button>
