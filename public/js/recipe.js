@@ -362,7 +362,7 @@ $(document).ready(function () {
 
 
 
-            let recipeCardContentSaved = `
+            let recipeCardContent = `
                <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
                   <div class="recipe-image card-img-top" style="background: lightblue url(${saveArray[i].image}) no-repeat center/cover";></div>
                   <div class="card-body">
@@ -396,11 +396,12 @@ $(document).ready(function () {
                   </div>
                   `;
             // Save cards to saved recipes tab
-            $("#savedRecipes").prepend(recipeCardContentSaved);
+            $("#savedRecipes").append(recipeCardContent);
             // Remove "nothing saved" message when cards are appended
             // $("#savedRecipesMessage").attr("style", "display:none;");
             // if ($('#savedRecipes').children().length === 0 ){
-            //    $("#savedRecipesMessage").attr("style", "display:block;");
+            //    console.log("no recipes saved!");
+            //    // $("#savedRecipesMessage").attr("style", "display:block;");
             //  }
          });
          $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
