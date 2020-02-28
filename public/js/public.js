@@ -149,31 +149,6 @@ $(document).ready(function () {
 
    });
 
-   $('#checkKey').click(function () {
-      $('.keyWord').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-         else {
-            return console.log("undefined");
-         }
-      });
-   });
-   $('#checkDiet').click(function () {
-      $('.diet').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-      });
-   });
-   $('#checkHealth').click(function () {
-      $('.health').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-      });
-   });
-
 
    $('#search').click(function () {
 
@@ -220,8 +195,16 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // Add loader before results load
+      $("#recipeResults").prepend(`
+      <div id="loader">
+         <div class="icon"></div>
+      </div>
+      `);
+
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
+         $('#recipeResults').empty();
          console.log(queryURL);
          console.log(response);
 
@@ -231,7 +214,6 @@ $(document).ready(function () {
          for (var i = 0; i < response.hits.length; i++) {
             saveArray.push(response.hits[i].recipe);
          }
-         console.log(saveArray);
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
@@ -285,6 +267,9 @@ $(document).ready(function () {
                .addClass("recipe-card card d-flex flex-row")
                .attr("id", "recipeCard1")
                .html(recipeCardContent);
+
+            $("#loader").empty();
+
             $("#recipeResults").prepend(recipeCard);
 
          })
@@ -292,7 +277,6 @@ $(document).ready(function () {
 
          // if class disabled exists on buttons, open sign up modal
          $('.disabled').click(function () {
-            console.log("test")
             return $("#saveError").modal("show");
          })
 
@@ -306,12 +290,14 @@ $(document).ready(function () {
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
          if (err) {
+            $("#loader").empty();
             $("#ajax-error").modal("show");
          }
       }
 
       // catches if a user does not select a key word
       if (key === "") {
+         $("#loader").empty();
          return $("#key-error").modal("show")
       } else {
          $.ajax({

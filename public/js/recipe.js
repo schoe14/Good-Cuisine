@@ -61,8 +61,8 @@ $(document).ready(function () {
          healthId: "vegan"
       },
       {
-         healthLabel: "Paleo",
-         healthId: "paleo"
+         healthLabel: "Peanut Free",
+         healthId: "peanut-free"
       },
       {
          healthLabel: "Dairy Free",
@@ -77,130 +77,108 @@ $(document).ready(function () {
          healthId: "fat-free"
       },
       {
-         healthLabel: "Low Sugar",
-         healthId: "low-sugar"
+         healthLabel: "Sugar Conscious",
+         healthId: "sugar-conscious"
       }
    ];
    calorieAmountArray = [
       {
          calorieDisplay: "Any",
          calorieId: "calorieFour",
-         calorieSearch: "&calories=1-5000"
+         calorieSearch: "&calories=1-9000"
       },
       {
-         calorieDisplay: "1 to 200 Calories",
+         calorieDisplay: "1 to 250 Calories",
          calorieId: "calorieOne",
-         calorieSearch: "&calories=1-200"
+         calorieSearch: "&calories=1-250"
       },
       {
-         calorieDisplay: "200 to 600 Calories",
+         calorieDisplay: "250 to 700 Calories",
          calorieId: "calorieTwo",
-         calorieSearch: "&calories=200-600"
+         calorieSearch: "&calories=250-700"
       },
       {
-         calorieDisplay: "600 to 1000 Calories",
+         calorieDisplay: "700 to 1000 Calories",
          calorieId: "calorieThree",
-         calorieSearch: "&calories=600-1000"
+         calorieSearch: "&calories=700-1200"
       }
    ]
 
    let recipes = [];
-   let id = $('#userId').data("userid");
-   $.get("/api/savedRecipes/" + id, function (data) {
+   let getID = $('#userId').data("userid");
+   console.log(recipes);
+   console.log([])
+   
+   if (recipes === []) {
+      let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
 
-      for (var i = 0; i < data[0].Recipes.length; i++) {
-         // console.log(data[0].Recipes)
-         recipes.push(data[0].Recipes);
-         // console.log(recipes)
-         // console.log(recipes[0][i]);
-         // console.log(recipes[0][i].image)
+      $("#savedRecipes").append(noRecipes)
+   } else {
+      $.get("/api/savedRecipes/" + getID, function (data) {
+         for (var i = 0; i < data[0].Recipes.length; i++) {
 
-         var ingredientArray = recipes[0][i].ingredientLines.split(',');
-         var dietArray = recipes[0][i].dietLabels.split(',');
-         var healthArray = recipes[0][i].healthLabels.split(',');
-         // console.log(ingredientArray, dietArray, healthArray);
+            recipes.push(data[0].Recipes);
 
+            var ingredientArray = recipes[0][i].ingredientLines.split(',');
+            var dietArray = recipes[0][i].dietLabels.split(',');
+            var healthArray = recipes[0][i].healthLabels.split(',');
+            var id = ("recipe" + recipes[0][i].id + "user" + recipes[0][i].UserId);
 
-         let recipeCardContent = `
-         <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
-            <div class="card-body">
-               <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
-               <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
-               <p>Calories(per serving): <span class="calories">${recipes[0][i].calories}</span></p>
-               <p>Total Time: <span class="total-time">${recipes[0][i].totalTime}</span></p>
-               <p>Ingredients:</p>
-               <ul class="ingredients-list">
-               ${ingredientArray.map(ingredient => (
-            `<li>${ingredient}</li>`
-         )).join("")}
-               </ul>
-               <p>Diet:</p>
-               <ul class="diet-list">
-               ${dietArray.map(diets => (
-            `<li>${diets}</li>`
-         )).join("")}
-               </ul>
-               <p>Health:</p>
-               <ul class="health-list">
-               ${healthArray.map(healths => (
-            `<li>${healths}</li>`
-         )).join("")}
-               </ul>
-               <div id=${userId}></div>
-               <button data-userid=${recipes[0][i].UserId} data-recipeid=${recipes[0][i].id}>Delete</button>
-            </div>
-         `;
+            let recipeCardContent = `
+         <div class="recipe-card card d-flex flex-row" id=${id}>
+            <div class="recipe-image card-img-top" style="background: lightblue url(${recipes[0][i].image}) no-repeat center/cover";></div>
+               <div class="card-body">
+                  <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
+                  <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
+                  <p>Calories(per serving): <span class="calories">${recipes[0][i].calories}</span></p>
+                  <p>Total Time: <span class="total-time">${recipes[0][i].totalTime}</span></p>
+                  <p>Ingredients:</p>
+                  <ul class="ingredients-list">
+                  ${ingredientArray.map(ingredient => (
+               `<li>${ingredient}</li>`
+            )).join("")}
+                  </ul>
+                  <br>
+                  <p>Diet:</p>
+                  <ul class="diet-list">
+                  ${dietArray.map(diets => (
+               `<li>${diets}</li>`
+            )).join("")}
+                  </ul>
+                  <br>
+                  <p>Health:</p>
+                  <ul class="health-list">
+                  ${healthArray.map(healths => (
+               `<li>${healths}</li>`
+            )).join("")}
+                  </ul>
+                  <br>
+                  <div id=${userId}></div>
+                  <button type="button" class="saved-delete btn btn-primary" id=${id} data-recipeid=${recipes[0][i].id}>Delete</button>
+               </div>
+         </div>
+            `;
 
-         let recipeCard = $("<div>")
-            .addClass("recipe-card card d-flex flex-row")
-            .attr("id", "recipeCard1")
-            .html(recipeCardContent);
-         $("#savedRecipes").prepend(recipeCard);
-      }
+            $("#savedRecipes").prepend(recipeCardContent);
+         }
+      });
+   }
+
+   $('#savedRecipes').on("click", '.saved-delete', function (event) {
+
+      let deleteId = $(this).data("recipeid");
+      var id = "#" + this.id;
+      $(id).remove();
+
+      var query = "/api/savedRecipes/" + deleteId;
+      $.ajax({
+         method: "DELETE",
+         url: query
+      }).then(function () {
+         event.preventDefault();
+      });
    });
 
-   /////////////////////
-   //  WORK IN PROGRESS
-   ////////////////////
-   // function appendRecipes() {
-   //    let i = this.id
-   //    console.log(saveArray[i].label)
-   //    // console.log(saveArray)
-
-   //    let recipeCardContent = `
-   //       <img src="${saveArray[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
-   //       <div class="card-body">
-   //          <h5 class="recipe-name card-title">${saveArray[i].label}</h5>
-   //             <p><a href="${saveArray[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
-   //             <p>Calories(per serving): <span class="calories">${(saveArray[i].calories / saveArray[i].yield).toFixed()}</span></p>
-   //             <p>Total Time: <span class="total-time">${saveArray[i].totalTime}</span></p>
-   //             <p>Ingredients:</p>
-   //                <ul class="ingredients-list">
-   //                   ${saveArray[i].ingredientLines.map(ingredient => (
-   //       `<li>${ingredient}</li>`
-   //    )).join("")}
-   //                   </ul>
-   //                <p>Diet:</p>
-   //                <ul class="diet-list">
-   //                ${saveArray[i].dietLabels.map(diets => (
-   //       `<li>${diets}</li>`
-   //    )).join("")}
-   //                </ul>
-   //                <p>Health:</p>
-   //                <ul class="health-list">
-   //                   ${saveArray[i].healthLabels.map(healths => (
-   //       `<li>${healths}</li>`
-   //    )).join("")}
-   //                </ul>
-   //             <div id=${userId}></div>
-   //          </div>
-   //          `;
-   //    let recipeCard = $("<div>")
-   //       .addClass("recipe-card card d-flex flex-row")
-   //       .attr("id", "recipeCard1")
-   //       .html(recipeCardContent);
-   //    $("#savedRecipes").prepend(recipeCard);
-   // }
 
    keyWordArray.forEach(function (element) {
       let keyWord = /*html*/`
@@ -247,32 +225,6 @@ $(document).ready(function () {
 
    });
 
-   $('#checkKey').click(function () {
-      $('.keyWord').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-         else {
-            return console.log("undefined");
-         }
-      });
-   });
-   $('#checkDiet').click(function () {
-      $('.diet').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-      });
-   });
-   $('#checkHealth').click(function () {
-      $('.health').each(function () {
-         if ($(this).is(":checked")) {
-            console.log($(this).val());
-         }
-      });
-   });
-
-
    $('#search').click(function () {
 
       let key = "";
@@ -309,7 +261,7 @@ $(document).ready(function () {
       var keyWord = key;
       var healthLabels = "";
       health.forEach(function (i) {
-         healthLabels += "&healthLabel=" + i
+         healthLabels += "&health=" + i
       });
       var dietType = diet;
       var calorieType = calorie;
@@ -318,8 +270,16 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // Add loader before results load
+      $("#recipeResults").prepend(`
+      <div id="loader">
+         <div class="icon"></div>
+      </div>
+      `);
+
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
+         $('#recipeResults').empty();
          console.log(queryURL);
          console.log(response);
 
@@ -329,7 +289,6 @@ $(document).ready(function () {
          for (var i = 0; i < response.hits.length; i++) {
             saveArray.push(response.hits[i].recipe);
          }
-         console.log(saveArray);
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
@@ -348,7 +307,6 @@ $(document).ready(function () {
                dietLabels,
                healthLabels
             } = recipeResult.recipe;
-            console.log(index)
 
             // searches for value of #userID  
             // displays public or member cards
@@ -357,31 +315,28 @@ $(document).ready(function () {
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${label}</h5>
                      <p><a href="${url}" target="_blank" class="recipe-link">View Recipe</a></p>
+                     <p>Number of Servings: <span class="yield">${yield}</span></p>
                      <p>Calories(per serving): <span class="calories">${(calories / yield).toFixed()}</span></p>
                      <p>Total Time: <span class="total-time">${totalTime}</span></p>
                      <p>Ingredients:</p>
                      <ul class="ingredients-list">
-                     ${ingredientLines.map(ingredient => (
-               `<li>${ingredient}</li>`
-            )).join("")}
+                        ${ingredientLines.map(ingredient => (
+               `<li>${ingredient}</li>`)).join("")}
                      </ul>
+                     <br>
                      <p>Diet:</p>
                      <ul class="diet-list">
-                     ${dietLabels.map(diets => (
-               `<li>${diets}</li>`
-            )).join("")}
+                        ${dietLabels.map(diets => (
+                  `<li>${diets}</li>`)).join("")}
                      </ul>
+                     <br>
                      <p>Health:</p>
                      <ul class="health-list">
-                     ${healthLabels.map(healths => (
-               `<li>${healths}</li>`
-            )).join("")}
+                        ${healthLabels.map(healths => (
+                     `<li>${healths}</li>`)).join("")}
                      </ul>
                      <div id=${userId}></div>
-                     <a href="#" 
-                     id="${index}"
-                     class="save-recipe-btn btn btn-primary"
-                     >Save</a>
+                     <a href="#" id="${index}"class="save-recipe-btn btn btn-primary show-toast">Save</a>
                   </div>
                `;
 
@@ -404,6 +359,8 @@ $(document).ready(function () {
                userId: userId
             }));
 
+            $("#loader").empty();
+
             // appends cards to page
             $("#recipeResults").prepend(recipeCard);
 
@@ -411,15 +368,15 @@ $(document).ready(function () {
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
 
-            let i = this.id
+            console.log("test")
+            let i = this.id;
+            $("#" + i).html(`<i class="fas fa-check"></i>`)
+
             var q = saveArray[i].label.split(' ');
-            // console.log(q)
-            // console.log(saveArray[i].label)
-            // console.log(saveArray)
 
             let recipeCardContent = `
                <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
-                  <img src="${saveArray[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+                  <div class="recipe-image card-img-top" style="background: lightblue url(${saveArray[i].image}) no-repeat center/cover";></div>
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${saveArray[i].label}</h5>
                      <p><a href="${saveArray[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
@@ -431,12 +388,14 @@ $(document).ready(function () {
                `<li>${ingredient}</li>`
             )).join("")}
                         </ul>
+                        <br>
                         <p>Diet:</p>
                         <ul class="diet-list">
                         ${saveArray[i].dietLabels.map(diets => (
                `<li>${diets}</li>`
             )).join("")}
                         </ul>
+                        <br>
                         <p>Health:</p>
                         <ul class="health-list">
                         ${saveArray[i].healthLabels.map(healths => (
@@ -444,24 +403,37 @@ $(document).ready(function () {
             )).join("")}
                         </ul>
                         <div id=${userId}></div>
-                        <button type="button" id="delete" class="delete-recipe-btn btn" data-recipeid=${i + q[0]}>Delete</button>
+                        <button type="button" id="${i + q[0]}" class="btn delete-recipe-btn">Delete</button>
                      </div>
                   </div>
                   `;
-            $("#savedRecipes").prepend(recipeCardContent);
+            // Save cards to saved recipes tab
+            $("#savedRecipes").append(recipeCardContent);
+            // Remove "nothing saved" message when cards are appended
+            // $("#savedRecipesMessage").attr("style", "display:none;");
+            // if ($('#savedRecipes').children().length === 0 ){
+            //    console.log("no recipes saved!");
+            //    $("#savedRecipesMessage").attr("style", "display:block;");
+            //  }
          });
-
+         $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
+            event.preventDefault();
+            var id = "#" + this.id;
+            $(id).remove();
+         });
       }
 
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
          if (err) {
+            $("#loader").empty();
             $("#ajax-error").modal("show");
          }
       }
 
       // catches if a user does not select a key word
       if (key === "") {
+         $("#loader").empty();
          return $("#key-error").modal("show")
       } else {
          $.ajax({
@@ -472,34 +444,6 @@ $(document).ready(function () {
          });
       }
    });
-   $('#delete').on("click", function() {
-      console.log("success")
-      // event.preventDefault();
-      // var id = $(this).id;
-      // console.log(id)
-      // $(id).remove();
-   });
-   $('#delete').click( function() {
-      console.log("success")
-      // event.preventDefault();
-      // var id = $(this).id;
-      // console.log(id)
-      // $(id).remove();
-   });
-});
-$('#delete').on("click", function() {
-   console.log("success")
-   // event.preventDefault();
-   // var id = $(this).id;
-   // console.log(id)
-   // $(id).remove();
-});
-$('#delete').click( function() {
-   console.log("success")
-   // event.preventDefault();
-   // var id = $(this).id;
-   // console.log(id)
-   // $(id).remove();
 });
 
 // A function for handling what happens when the a new recipe is saved via "Save" button

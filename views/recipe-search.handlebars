@@ -7,19 +7,19 @@
 
    <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+         <a class="nav-link active" id="searchTab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
             aria-selected="true">Search</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+         <a class="nav-link" id="savedTab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
             aria-selected="false">Saved Recipes</a>
       </li>
    </ul>
    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="searchTab">
          <div class="accordion" id="accordionExample">
             <div class="card" id="searchCard">
-               <div class="card-header p-5" id="headingOne">
+               <div class="card-header px-5 pb-0" id="headingOne">
                   <div class="row">
                      <div class="col-12">
                         <p>
@@ -31,15 +31,15 @@
                      </div>
                   </div>
                   <h2 class="mb-0">
-                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne"
+                     <button class="btn filter-btn" type="button" data-toggle="collapse" data-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
-                        Filters
+                        Filters<i class="fas fa-sliders-h ml-2"></i>
                      </button>
                   </h2>
+
                </div>
                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-
 
                      {{!-- Filters in collapsed container --}}
                      <div class="container search-filters">
@@ -56,7 +56,7 @@
                         <div class="row">
                            <div class="col-12">
                               <p>
-                                 Health Options<br>(for best results don't select more than 3):
+                                 Health Options:<br>(choose up to two for best results)
                                  <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
                                  <div class="custom-control custom-checkbox healthCheck"></div>
                               </p>
@@ -73,27 +73,25 @@
                            </div>
                         </div>
                      </div>
-                     <button type="button" class="btn btn-primary" id="search">Search for Recipes</button>
-
-
-
                   </div>
+               </div>
+               <div class="search-button-container mx-5 pt-3">
+                  <button type="button" class="btn btn-primary search-btn" id="search">Search for Recipes<i class="fas fa-search ml-2"></i></button>
                </div>
             </div>
             <div class="card d-sm-flex flex-sm-row flex-sm-wrap" id="recipeResults">
-               <div class="card-text m-5" id="noResultsMessage">
-                  <h3>There are no results that match your search</h3>
-                  <p>Please try adjusting your search keywords or filters.</p>
-               </div>
+               <h3 class="results-message m-5">Results will appear here.</h3>
             </div>
          </div>
       </div>
-      <div class="tab-pane fade saved-recipes p-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-         <h3>Nothing saved yet.</h3>
-         <div id="savedRecipes"></div>
+      <div class="tab-pane fade saved-recipes" id="profile" role="tabpanel" aria-labelledby="savedTab">
+         <div class="d-sm-flex flex-sm-row flex-sm-wrap py-5" id="savedRecipes">
+            {{!-- <h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3> --}}
+         </div>
       </div>
    </div>
 </div>
+
 
 
 

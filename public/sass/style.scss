@@ -92,7 +92,6 @@ $c-black: #000;
     }
   }
   
-  
   p,
   ul,
   ol,
@@ -117,8 +116,7 @@ $c-black: #000;
       color: $c-theme2;
       transition: all .5s;
   
-    &:hover,
-    &:focus {
+    &:hover {
         color: $c-theme;
     }
   }
@@ -127,7 +125,7 @@ $c-black: #000;
   // =================================
 //	Buttons
 // =================================
-button, .btn {
+button, .btn, .sign-up-btn {
     background-color: $c-theme!important;
     border: thin solid transparent!important;
     border-radius: 6px;
@@ -137,12 +135,85 @@ button, .btn {
     outline: none !important;
     box-shadow: none;
     transition: all .5s;
-    &:focus, &:hover, &:active {
+    &:hover {
         border: thin solid $c-theme!important;
         background-color: transparent!important;
         color: $c-theme!important;
         outline: none !important;
         box-shadow: none!important;
+    }
+    &:focus {
+        outline: none !important;
+        box-shadow: none!important;
+    }
+    @media (max-width: $mq-medium) {
+        width: 100%;
+    }
+}
+
+
+  // =================================
+//	Loader
+// =================================
+
+#loader {
+    margin: 2em auto;
+    margin-bottom: 0;
+    .icon {
+        border: 16px solid $c-theme;
+        border-top: 16px solid $c-theme3;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
+// =================================
+//	Forms
+// =================================
+input:hover {
+    border: thin solid #ddd;
+    border-left: 8px solid $c-theme;
+    outline: none !important;
+    box-shadow: none!important;
+}
+select:hover {
+    outline: none !important;
+    box-shadow: none!important;
+}
+
+
+  // =================================
+//	Modals
+// =================================
+.modal {
+    &-header {
+        border: none;
+        .close {
+            border: none!important;
+            background-color: $c-white!important;
+            color: $c-theme!important;
+            width: 3em;
+            &:hover {
+                border: none!important;
+                color: $c-theme2!important;
+            }
+        } 
+    }
+    &-footer {
+        border: none;
     }
 }
 
@@ -153,26 +224,137 @@ button, .btn {
 
 body {
     background-color: $c-bg;
-    nav {
-        // border-bottom: thin solid $c-theme3;
+    .navbar-container {
         @include box-shadow;
-        .navbar-brand {
-            #go-home {
-                width: 100%;
-                max-width: 6em;
+        background-color: $c-white;
+        nav {
+            max-width: $mq-large;
+            margin: auto;
+            .navbar-brand {
+                #go-home {
+                    width: 100%;
+                    max-width: 6em;
+                }
             }
-        }
-        .navbar-toggler {
-            background-color: white!important;
+            .navbar-nav {
+                @media (min-width: $mq-medium) {
+                    li:not(:last-child) {
+                        margin-left: 1em;
+                    }
+                    li:last-child {
+                        margin-left: 1em;
+                    }
+                }
+            }
+            .navbar-toggler {
+                background-color: white!important;
+                transition: all .4s;
+                width: 3em;
+                border: none!important;
+                &:hover {
+                    outline: none !important;
+                    box-shadow: none;
+                    border: none!important;
+                    opacity: .5;
+                }
+            }
         }
     }
 }
+
+
+
+// =================================
+//	Home Page
+// =================================
+
+.home-page {
+    margin-top: 5%;
+    .main {
+        @include center(90%, $mq-medium);
+        @include box-shadow;
+        background-color: $c-white;
+        .wrapper {
+            padding: 10%;
+            .home-btns {
+                margin-top: 2em;
+                button {
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+}
+
+
+// =================================
+//	Sign Up Page
+// =================================
+
+.singup-page {
+    padding-bottom: 8%;
+    @include center(90%, $mq-medium);
+    .header-wrap {
+        padding: 8% 0; 
+        h1, h3 {
+            margin: 0;
+        }
+    }
+    .form-row {
+        label {
+            margin-bottom: .25em;
+        }
+        @media (min-width: $mq-medium) {
+            width: 48%;
+            margin: 1%;
+        }
+    }
+}
+
+
+// =================================
+//	Account Info Page
+// =================================
+#viewAccountPage {
+    padding-bottom: 8%;
+    @include center(90%, $mq-medium);
+    .header-wrap {
+        padding: 8% 0; 
+        h1, h3 {
+            margin: 0;
+        }
+    }
+    .form-row {
+        label {
+            margin-bottom: .25em;
+        }
+        @media (min-width: $mq-medium) {
+            width: 48%;
+            margin: 1%;
+        }
+    }
+    .submit-btns-row {
+        width: 100%;
+        margin: 2em auto 0;
+    }
+    .update-btns {
+        margin: auto;
+        button:not(:last-child) {
+            @media (max-width: $mq-medium) {
+                margin-bottom: 1em;
+            }
+        }
+    }
+}
+
+
 
   // =================================
 //	Recipe Search Pages (Members and Non-Members)
 // =================================
 
 .recipe-search-block {
+    padding-bottom: 8%;
     @include center(90%, $mq-large);
     .welcome {
         margin: 10% 0;
@@ -197,6 +379,7 @@ body {
         .search-filters {
             .row {
                 border-top: thin solid $c-theme3;
+                margin: 0 1em;
             }
         }
         #searchCard {
@@ -205,38 +388,6 @@ body {
                 background-color: $c-white;
                 border: none;
                 padding: 0;
-            }
-        }
-        #recipeResults {
-            .recipe-card {
-                @include box-shadow;
-                border: none!important;
-                flex-direction: column!important;
-                position: relative;
-                width: 90%;
-                margin: 2% auto;
-                .recipe-image {
-                    width: 100%;
-                    height: 13em;
-                }
-                .card-body {
-                    text-align: left;
-                    padding: 10%;
-                    .recipe-link {
-                        color: $c-theme;
-                        &:hover, &:focus {
-                            color: $c-theme2;
-                        }
-                    }
-                    button, .save-recipe-btn {
-                        position: absolute;
-                        top: 10px;
-                        left: -10px;
-                    }
-                }
-                @media (min-width: $mq-small) {
-                    width: 43%;
-                }
             }
         }
         #search {
@@ -263,7 +414,49 @@ body {
                 }
             }
         }
-        .saved-recipes {
+    }
+    .filter-btn, .search-btn, .sign-up-btn {
+        @media (min-width: $mq-small) {
+            width: 50%;
+            margin: auto;
+        }
+    }
+    #recipeResults, #savedRecipes {
+        .results-message {
+            @media (min-width: $mq-small) {
+                width: 100%;
+            }
+        }
+        .recipe-card {
+            @include box-shadow;
+            border: none!important;
+            flex-direction: column!important;
+            position: relative;
+            width: 90%;
+            margin: 2% auto;
+            .recipe-image {
+                width: 100%;
+                height: 13em;
+            }
+            .card-body {
+                text-align: left;
+                padding: 10%;
+                .recipe-link {
+                    color: $c-theme;
+                    &:hover {
+                        color: $c-theme2;
+                    }
+                }
+                button, .save-recipe-btn {
+                    position: absolute;
+                    top: 10px;
+                    left: -10px;
+                }
+            }
+            @media (min-width: $mq-small) {
+                width: 43%;
+            }
         }
     }
 }
+
