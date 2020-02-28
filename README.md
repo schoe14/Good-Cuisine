@@ -14,8 +14,8 @@
 ## Acceptance Criteria
 
 ## Contributors
-[Madeline Jimenez](https://github.com/mijimenez)
+-Madeline Jimenez [gitHub](https://github.com/mijimenez)
 
-[Christian Jones](https://github.com/jonesec2)
+-Christian Jones [gitHub](https://github.com/jonesec2)
 
-[Seohui Choe](https://github.com/schoe14)
+-Seohui Choe [gitHub](https://github.com/schoe14)
