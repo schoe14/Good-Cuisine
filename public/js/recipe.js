@@ -306,11 +306,13 @@ $(document).ready(function () {
                         ${ingredientLines.map(ingredient => (
                         `<li>${ingredient}</li>`)).join("")}
                      </ul>
+                     <br>
                      <p>Diet:</p>
                      <ul class="diet-list">
                         ${dietLabels.map(diets => (
                         `<li>${diets}</li>`)).join("")}
                      </ul>
+                     <br>
                      <p>Health:</p>
                      <ul class="health-list">
                         ${healthLabels.map(healths => (
@@ -368,12 +370,14 @@ $(document).ready(function () {
                `<li>${ingredient}</li>`
             )).join("")}
                         </ul>
+                        <br>
                         <p>Diet:</p>
                         <ul class="diet-list">
                         ${saveArray[i].dietLabels.map(diets => (
                `<li>${diets}</li>`
             )).join("")}
                         </ul>
+                        <br>
                         <p>Health:</p>
                         <ul class="health-list">
                         ${saveArray[i].healthLabels.map(healths => (
