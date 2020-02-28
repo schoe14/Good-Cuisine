@@ -7,30 +7,23 @@ function isEmpty(value) {
 
 $("#go-home").on("click", function (event) {
     event.preventDefault();
-    console.log("hello")
-    $("#go-home").animateCss('pulse', function () {
-        window.location.href = "/"
+    console.log("hello");
+    $("#go-home").animateCss("pulse", function () {
+        window.location.href = "/";
     });
 });
 
 $("#search-recipe").on("click", function (event) {
     event.preventDefault();
-    $("#search-recipe").animateCss('pulse', function () {
-        window.location.href = "/search"
+    $("#search-recipe").animateCss("pulse", function () {
+        window.location.href = "/search";
     });
 });
 
-// $("#view-saved-recipes").on("click", function (event) {
-//     event.preventDefault();
-//     $("#view-saved-recipes").animateCss('pulse', function () {
-//         window.location.href = "/saved-recipes"
-//     });
-// });
-
 $("#sign-up").on("click", function (event) {
     event.preventDefault();
-    $("#sign-up").animateCss('pulse', function () {
-        window.location.href = "/signup"
+    $("#sign-up").animateCss("pulse", function () {
+        window.location.href = "/signup";
     });
 });
 
@@ -48,6 +41,7 @@ $("#sign-in").on("click", function (event) {
         email: $("#email").val().trim(),
         password: $("#password").val().trim()
     }
+
     console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
         $.ajax({
@@ -55,31 +49,19 @@ $("#sign-in").on("click", function (event) {
             url: "/login",
             data: user
         }).then(function (data) {
-            console.log(data);
             console.log("data.message ", data.message);
             $("#err-msg").empty("").text(data.message);
             if (data === true) window.location.href = "/search";
         });
-    }
-    else {
+    } else {
         console.log("fill out entire form");
         $("#err-msg").empty("").text("Email and password cannot be empty");
     }
-    // $.post("/login", user, function (results) {
-    //     if (results) {
-    //         // $(location).attr('href', '/accounts/view')
-    //         $(location).attr('href', '/')
-    //     } else {
-    //         $("#account-info").modal("close");
-    //         alert("oops something went wrong, please try again!");
-    //     }
-    // })
 });
 
 $("#view-account").on("click", function (event) {
     event.preventDefault();
-    console.log("hello")
-    $("#view-account").animateCss('pulse', function () {
-        $(location).attr('href', '/accounts/view')
+    $("#view-account").animateCss("pulse", function () {
+        $(location).attr("href", "/accounts/view");
     });
 });
