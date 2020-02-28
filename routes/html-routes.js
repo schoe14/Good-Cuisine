@@ -31,7 +31,7 @@ module.exports = function (app) {
   // GET route for sign-up page
   app.get("/signup", function (req, res) {
     if (req.isAuthenticated()) {
-      res.redirect("/acounts/view");
+      res.redirect("/accounts/view");
     } else {
       res.render("accounts");
     }

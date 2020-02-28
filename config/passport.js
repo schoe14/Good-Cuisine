@@ -94,7 +94,7 @@ passport.deserializeUser(function (id, done) {
     if (user) {
       done(null, user.get());
     } else {
-      done(null, false, { message: "error test" });
+      done(null, false, { message: "Error" });
     }
   });
 });

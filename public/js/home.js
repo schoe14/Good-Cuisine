@@ -1,4 +1,4 @@
-console.log("home.js loaded");
+// console.log("home.js loaded");
 
 // To check if input is null
 function isEmpty(value) {
@@ -7,7 +7,6 @@ function isEmpty(value) {
 
 $("#go-home").on("click", function (event) {
     event.preventDefault();
-    console.log("hello");
     $("#go-home").animateCss("pulse", function () {
         window.location.href = "/";
     });
@@ -42,19 +41,19 @@ $("#sign-in").on("click", function (event) {
         password: $("#password").val().trim()
     }
 
-    console.log("email", user.email);
+    // console.log("email", user.email);
     if (!isEmpty(user.email) && !isEmpty(user.password)) {
         $.ajax({
             type: "POST",
             url: "/login",
             data: user
         }).then(function (data) {
-            console.log("data.message ", data.message);
+            // console.log("data.message ", data.message);
             $("#err-msg").empty("").text(data.message);
             if (data === true) window.location.href = "/search";
         });
     } else {
-        console.log("fill out entire form");
+        // console.log("fill out entire form");
         $("#err-msg").empty("").text("Email and password cannot be empty");
     }
 });

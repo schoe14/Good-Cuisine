@@ -1,4 +1,4 @@
-console.log("accounts.js loaded");
+// console.log("accounts.js loaded");
 
 // To check if input is null
 function isEmpty(value) {
@@ -21,7 +21,7 @@ $("#add-account").on("click", function (event) {
         preference1: $("#inputPreference1").find(":selected").text(),
         preference2: $("#inputPreference2").find(":selected").text()
     };
-    console.log(isEmpty(newAccount.name), isEmpty(newAccount.email), isEmpty(newAccount.password));
+    // console.log(isEmpty(newAccount.name), isEmpty(newAccount.email), isEmpty(newAccount.password));
 
     if (!isEmpty(newAccount.name) && !isEmpty(newAccount.email) && !isEmpty(newAccount.password)) {
         $.ajax({
@@ -29,18 +29,18 @@ $("#add-account").on("click", function (event) {
             url: "/signup",
             data: newAccount
         }).then(function (data) {
-            console.log("data.message ", data.message);
+            // console.log("data.message ", data.message);
             if (data.message === "email") {
                 $("#err-msg-email").empty("").text("Invalid email form")
             }
             else if (data.message === "password") {
                 $("#err-msg-password").empty("").text("Password has to be minimum eight characters, at least one letter, one number and one special character")
             } else { $("#err-msg-email").empty("").text(data.message) }
-            console.log(data.success);
+            // console.log(data.success);
             if (data.success) window.location.href = "/search";
         });
     } else {
-        console.log("**Please fill out the required fields**");
+        // console.log("**Please fill out the required fields**");
         $("#create-err-msg").empty("").text("**Please fill out the required fields**");
     }
 });
@@ -58,7 +58,7 @@ $("#update-information").on("click", function (event) {
         preference1: $("#inputPreference1").find(":selected").text(),
         preference2: $("#inputPreference2").find(":selected").text(),
     };
-    console.log(changeAccount);
+    // console.log(changeAccount);
 
     if (!isEmpty(changeAccount.name)) {
         $.ajax({
@@ -67,14 +67,13 @@ $("#update-information").on("click", function (event) {
             data: changeAccount
         }).then(
             function (data) {
-                console.log("Updated account", changeAccount);
-                console.log("data.message ", data.message)
+                // console.log("data.message ", data.message);
                 $("#update-err-msg").empty("").text(data.message);
                 // Reload the page to get the updated list
                 location.reload();
             });
     } else {
-        console.log("**Required fields cannot be empty**");
+        // console.log("**Required fields cannot be empty**");
         $("#update-err-msg").empty("").text("**Name field cannot be empty**");
     }
 });
@@ -102,12 +101,12 @@ $("#confirm-password-update").on("click", function (event) {
             url: "/accounts/update/password",
             data: updatePassword
         }).then(function (data) {
-            console.log("data.message ", data.message)
+            // console.log("data.message ", data.message);
             $("#err-msg-update").empty("").text(data.message);
             if (data.success) window.location.href = "/";
         });
     } else {
-        console.log("fill out entire form");
+        // console.log("fill out entire form");
         $("#err-msg-update").empty("").text("Password fields cannot be empty");
     }
 });
@@ -115,7 +114,7 @@ $("#confirm-password-update").on("click", function (event) {
 // DELETE   ***************************************************
 $("#delete-account").on("click", function (event) {
     event.preventDefault();
-    console.log($("#account-number").data("accountemail"));
+    // console.log($("#account-number").data("accountemail"));
     $("#account_id").val("");
     $("#account_password").val("");
     $("#update-err-msg").empty("");
@@ -128,7 +127,7 @@ $("#confirm-delete").on("click", function (event) {
         accountEntered: $("#account_id").val().trim(),
         passwordEntered: $("#account_password").val().trim()
     }
-    console.log(deleteAccount);
+    // console.log(deleteAccount);
 
     if (!isEmpty(deleteAccount.accountEntered) && !isEmpty(deleteAccount.passwordEntered)) {
         if (deleteAccount.accountEntered === $("#account-number").data("accountemail")) {
@@ -137,8 +136,7 @@ $("#confirm-delete").on("click", function (event) {
                 url: "/accounts/delete/",
                 data: deleteAccount
             }).then(function (data) {
-                console.log(data)
-                console.log("data.message ", data.message)
+                // console.log("data.message ", data.message);
                 $("#err-msg-deletion").empty("").text(data.message);
                 if (data.success) window.location.href = "/";
             });
@@ -146,7 +144,7 @@ $("#confirm-delete").on("click", function (event) {
             $("#err-msg-deletion").empty("").text("Invalid email");
         }
     } else {
-        console.log("fill out entire form");
+        // console.log("fill out entire form");
         $("#err-msg-deletion").empty("").text("Email and password cannot be empty");
     }
 });
