@@ -11,7 +11,7 @@ $("#add-account").on("click", function (event) {
     $("#create-err-msg").empty("");
     $("#err-msg-email").empty("");
     $("#err-msg-password").empty("");
-    console.log("Entere'd add account button.")
+
     const newAccount = {
         email: $("#inputEmail").val().trim(),
         password: $("#inputPassword").val().trim(),
@@ -22,6 +22,7 @@ $("#add-account").on("click", function (event) {
         preference2: $("#inputPreference2").find(":selected").text()
     };
     console.log(isEmpty(newAccount.name), isEmpty(newAccount.email), isEmpty(newAccount.password));
+
     if (!isEmpty(newAccount.name) && !isEmpty(newAccount.email) && !isEmpty(newAccount.password)) {
         $.ajax({
             type: "POST",
@@ -29,11 +30,13 @@ $("#add-account").on("click", function (event) {
             data: newAccount
         }).then(function (data) {
             console.log("data.message ", data.message);
-            if (data.message === "email") { $("#err-msg-email").empty("").text("Invalid email form") }
-            else if (data.message === "password") { $("#err-msg-password").empty("").text("Password has to be minimum eight characters, at least one letter, one number and one special character") }
-            else { $("#err-msg-email").empty("").text(data.message) }
+            if (data.message === "email") {
+                $("#err-msg-email").empty("").text("Invalid email form")
+            }
+            else if (data.message === "password") {
+                $("#err-msg-password").empty("").text("Password has to be minimum eight characters, at least one letter, one number and one special character")
+            } else { $("#err-msg-email").empty("").text(data.message) }
             console.log(data.success);
-            // window.location.href = "/";
             if (data.success) window.location.href = "/search";
         });
     } else {
@@ -42,7 +45,7 @@ $("#add-account").on("click", function (event) {
     }
 });
 
-// UPDATE      **********************
+// UPDATE INFORMATION     **********************
 $("#update-information").on("click", function (event) {
     event.preventDefault();
     $("#update-err-msg").empty("");
@@ -76,6 +79,7 @@ $("#update-information").on("click", function (event) {
     }
 });
 
+// UPDATE PASSWORD     **********************
 $("#update-password").on("click", function (event) {
     event.preventDefault();
     $("#update-err-msg").empty("");
@@ -91,6 +95,7 @@ $("#confirm-password-update").on("click", function (event) {
         oldPasswordEntered: $("#current_password").val().trim(),
         newPasswordEntered: $("#new_password").val().trim()
     }
+
     if (!isEmpty(updatePassword.oldPasswordEntered) && !isEmpty(updatePassword.newPasswordEntered)) {
         $.ajax({
             type: "PUT",
@@ -101,8 +106,7 @@ $("#confirm-password-update").on("click", function (event) {
             $("#err-msg-update").empty("").text(data.message);
             if (data.success) window.location.href = "/";
         });
-    }
-    else {
+    } else {
         console.log("fill out entire form");
         $("#err-msg-update").empty("").text("Password fields cannot be empty");
     }
@@ -125,6 +129,7 @@ $("#confirm-delete").on("click", function (event) {
         passwordEntered: $("#account_password").val().trim()
     }
     console.log(deleteAccount);
+
     if (!isEmpty(deleteAccount.accountEntered) && !isEmpty(deleteAccount.passwordEntered)) {
         if (deleteAccount.accountEntered === $("#account-number").data("accountemail")) {
             $.ajax({
@@ -140,8 +145,7 @@ $("#confirm-delete").on("click", function (event) {
         } else {
             $("#err-msg-deletion").empty("").text("Invalid email");
         }
-    }
-    else {
+    } else {
         console.log("fill out entire form");
         $("#err-msg-deletion").empty("").text("Email and password cannot be empty");
     }
