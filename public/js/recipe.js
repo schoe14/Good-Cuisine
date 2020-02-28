@@ -267,6 +267,7 @@ $(document).ready(function () {
 
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
+         $('#recipeResults').empty();
          console.log(queryURL);
          console.log(response);
 
