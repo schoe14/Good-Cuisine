@@ -223,11 +223,10 @@ select:hover {
 // =================================
 
 body {
+    background-color: $c-bg;
     .navbar-container {
         @include box-shadow;
         background-color: $c-white;
-        // max-width: $mq-large;
-        // margin: auto;
         nav {
             max-width: $mq-large;
             margin: auto;
