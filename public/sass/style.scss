@@ -152,6 +152,34 @@ button, .btn, .sign-up-btn {
 }
 
 
+  // =================================
+//	Loader
+// =================================
+
+#loader {
+    margin: 2em auto;
+    margin-bottom: 0;
+    .icon {
+        border: 16px solid $c-theme;
+        border-top: 16px solid $c-theme3;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
 // =================================
 //	Forms
 // =================================
@@ -265,6 +293,7 @@ body {
 // =================================
 
 .singup-page {
+    padding-bottom: 8%;
     @include center(90%, $mq-medium);
     .header-wrap {
         padding: 8% 0; 
@@ -362,43 +391,6 @@ body {
                 padding: 0;
             }
         }
-        #recipeResults {
-            .results-message {
-                @media (min-width: $mq-small) {
-                    width: 100%;
-                }
-            }
-            .recipe-card {
-                @include box-shadow;
-                border: none!important;
-                flex-direction: column!important;
-                position: relative;
-                width: 90%;
-                margin: 2% auto;
-                .recipe-image {
-                    width: 100%;
-                    height: 13em;
-                }
-                .card-body {
-                    text-align: left;
-                    padding: 10%;
-                    .recipe-link {
-                        color: $c-theme;
-                        &:hover {
-                            color: $c-theme2;
-                        }
-                    }
-                    button, .save-recipe-btn {
-                        position: absolute;
-                        top: 10px;
-                        left: -10px;
-                    }
-                }
-                @media (min-width: $mq-small) {
-                    width: 43%;
-                }
-            }
-        }
         #search {
             margin-bottom: 3em;
         }
@@ -423,7 +415,49 @@ body {
                 }
             }
         }
-        .saved-recipes {
+    }
+    .filter-btn, .search-btn, .sign-up-btn {
+        @media (min-width: $mq-small) {
+            width: 50%;
+            margin: auto;
+        }
+    }
+    #recipeResults, #savedRecipes {
+        .results-message {
+            @media (min-width: $mq-small) {
+                width: 100%;
+            }
+        }
+        .recipe-card {
+            @include box-shadow;
+            border: none!important;
+            flex-direction: column!important;
+            position: relative;
+            width: 90%;
+            margin: 2% auto;
+            .recipe-image {
+                width: 100%;
+                height: 13em;
+            }
+            .card-body {
+                text-align: left;
+                padding: 10%;
+                .recipe-link {
+                    color: $c-theme;
+                    &:hover {
+                        color: $c-theme2;
+                    }
+                }
+                button, .save-recipe-btn {
+                    position: absolute;
+                    top: 10px;
+                    left: -10px;
+                }
+            }
+            @media (min-width: $mq-small) {
+                width: 43%;
+            }
         }
     }
 }
+

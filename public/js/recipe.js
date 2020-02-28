@@ -122,7 +122,7 @@ $(document).ready(function () {
 
          let recipeCardContent = `
          <div class="recipe-card card d-flex flex-row" id=${id}>
-            <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+            <div class="recipe-image card-img-top" style="background: lightblue url(${recipes[0][i].image}) no-repeat center/cover";></div>
                <div class="card-body">
                   <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
                   <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
@@ -265,6 +265,13 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // Add loader before results load
+      $("#recipeResults").prepend(`
+      <div id="loader">
+         <div class="icon"></div>
+      </div>
+      `);
+
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
          $('#recipeResults').empty();
@@ -347,24 +354,26 @@ $(document).ready(function () {
                userId: userId
             }));
 
+            $("#loader").empty();
+
             // appends cards to page
             $("#recipeResults").prepend(recipeCard);
 
          });
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
-            
+
             console.log("test")
             let i = this.id;
-            $("#"+i).html(`<i class="fas fa-check"></i>`)
-            
+            $("#" + i).html(`<i class="fas fa-check"></i>`)
+
             var q = saveArray[i].label.split(' ');
-            
-           
+
+
 
             let recipeCardContent = `
                <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
-                  <img src="${saveArray[i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+                  <div class="recipe-image card-img-top" style="background: lightblue url(${saveArray[i].image}) no-repeat center/cover";></div>
                   <div class="card-body">
                      <h5 class="recipe-name card-title">${saveArray[i].label}</h5>
                      <p><a href="${saveArray[i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
@@ -395,7 +404,14 @@ $(document).ready(function () {
                      </div>
                   </div>
                   `;
-            $("#savedRecipes").prepend(recipeCardContent);
+            // Save cards to saved recipes tab
+            $("#savedRecipes").append(recipeCardContent);
+            // Remove "nothing saved" message when cards are appended
+            // $("#savedRecipesMessage").attr("style", "display:none;");
+            // if ($('#savedRecipes').children().length === 0 ){
+            //    console.log("no recipes saved!");
+            //    $("#savedRecipesMessage").attr("style", "display:block;");
+            //  }
          });
          $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
             event.preventDefault();
@@ -407,12 +423,14 @@ $(document).ready(function () {
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
          if (err) {
+            $("#loader").empty();
             $("#ajax-error").modal("show");
          }
       }
 
       // catches if a user does not select a key word
       if (key === "") {
+         $("#loader").empty();
          return $("#key-error").modal("show")
       } else {
          $.ajax({

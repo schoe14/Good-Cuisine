@@ -117,6 +117,55 @@ button:focus, .btn:focus, .sign-up-btn:focus {
   }
 }
 
+#loader {
+  margin: 2em auto;
+  margin-bottom: 0;
+}
+
+#loader .icon {
+  border: 16px solid #28e500;
+  border-top: 16px solid #e0e0e0;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 input:hover {
   border: thin solid #ddd;
   border-left: 8px solid #28e500;
@@ -219,6 +268,7 @@ body .navbar-container nav .navbar-toggler:hover {
 }
 
 .singup-page {
+  padding-bottom: 8%;
   width: 90%;
   max-width: 768px;
   margin-left: auto;
@@ -331,55 +381,6 @@ body .navbar-container nav .navbar-toggler:hover {
   padding: 0;
 }
 
-@media (min-width: 576px) {
-  .recipe-search-block .accordion #recipeResults .results-message {
-    width: 100%;
-  }
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card {
-  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  border: none !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: column !important;
-          flex-direction: column !important;
-  position: relative;
-  width: 90%;
-  margin: 2% auto;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .recipe-image {
-  width: 100%;
-  height: 13em;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body {
-  text-align: left;
-  padding: 10%;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link {
-  color: #28e500;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover {
-  color: #646464;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body button, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .save-recipe-btn {
-  position: absolute;
-  top: 10px;
-  left: -10px;
-}
-
-@media (min-width: 576px) {
-  .recipe-search-block .accordion #recipeResults .recipe-card {
-    width: 43%;
-  }
-}
-
 .recipe-search-block .accordion #search {
   margin-bottom: 3em;
 }
@@ -413,6 +414,62 @@ body .navbar-container nav .navbar-toggler:hover {
 @media (min-width: 576px) {
   .recipe-search-block .accordion .healthCheck .custom-control {
     display: inline-block;
+  }
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block .filter-btn, .recipe-search-block .search-btn, .recipe-search-block .sign-up-btn {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block #recipeResults .results-message, .recipe-search-block #savedRecipes .results-message {
+    width: 100%;
+  }
+}
+
+.recipe-search-block #recipeResults .recipe-card, .recipe-search-block #savedRecipes .recipe-card {
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border: none !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  position: relative;
+  width: 90%;
+  margin: 2% auto;
+}
+
+.recipe-search-block #recipeResults .recipe-card .recipe-image, .recipe-search-block #savedRecipes .recipe-card .recipe-image {
+  width: 100%;
+  height: 13em;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body, .recipe-search-block #savedRecipes .recipe-card .card-body {
+  text-align: left;
+  padding: 10%;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body .recipe-link, .recipe-search-block #savedRecipes .recipe-card .card-body .recipe-link {
+  color: #28e500;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body .recipe-link:hover, .recipe-search-block #savedRecipes .recipe-card .card-body .recipe-link:hover {
+  color: #646464;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body button, .recipe-search-block #recipeResults .recipe-card .card-body .save-recipe-btn, .recipe-search-block #savedRecipes .recipe-card .card-body button, .recipe-search-block #savedRecipes .recipe-card .card-body .save-recipe-btn {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block #recipeResults .recipe-card, .recipe-search-block #savedRecipes .recipe-card {
+    width: 43%;
   }
 }
 /*# sourceMappingURL=style.css.map */
