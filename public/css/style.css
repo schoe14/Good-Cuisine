@@ -219,6 +219,7 @@ body .navbar-container nav .navbar-toggler:hover {
 }
 
 .singup-page {
+  padding-bottom: 8%;
   width: 90%;
   max-width: 768px;
   margin-left: auto;

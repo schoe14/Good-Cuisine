@@ -265,6 +265,7 @@ body {
 // =================================
 
 .singup-page {
+    padding-bottom: 8%;
     @include center(90%, $mq-medium);
     .header-wrap {
         padding: 8% 0; 
