@@ -127,61 +127,23 @@ $c-black: #000;
   // =================================
 //	Buttons
 // =================================
-button, .btn, .sign-up-btn {
+button, .btn {
     background-color: $c-theme!important;
     border: thin solid transparent!important;
     border-radius: 6px;
-    padding: .25em 2em;
     color: $c-white!important;
     font-weight: bold;
     text-transform: uppercase;
     outline: none !important;
     box-shadow: none;
     transition: all .5s;
-    &:focus, &:hover {
+    &:focus, &:hover, &:active {
         border: thin solid $c-theme!important;
         background-color: transparent!important;
         color: $c-theme!important;
         outline: none !important;
         box-shadow: none!important;
     }
-    @media (max-width: $mq-medium) {
-        width: 100%;
-    }
-}
-
-
-// =================================
-//	Forms
-// =================================
-input:hover,
-input:focus {
-    border: thin solid #ddd;
-    border-left: 8px solid $c-theme;
-    outline: none !important;
-    box-shadow: none!important;
-}
-select:hover,
-select:focus {
-    outline: none !important;
-    box-shadow: none!important;
-}
-
-
-  // =================================
-//	Modals
-// =================================
-.modal {
-    .close {
-        border: none!important;
-        background-color: $c-white!important;
-        color: $c-theme!important;
-        width: 3em;
-        &:hover, &:focus {
-            border: none!important;
-            color: $c-theme2!important;
-        }
-    }   
 }
 
 
@@ -212,62 +174,6 @@ body {
         }
         .navbar-toggler {
             background-color: white!important;
-            transition: all .4s;
-            width: 3em;
-            border: none!important;
-            &:hover, &:focus {
-                outline: none !important;
-                box-shadow: none;
-                border: none!important;
-                opacity: .5;
-            }
-        }
-    }
-}
-
-
-
-// =================================
-//	Home Page
-// =================================
-
-.home-page {
-    margin-top: 5%;
-    .main {
-        @include center(90%, $mq-medium);
-        @include box-shadow;
-        background-color: $c-white;
-        .wrapper {
-            padding: 10%;
-            .home-btns {
-                margin-top: 2em;
-                button {
-                    margin-top: 1em;
-                }
-            }
-        }
-    }
-}
-
-
-// =================================
-//	Sign Up Page
-// =================================
-
-.singup-page {
-    .header-wrap {
-        padding: 8% 0; 
-        h1, h3 {
-            margin: 0;
-        }
-    }
-    .form-row {
-        label {
-            margin-bottom: .25em;
-        }
-        @media (min-width: $mq-medium) {
-            width: 48%;
-            margin: 1%;
         }
     }
 }
@@ -279,7 +185,7 @@ body {
 .recipe-search-block {
     @include center(90%, $mq-large);
     .welcome {
-        padding: 8% 0;
+        margin: 10% 0;
     }
     .nav-tabs {
         .active {
@@ -371,6 +277,8 @@ body {
                     display: inline-block;
                 }
             }
+        }
+        .saved-recipes {
         }
     }
 }

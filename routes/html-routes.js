@@ -1,6 +1,11 @@
+// Requiring path to so we can use relative routes to our HTML files
+const path = require("path");
+
+// Requiring our custom middleware for checking if a user is logged in
+const isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function (app) {
-  // GET route for our landing page
-  // If user is loggedin, we will have user information from the server-side
+
   app.get("/", function (req, res) {
     if (req.isAuthenticated()) {
       const user = {
@@ -15,8 +20,6 @@ module.exports = function (app) {
     }
   });
 
-  // GET route for search page
-  // If user is loggedin, we will have user information from the server-side
   app.get("/search", function (req, res) {
     if (req.isAuthenticated()) {
       const user = {
@@ -31,7 +34,28 @@ module.exports = function (app) {
     }
   });
 
-  // GET route for sign-up page
+  // ------------------------ Commented it out (extra route)
+  // app.get("/saved-recipes", function (req, res) {
+  //   if (req.isAuthenticated()) {
+  //     const user = {
+  //       id: req.session.passport.user,
+  //       isLoggedIn: req.isAuthenticated()
+  //     }
+  //     res.render("saved", user);
+  //   }
+  //   else {
+  //     res.redirect("/");
+  //   }
+  // });
+  // ----------------------------------------------------------
+
+
+  // If the user already has an account send them to the members page
+  // if (req.user) {
+  //   res.redirect("/members");
+  // }
+  // res.render("signup");
+
   app.get("/signup", function (req, res) {
     if (req.isAuthenticated()) {
       res.redirect("/acounts/view");
@@ -39,4 +63,21 @@ module.exports = function (app) {
       res.render("accounts");
     }
   });
+
+  // app.get("/login", function (req, res) {
+  //   // If the user already has an account send them to the members page
+  //   if (req.user) {
+  //     res.redirect("/members");
+  //   }
+  //   res.render("login");
+  // });
+
+  // Here we've add our isAuthenticated middleware to this route.
+  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  // app.get("/members", isAuthenticated, function (req, res) {
+  //   // Otherwise send back the user's email and id
+  //   // Sending back a password, even a hashed password, isn't a good idea
+  //   res.redirect("/api/user_data");
+  // });
+
 };
