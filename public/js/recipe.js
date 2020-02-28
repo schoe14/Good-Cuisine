@@ -122,7 +122,7 @@ $(document).ready(function () {
 
          let recipeCardContent = `
          <div class="recipe-card card d-flex flex-row" id=${id}>
-            <img src="${recipes[0][i].image}" class="recipe-image card-img-top w-25" alt="recipe-image">
+            <div class="recipe-image card-img-top" style="background: lightblue url(${recipes[0][i].image}) no-repeat center/cover";></div>
                <div class="card-body">
                   <h5 class="recipe-name card-title">${recipes[0][i].label}</h5>
                   <p><a href="${recipes[0][i].url}" target="_blank" class="recipe-link">View Recipe</a></p>
