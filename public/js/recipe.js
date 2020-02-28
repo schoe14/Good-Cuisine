@@ -116,7 +116,7 @@ $(document).ready(function () {
          var healthArray = recipes[0][i].healthLabels.split(',');
          console.log(recipes[0][i].UserId);
          console.log(recipes[0][i].id)
-         var id = ("recipe" + recipes[0][i].id +"user" +recipes[0][i].UserId);
+         var id = ("recipe" + recipes[0][i].id + "user" + recipes[0][i].UserId);
          console.log(id)
 
 
@@ -131,21 +131,24 @@ $(document).ready(function () {
                   <p>Ingredients:</p>
                   <ul class="ingredients-list">
                   ${ingredientArray.map(ingredient => (
-               `<li>${ingredient}</li>`
-            )).join("")}
+            `<li>${ingredient}</li>`
+         )).join("")}
                   </ul>
+                  <br>
                   <p>Diet:</p>
                   <ul class="diet-list">
                   ${dietArray.map(diets => (
-               `<li>${diets}</li>`
-            )).join("")}
+            `<li>${diets}</li>`
+         )).join("")}
                   </ul>
+                  <br>
                   <p>Health:</p>
                   <ul class="health-list">
                   ${healthArray.map(healths => (
-               `<li>${healths}</li>`
-            )).join("")}
+            `<li>${healths}</li>`
+         )).join("")}
                   </ul>
+                  <br>
                   <div id=${userId}></div>
                   <button type="button" class="saved-delete btn btn-primary" id=${id} data-recipeid=${recipes[0][i].id}>Delete</button>
                </div>
@@ -155,8 +158,9 @@ $(document).ready(function () {
          $("#savedRecipes").prepend(recipeCardContent);
       }
    });
-   
-   $('#savedRecipes').on("click", '.saved-delete', function(event) {
+
+   $('#savedRecipes').on("click", '.saved-delete', function (event) {
+
       let deleteId = $(this).data("recipeid");
       var id = "#" + this.id;
       $(id).remove();
@@ -165,7 +169,7 @@ $(document).ready(function () {
       $.ajax({
          method: "DELETE",
          url: query
-      }).then(function() {
+      }).then(function () {
          event.preventDefault();
       });
    });
@@ -304,24 +308,24 @@ $(document).ready(function () {
                      <p>Ingredients:</p>
                      <ul class="ingredients-list">
                         ${ingredientLines.map(ingredient => (
-                        `<li>${ingredient}</li>`)).join("")}
+               `<li>${ingredient}</li>`)).join("")}
                      </ul>
                      <br>
                      <p>Diet:</p>
                      <ul class="diet-list">
                         ${dietLabels.map(diets => (
-                        `<li>${diets}</li>`)).join("")}
+                  `<li>${diets}</li>`)).join("")}
                      </ul>
                      <br>
                      <p>Health:</p>
                      <ul class="health-list">
                         ${healthLabels.map(healths => (
-                        `<li>${healths}</li>`)).join("")}
+                     `<li>${healths}</li>`)).join("")}
                      </ul>
                      <div id=${userId}></div>
                      <a href="#" 
                      id="${index}"
-                     class="save-recipe-btn btn btn-primary"
+                     class="save-recipe-btn btn btn-primary show-toast"
                      >Save</a>
                   </div>
                `;
@@ -351,10 +355,12 @@ $(document).ready(function () {
          });
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
-
+            $("#myToast").toast('show');
+            console.log("test")
             let i = this.id;
             var q = saveArray[i].label.split(' ');
-
+            
+           
 
             let recipeCardContent = `
                <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
@@ -391,9 +397,9 @@ $(document).ready(function () {
                   `;
             $("#savedRecipes").prepend(recipeCardContent);
          });
-         $('#savedRecipes').on("click", '.delete-recipe-btn', function(event) {
+         $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
             event.preventDefault();
-            var id = "#" +this.id;
+            var id = "#" + this.id;
             $(id).remove();
          });
       }
