@@ -418,8 +418,9 @@ body .navbar-container nav .navbar-toggler:hover {
 }
 
 @media (min-width: 576px) {
-  .recipe-search-block .filter-btn, .recipe-search-block .search-btn {
+  .recipe-search-block .filter-btn, .recipe-search-block .search-btn, .recipe-search-block .sign-up-btn {
     width: 50%;
+    margin: auto;
   }
 }
 

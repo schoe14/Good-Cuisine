@@ -416,9 +416,10 @@ body {
             }
         }
     }
-    .filter-btn, .search-btn {
+    .filter-btn, .search-btn, .sign-up-btn {
         @media (min-width: $mq-small) {
             width: 50%;
+            margin: auto;
         }
     }
     #recipeResults, #savedRecipes {
