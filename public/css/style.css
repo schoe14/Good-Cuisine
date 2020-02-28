@@ -78,11 +78,11 @@ a {
   transition: all .5s;
 }
 
-a:hover, a:focus {
+a:hover {
   color: #28e500;
 }
 
-button, .btn {
+button, .btn, .sign-up-btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
@@ -96,7 +96,7 @@ button, .btn {
   transition: all .5s;
 }
 
-button:focus, button:hover, button:active, .btn:focus, .btn:hover, .btn:active {
+button:hover, .btn:hover, .sign-up-btn:hover {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
@@ -105,34 +105,189 @@ button:focus, button:hover, button:active, .btn:focus, .btn:hover, .btn:active {
           box-shadow: none !important;
 }
 
-body {
-  background-color: #f9f9f9;
+button:focus, .btn:focus, .sign-up-btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
-body nav {
+@media (max-width: 768px) {
+  button, .btn, .sign-up-btn {
+    width: 100%;
+  }
+}
+
+input:hover {
+  border: thin solid #ddd;
+  border-left: 8px solid #28e500;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+select:hover {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-header .close {
+  border: none !important;
+  background-color: #fff !important;
+  color: #28e500 !important;
+  width: 3em;
+}
+
+.modal-header .close:hover {
+  border: none !important;
+  color: #646464 !important;
+}
+
+.modal-footer {
+  border: none;
+}
+
+body .navbar-container {
   -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-body nav .navbar-brand #go-home {
+body .navbar-container nav {
+  max-width: 992px;
+  margin: auto;
+}
+
+body .navbar-container nav .navbar-brand #go-home {
   width: 100%;
   max-width: 6em;
 }
 
 @media (min-width: 768px) {
-  body nav .navbar-nav li:not(:last-child) {
+  body .navbar-container nav .navbar-nav li:not(:last-child) {
     margin-left: 1em;
   }
-  body nav .navbar-nav li:last-child {
+  body .navbar-container nav .navbar-nav li:last-child {
     margin-left: 1em;
   }
 }
 
-body nav .navbar-toggler {
+body .navbar-container nav .navbar-toggler {
   background-color: white !important;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  width: 3em;
+  border: none !important;
+}
+
+body .navbar-container nav .navbar-toggler:hover {
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none !important;
+  opacity: .5;
+}
+
+.home-page {
+  margin-top: 5%;
+}
+
+.home-page .main {
+  width: 90%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.home-page .main .wrapper {
+  padding: 10%;
+}
+
+.home-page .main .wrapper .home-btns {
+  margin-top: 2em;
+}
+
+.home-page .main .wrapper .home-btns button {
+  margin-top: 1em;
+}
+
+.singup-page {
+  width: 90%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.singup-page .header-wrap {
+  padding: 8% 0;
+}
+
+.singup-page .header-wrap h1, .singup-page .header-wrap h3 {
+  margin: 0;
+}
+
+.singup-page .form-row label {
+  margin-bottom: .25em;
+}
+
+@media (min-width: 768px) {
+  .singup-page .form-row {
+    width: 48%;
+    margin: 1%;
+  }
+}
+
+#viewAccountPage {
+  padding-bottom: 8%;
+  width: 90%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#viewAccountPage .header-wrap {
+  padding: 8% 0;
+}
+
+#viewAccountPage .header-wrap h1, #viewAccountPage .header-wrap h3 {
+  margin: 0;
+}
+
+#viewAccountPage .form-row label {
+  margin-bottom: .25em;
+}
+
+@media (min-width: 768px) {
+  #viewAccountPage .form-row {
+    width: 48%;
+    margin: 1%;
+  }
+}
+
+#viewAccountPage .submit-btns-row {
+  width: 100%;
+  margin: 2em auto 0;
+}
+
+#viewAccountPage .update-btns {
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  #viewAccountPage .update-btns button:not(:last-child) {
+    margin-bottom: 1em;
+  }
 }
 
 .recipe-search-block {
+  padding-bottom: 8%;
   width: 90%;
   max-width: 992px;
   margin-left: auto;
@@ -163,6 +318,7 @@ body nav .navbar-toggler {
 
 .recipe-search-block .accordion .search-filters .row {
   border-top: thin solid #e0e0e0;
+  margin: 0 1em;
 }
 
 .recipe-search-block .accordion #searchCard {
@@ -208,7 +364,7 @@ body nav .navbar-toggler {
   color: #28e500;
 }
 
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:focus {
+.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover {
   color: #646464;
 }
 
