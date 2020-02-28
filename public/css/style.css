@@ -331,55 +331,6 @@ body .navbar-container nav .navbar-toggler:hover {
   padding: 0;
 }
 
-@media (min-width: 576px) {
-  .recipe-search-block .accordion #recipeResults .results-message {
-    width: 100%;
-  }
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card {
-  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  border: none !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: column !important;
-          flex-direction: column !important;
-  position: relative;
-  width: 90%;
-  margin: 2% auto;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .recipe-image {
-  width: 100%;
-  height: 13em;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body {
-  text-align: left;
-  padding: 10%;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link {
-  color: #28e500;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body .recipe-link:hover {
-  color: #646464;
-}
-
-.recipe-search-block .accordion #recipeResults .recipe-card .card-body button, .recipe-search-block .accordion #recipeResults .recipe-card .card-body .save-recipe-btn {
-  position: absolute;
-  top: 10px;
-  left: -10px;
-}
-
-@media (min-width: 576px) {
-  .recipe-search-block .accordion #recipeResults .recipe-card {
-    width: 43%;
-  }
-}
-
 .recipe-search-block .accordion #search {
   margin-bottom: 3em;
 }
@@ -413,6 +364,55 @@ body .navbar-container nav .navbar-toggler:hover {
 @media (min-width: 576px) {
   .recipe-search-block .accordion .healthCheck .custom-control {
     display: inline-block;
+  }
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block #recipeResults .results-message, .recipe-search-block #savedRecipes .results-message {
+    width: 100%;
+  }
+}
+
+.recipe-search-block #recipeResults .recipe-card, .recipe-search-block #savedRecipes .recipe-card {
+  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border: none !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  position: relative;
+  width: 90%;
+  margin: 2% auto;
+}
+
+.recipe-search-block #recipeResults .recipe-card .recipe-image, .recipe-search-block #savedRecipes .recipe-card .recipe-image {
+  width: 100%;
+  height: 13em;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body, .recipe-search-block #savedRecipes .recipe-card .card-body {
+  text-align: left;
+  padding: 10%;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body .recipe-link, .recipe-search-block #savedRecipes .recipe-card .card-body .recipe-link {
+  color: #28e500;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body .recipe-link:hover, .recipe-search-block #savedRecipes .recipe-card .card-body .recipe-link:hover {
+  color: #646464;
+}
+
+.recipe-search-block #recipeResults .recipe-card .card-body button, .recipe-search-block #recipeResults .recipe-card .card-body .save-recipe-btn, .recipe-search-block #savedRecipes .recipe-card .card-body button, .recipe-search-block #savedRecipes .recipe-card .card-body .save-recipe-btn {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
+@media (min-width: 576px) {
+  .recipe-search-block #recipeResults .recipe-card, .recipe-search-block #savedRecipes .recipe-card {
+    width: 43%;
   }
 }
 /*# sourceMappingURL=style.css.map */

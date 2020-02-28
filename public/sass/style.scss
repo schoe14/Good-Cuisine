@@ -362,43 +362,6 @@ body {
                 padding: 0;
             }
         }
-        #recipeResults {
-            .results-message {
-                @media (min-width: $mq-small) {
-                    width: 100%;
-                }
-            }
-            .recipe-card {
-                @include box-shadow;
-                border: none!important;
-                flex-direction: column!important;
-                position: relative;
-                width: 90%;
-                margin: 2% auto;
-                .recipe-image {
-                    width: 100%;
-                    height: 13em;
-                }
-                .card-body {
-                    text-align: left;
-                    padding: 10%;
-                    .recipe-link {
-                        color: $c-theme;
-                        &:hover {
-                            color: $c-theme2;
-                        }
-                    }
-                    button, .save-recipe-btn {
-                        position: absolute;
-                        top: 10px;
-                        left: -10px;
-                    }
-                }
-                @media (min-width: $mq-small) {
-                    width: 43%;
-                }
-            }
-        }
         #search {
             margin-bottom: 3em;
         }
@@ -423,7 +386,42 @@ body {
                 }
             }
         }
-        .saved-recipes {
+    }
+    #recipeResults, #savedRecipes {
+        .results-message {
+            @media (min-width: $mq-small) {
+                width: 100%;
+            }
+        }
+        .recipe-card {
+            @include box-shadow;
+            border: none!important;
+            flex-direction: column!important;
+            position: relative;
+            width: 90%;
+            margin: 2% auto;
+            .recipe-image {
+                width: 100%;
+                height: 13em;
+            }
+            .card-body {
+                text-align: left;
+                padding: 10%;
+                .recipe-link {
+                    color: $c-theme;
+                    &:hover {
+                        color: $c-theme2;
+                    }
+                }
+                button, .save-recipe-btn {
+                    position: absolute;
+                    top: 10px;
+                    left: -10px;
+                }
+            }
+            @media (min-width: $mq-small) {
+                width: 43%;
+            }
         }
     }
 }
