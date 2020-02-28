@@ -5,12 +5,14 @@
       <h1>Your Dashboard</h1>
    </div>
 
-   <ul class="nav nav-tabs"  id="myTab" role="tablist">
+   <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
-         <a class="nav-link active" id="searchTab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Search</a>
+         <a class="nav-link active" id="searchTab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Search</a>
       </li>
       <li class="nav-item">
-         <a class="nav-link" id="savedTab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Saved Recipes</a>
+         <a class="nav-link" id="savedTab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Saved Recipes</a>
       </li>
    </ul>
    <div class="tab-content" id="myTabContent">
@@ -29,14 +31,15 @@
                      </div>
                   </div>
                   <h2 class="mb-0">
-                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                     Filters
+                     <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        Filters
                      </button>
                   </h2>
+
                </div>
                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body">
-
 
                      {{!-- Filters in collapsed container --}}
                      <div class="container search-filters">
@@ -53,7 +56,7 @@
                         <div class="row">
                            <div class="col-12">
                               <p>
-                                 Health Options<br>(for best results don't select more than 3):
+                                 Health Options:<br>(choose up to two for best results)
                                  <!-- {{!-- Client side js will append diet options to cuisineCheck class --}} -->
                                  <div class="custom-control custom-checkbox healthCheck"></div>
                               </p>
@@ -70,12 +73,9 @@
                            </div>
                         </div>
                      </div>
-                     <button type="button" class="btn btn-primary" id="search">Search for Recipes</button>
-
-
-
                   </div>
                </div>
+               <button type="button" class="btn btn-primary" id="search">Search for Recipes</button>
             </div>
             <div class="card d-sm-flex flex-sm-row flex-sm-wrap" id="recipeResults">
                <h3 class="results-message m-5">Results will appear here.</h3>
@@ -91,9 +91,9 @@
 
 
 
+
 {{> Modal/recipeerror-block}}
 {{> Modal/keyError-block}}
 {{> Modal/saveRecipeError-block}}
 
 <script src="/js/recipe.js"></script>
-
