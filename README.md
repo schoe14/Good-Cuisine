@@ -1,8 +1,10 @@
 # Good-Cuisine
 
+:: Tag line here ::
+
 ## Screenshots of Application
 
-:: Tag line here ::
+:: Screenshots here ::
 
 ## Live Link
 - Launch the application [here](https://good-cuisine.herokuapp.com/)
