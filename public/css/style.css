@@ -82,7 +82,7 @@ a:hover {
   color: #28e500;
 }
 
-button, .btn {
+button, .btn, .sign-up-btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
@@ -96,7 +96,7 @@ button, .btn {
   transition: all .5s;
 }
 
-button:hover, .btn:hover {
+button:hover, .btn:hover, .sign-up-btn:hover {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
@@ -105,14 +105,14 @@ button:hover, .btn:hover {
           box-shadow: none !important;
 }
 
-button:focus, .btn:focus {
+button:focus, .btn:focus, .sign-up-btn:focus {
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
 
 @media (max-width: 768px) {
-  button, .btn {
+  button, .btn, .sign-up-btn {
     width: 100%;
   }
 }
