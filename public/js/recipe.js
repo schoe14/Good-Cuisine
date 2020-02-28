@@ -323,10 +323,7 @@ $(document).ready(function () {
                      `<li>${healths}</li>`)).join("")}
                      </ul>
                      <div id=${userId}></div>
-                     <a href="#" 
-                     id="${index}"
-                     class="save-recipe-btn btn btn-primary show-toast"
-                     >Save</a>
+                     <a href="#" id="${index}"class="save-recipe-btn btn btn-primary show-toast">Save</a>
                   </div>
                `;
 
@@ -355,9 +352,11 @@ $(document).ready(function () {
          });
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
-            $("#myToast").toast('show');
+            
             console.log("test")
             let i = this.id;
+            $("#"+i).html(`<i class="fas fa-check"></i>`)
+            
             var q = saveArray[i].label.split(' ');
             
            
