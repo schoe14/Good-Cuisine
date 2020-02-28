@@ -82,11 +82,10 @@ a:hover, a:focus {
   color: #28e500;
 }
 
-button, .btn, .sign-up-btn {
+button, .btn {
   background-color: #28e500 !important;
   border: thin solid transparent !important;
   border-radius: 6px;
-  padding: .25em 2em;
   color: #fff !important;
   font-weight: bold;
   text-transform: uppercase;
@@ -97,47 +96,13 @@ button, .btn, .sign-up-btn {
   transition: all .5s;
 }
 
-button:focus, button:hover, .btn:focus, .btn:hover, .sign-up-btn:focus, .sign-up-btn:hover {
+button:focus, button:hover, button:active, .btn:focus, .btn:hover, .btn:active {
   border: thin solid #28e500 !important;
   background-color: transparent !important;
   color: #28e500 !important;
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-}
-
-@media (max-width: 768px) {
-  button, .btn, .sign-up-btn {
-    width: 100%;
-  }
-}
-
-input:hover,
-input:focus {
-  border: thin solid #ddd;
-  border-left: 8px solid #28e500;
-  outline: none !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-}
-
-select:hover,
-select:focus {
-  outline: none !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-}
-
-.modal .close {
-  border: none !important;
-  background-color: #fff !important;
-  color: #28e500 !important;
-  width: 3em;
-}
-
-.modal .close:hover, .modal .close:focus {
-  border: none !important;
-  color: #646464 !important;
 }
 
 body {
@@ -165,63 +130,6 @@ body nav .navbar-brand #go-home {
 
 body nav .navbar-toggler {
   background-color: white !important;
-  -webkit-transition: all .4s;
-  transition: all .4s;
-  width: 3em;
-  border: none !important;
-}
-
-body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
-  outline: none !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border: none !important;
-  opacity: .5;
-}
-
-.home-page {
-  margin-top: 5%;
-}
-
-.home-page .main {
-  width: 90%;
-  max-width: 768px;
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.home-page .main .wrapper {
-  padding: 10%;
-}
-
-.home-page .main .wrapper .home-btns {
-  margin-top: 2em;
-}
-
-.home-page .main .wrapper .home-btns button {
-  margin-top: 1em;
-}
-
-.singup-page .header-wrap {
-  padding: 8% 0;
-}
-
-.singup-page .header-wrap h1, .singup-page .header-wrap h3 {
-  margin: 0;
-}
-
-.singup-page .form-row label {
-  margin-bottom: .25em;
-}
-
-@media (min-width: 768px) {
-  .singup-page .form-row {
-    width: 48%;
-    margin: 1%;
-  }
 }
 
 .recipe-search-block {
@@ -232,7 +140,7 @@ body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
 }
 
 .recipe-search-block .welcome {
-  padding: 8% 0;
+  margin: 10% 0;
 }
 
 .recipe-search-block .nav-tabs .active {
