@@ -305,6 +305,7 @@ body nav .navbar-toggler:hover, body nav .navbar-toggler:focus {
 
 .recipe-search-block .accordion .search-filters .row {
   border-top: thin solid #e0e0e0;
+  margin: 0 1em;
 }
 
 .recipe-search-block .accordion #searchCard {
