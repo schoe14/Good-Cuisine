@@ -152,6 +152,34 @@ button, .btn, .sign-up-btn {
 }
 
 
+  // =================================
+//	Loader
+// =================================
+
+#loader {
+    margin: 2em auto;
+    margin-bottom: 0;
+    .icon {
+        border: 16px solid $c-theme;
+        border-top: 16px solid $c-theme3;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
 // =================================
 //	Forms
 // =================================
@@ -431,3 +459,4 @@ body {
         }
     }
 }
+

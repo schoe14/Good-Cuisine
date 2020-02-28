@@ -265,6 +265,13 @@ $(document).ready(function () {
       let APIKey = "&app_key=f056ebfd3a725524f2a06d2a64636a39";
       let queryURL = "https://api.edamam.com/search?q=" + keyWord + appId + APIKey + healthLabels + dietType + calorieType;
 
+      // Add loader before results load
+      $("#recipeResults").prepend(`
+      <div id="loader">
+         <div class="icon"></div>
+      </div>
+      `);
+
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
          $('#recipeResults').empty();
@@ -347,6 +354,8 @@ $(document).ready(function () {
                userId: userId
             }));
 
+            $("#loader").empty();
+
             // appends cards to page
             $("#recipeResults").prepend(recipeCard);
 
@@ -401,7 +410,7 @@ $(document).ready(function () {
             // $("#savedRecipesMessage").attr("style", "display:none;");
             // if ($('#savedRecipes').children().length === 0 ){
             //    console.log("no recipes saved!");
-            //    // $("#savedRecipesMessage").attr("style", "display:block;");
+            //    $("#savedRecipesMessage").attr("style", "display:block;");
             //  }
          });
          $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
@@ -414,12 +423,14 @@ $(document).ready(function () {
       // error function that displays information to user if ajax request fails
       function recipeError(err) {
          if (err) {
+            $("#loader").empty();
             $("#ajax-error").modal("show");
          }
       }
 
       // catches if a user does not select a key word
       if (key === "") {
+         $("#loader").empty();
          return $("#key-error").modal("show")
       } else {
          $.ajax({
