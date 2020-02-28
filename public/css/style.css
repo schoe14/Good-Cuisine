@@ -369,6 +369,12 @@ body .navbar-container nav .navbar-toggler:hover {
 }
 
 @media (min-width: 576px) {
+  .recipe-search-block .filter-btn, .recipe-search-block .search-btn {
+    width: 50%;
+  }
+}
+
+@media (min-width: 576px) {
   .recipe-search-block #recipeResults .results-message, .recipe-search-block #savedRecipes .results-message {
     width: 100%;
   }

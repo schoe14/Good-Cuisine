@@ -388,6 +388,11 @@ body {
             }
         }
     }
+    .filter-btn, .search-btn {
+        @media (min-width: $mq-small) {
+            width: 50%;
+        }
+    }
     #recipeResults, #savedRecipes {
         .results-message {
             @media (min-width: $mq-small) {
