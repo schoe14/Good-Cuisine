@@ -106,6 +106,12 @@ button:hover, .btn:hover, .sign-up-btn:hover {
           box-shadow: none !important;
 }
 
+button:focus, .btn:focus, .sign-up-btn:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 @media (max-width: 768px) {
   button, .btn, .sign-up-btn {
     width: 100%;

@@ -143,6 +143,10 @@ button, .btn, .sign-up-btn {
         outline: none !important;
         box-shadow: none!important;
     }
+    &:focus {
+        outline: none !important;
+        box-shadow: none!important;
+    }
     @media (max-width: $mq-medium) {
         width: 100%;
     }
