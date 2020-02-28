@@ -172,16 +172,22 @@ select:focus {
 //	Modals
 // =================================
 .modal {
-    .close {
-        border: none!important;
-        background-color: $c-white!important;
-        color: $c-theme!important;
-        width: 3em;
-        &:hover, &:focus {
+    &-header {
+        border: none;
+        .close {
             border: none!important;
-            color: $c-theme2!important;
-        }
-    }   
+            background-color: $c-white!important;
+            color: $c-theme!important;
+            width: 3em;
+            &:hover, &:focus {
+                border: none!important;
+                color: $c-theme2!important;
+            }
+        } 
+    }
+    &-footer {
+        border: none;
+    }
 }
 
 

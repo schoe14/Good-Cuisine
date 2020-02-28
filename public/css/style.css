@@ -128,16 +128,24 @@ select:focus {
           box-shadow: none !important;
 }
 
-.modal .close {
+.modal-header {
+  border: none;
+}
+
+.modal-header .close {
   border: none !important;
   background-color: #fff !important;
   color: #28e500 !important;
   width: 3em;
 }
 
-.modal .close:hover, .modal .close:focus {
+.modal-header .close:hover, .modal-header .close:focus {
   border: none !important;
   color: #646464 !important;
+}
+
+.modal-footer {
+  border: none;
 }
 
 body {
