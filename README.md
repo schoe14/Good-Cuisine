@@ -1,46 +1,48 @@
-# Good-Cuisine
+# Good Cuisine
 
 We all have preferences on foods or even dietary restrictions, so we decided to make an app that makes it easier to filter recipes by these parameters and save recipes  in one location and easily accessible.
 
-## Screenshots of Application
+## Demo of Application
 
-:: Screenshots here ::
+Desktop                    |  Mobile
+:-------------------------:|:-------------------------:
+![Desktop Demo](./public/gifs/Good_Cuisine_Desktop_Demo.gif)  |  ![Mobile Demo](./public/gifs/Good_Cuisine_Mobile_Demo.gif)
 
 ## Live Link
 - Launch the application [here](https://good-cuisine.herokuapp.com/)
 
 ## Technologies Used
 
--Browser Based:
-  -Languages
-    -HTML, CSS, Sass, JavaScript/jQuery
+- Browser Based:
+  - Languages
+    - HTML, CSS, Sass, JavaScript/jQuery
 
-  -CSS Framework
-    -Bootstrap
+  - CSS Framework
+    - Bootstrap
 
-  -Other
-    -Handlebars, Toastr, 
-    -Adobe Illustrator
+  - Other
+    - Handlebars, Toastr, 
+    - Adobe Illustrator
     
--Deployment:
-  -Web Deployment
-    -Heroku
+- Deployment:
+  - Web Deployment
+    - Heroku
 
-  -Server-Side Deployment
-    -Express.js, Node.js, 
-    -User Authentication 
-    -(Passport, Bcrypt),
-    -Sequelize
+  - Server-Side Deployment
+    - Express.js, Node.js, 
+    - User Authentication 
+    - (Passport, Bcrypt),
+    - Sequelize
 
-  -Other
-    -Dotenv
+  - Other
+    - Dotenv
 
--API/Databse
-  -Third-party API
-    -Edamam Recipe Search API
+- API/Databse
+  - Third-party API
+    - Edamam Recipe Search API
 
-  -Database
-    -MySQL
+  - Database
+    - MySQL
 
 ## Features
 - Create a user account
@@ -64,19 +66,26 @@ We all have preferences on foods or even dietary restrictions, so we decided to 
   - Saved recipe page displays all recipes a user with an account has saved
   
 ## User Story
-- As someone who eats
+
+```sh
+As someone who eats
+
   - I want new recipe ideas
   - I want to know the nutritional facts of my food
   - I want to know the ingredients and instructions of my recipe
   - I want dietary options to control what kind of recipes are shown
   - I want to be able to save recipes I like
+```
 
 ## Acceptance Criteria
-- Given that I
-  -- created an account 
-  -- and provide a key search term and any optional search parameters
-- When I hit "search"
-- Then I will have informational recipe cards that I can choose to save for later
+
+```sh
+Given that I created an account and provide a key search term and any optional search parameters
+
+When I hit "search"
+
+Then I will have informational recipe cards that I can choose to save for later
+```
 
 ## Contributors
 -Madeline Jimenez [gitHub](https://github.com/mijimenez)
