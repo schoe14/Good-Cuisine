@@ -104,17 +104,19 @@ $(document).ready(function () {
       }
    ]
 
-   let recipes = [];
    let getID = $('#userId').data("userid");
-   if (recipes === []) {
-      let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
 
-      $("#savedRecipes").append(noRecipes)
-   } else {
-      $.get("/api/savedRecipes/" + getID, function (data) {
-         for (var i = 0; i < data[0].Recipes.length; i++) {
+   $.get("/api/savedRecipes/" + getID, function (data) {
 
-            recipes.push(data[0].Recipes);
+      for (var i = 0; i < data[0].Recipes.length; i++) {
+         let recipes = [];
+         recipes.push(data[0].Recipes);
+         console.log(recipes)
+         if (recipes.length === 0) {
+            let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
+
+            $("#savedRecipes").append(noRecipes)
+         } else {
 
             var ingredientArray = recipes[0][i].ingredientLines.split(',');
             var dietArray = recipes[0][i].dietLabels.split(',');
@@ -158,8 +160,9 @@ $(document).ready(function () {
 
             $("#savedRecipes").prepend(recipeCardContent);
          }
-      });
-   }
+      }
+   });
+
 
    $('#savedRecipes').on("click", '.saved-delete', function (event) {
 
@@ -223,7 +226,8 @@ $(document).ready(function () {
    });
 
    $('#search').click(function () {
-
+      $('#recipeResults').empty();
+      // $('#recipeResults').remove();
       let key = "";
       let health = [];
       let diet = "";
@@ -276,7 +280,7 @@ $(document).ready(function () {
 
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
-         
+
          $('#recipeResults').empty();
          console.log(queryURL);
          console.log(response);
