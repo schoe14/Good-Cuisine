@@ -111,7 +111,6 @@ $(document).ready(function () {
       for (var i = 0; i < data[0].Recipes.length; i++) {
          let recipes = [];
          recipes.push(data[0].Recipes);
-         console.log(recipes)
          if (recipes.length === 0) {
             let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
 
@@ -282,8 +281,6 @@ $(document).ready(function () {
       function recipeSuccess(response) {
 
          $('#recipeResults').empty();
-         console.log(queryURL);
-         console.log(response);
 
          // creating array to store search results
          const saveArray = [];
@@ -294,7 +291,7 @@ $(document).ready(function () {
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
-         console.log("user id for this saving", userId);
+         // console.log("user id for this saving", userId);
 
          // maps the results of the search to use in our template literal
          response.hits.map((recipeResult, index) => {
@@ -370,7 +367,6 @@ $(document).ready(function () {
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
 
-            console.log("test")
             let i = this.id;
             $("#" + i).html(`<i class="fas fa-check"></i>`)
 
@@ -454,11 +450,11 @@ $(document).ready(function () {
 
 // A function for handling what happens when the a new recipe is saved via "Save" button
 function handleRecipeSave(res) {
-   console.log(res);
+
 }
 
 // Submits a saved recipe
-// Change console.log on line 278 to "submitPost"
+
 function submitPost(recipe) {
    $.post("/api/savedRecipes", recipe, function () {
 
