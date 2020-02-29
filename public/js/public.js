@@ -98,7 +98,7 @@ $(document).ready(function () {
          calorieSearch: "&calories=250-700"
       },
       {
-         calorieDisplay: "700 to 1000 Calories",
+         calorieDisplay: "700 to 1200 Calories",
          calorieId: "calorieThree",
          calorieSearch: "&calories=700-1200"
       }
