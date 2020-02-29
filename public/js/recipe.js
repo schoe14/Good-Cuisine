@@ -106,9 +106,6 @@ $(document).ready(function () {
 
    let recipes = [];
    let getID = $('#userId').data("userid");
-   console.log(recipes);
-   console.log([])
-   
    if (recipes === []) {
       let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
 
@@ -279,6 +276,7 @@ $(document).ready(function () {
 
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
+         
          $('#recipeResults').empty();
          console.log(queryURL);
          console.log(response);
@@ -403,23 +401,27 @@ $(document).ready(function () {
             )).join("")}
                         </ul>
                         <div id=${userId}></div>
-                        <button type="button" id="${i + q[0]}" class="btn delete-recipe-btn">Delete</button>
+                        <button type="button" id="${i + q[0]}" class="btn delete-recipe-btn" disabled>Check back soon</button>
                      </div>
                   </div>
                   `;
             // Save cards to saved recipes tab
             $("#savedRecipes").append(recipeCardContent);
-            // Remove "nothing saved" message when cards are appended
-            // $("#savedRecipesMessage").attr("style", "display:none;");
-            // if ($('#savedRecipes').children().length === 0 ){
-            //    console.log("no recipes saved!");
-            //    $("#savedRecipesMessage").attr("style", "display:block;");
-            //  }
          });
+
          $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
             event.preventDefault();
             var id = "#" + this.id;
             $(id).remove();
+            let deleteId = $(this).data("recipeid");
+
+            var query = "/api/savedRecipes/" + deleteId;
+            $.ajax({
+               method: "DELETE",
+               url: query
+            }).then(function () {
+               event.preventDefault();
+            });
          });
       }
 

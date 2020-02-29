@@ -211,7 +211,7 @@ module.exports = function (app) {
       },
       include: [db.Recipe]
     }).then(function (dbRecipe) {
-      console.log(dbRecipe)
+      // console.log(dbRecipe)
       res.json(dbRecipe);
     })
   })
@@ -219,8 +219,7 @@ module.exports = function (app) {
 
   // POST route for saving a new recipe
   app.post("/api/savedRecipes", function (req, res) {
-    console.log(req.body);
-    console.log(req.body.image);
+
     db.Recipe.create({
       image: req.body.image,
       label: req.body.label,
@@ -233,7 +232,10 @@ module.exports = function (app) {
       UserId: req.body.userId
     })
       .then(function (dbRecipe) {
+         // console.log(req)
+         // console.log(res)
         res.json(dbRecipe);
+         console.log(dbRecipe.id)
       });
   });
 
@@ -242,7 +244,7 @@ module.exports = function (app) {
   app.get("/api/savedRecipes", function (req, res) {
     db.Recipe.findAll({})
       .then(function (dbRecipe) {
-        console.log(dbRecipe)
+      //   console.log(dbRecipe)
         res.json(dbRecipe);
       });
   });
