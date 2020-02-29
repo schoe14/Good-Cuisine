@@ -104,23 +104,25 @@ $(document).ready(function () {
       }
    ]
 
-   let recipes = [];
    let getID = $('#userId').data("userid");
+
    $.get("/api/savedRecipes/" + getID, function (data) {
+
       for (var i = 0; i < data[0].Recipes.length; i++) {
-
+         let recipes = [];
          recipes.push(data[0].Recipes);
+         if (recipes.length === 0) {
+            let noRecipes = `<h3 class="results-message mx-5" id="savedRecipesMessage">Nothing saved yet.</h3>`
 
-         var ingredientArray = recipes[0][i].ingredientLines.split(',');
-         var dietArray = recipes[0][i].dietLabels.split(',');
-         var healthArray = recipes[0][i].healthLabels.split(',');
-         console.log(recipes[0][i].UserId);
-         console.log(recipes[0][i].id)
-         var id = ("recipe" + recipes[0][i].id + "user" + recipes[0][i].UserId);
-         console.log(id)
+            $("#savedRecipes").append(noRecipes)
+         } else {
 
+            var ingredientArray = recipes[0][i].ingredientLines.split(',');
+            var dietArray = recipes[0][i].dietLabels.split(',');
+            var healthArray = recipes[0][i].healthLabels.split(',');
+            var id = ("recipe" + recipes[0][i].id + "user" + recipes[0][i].UserId);
 
-         let recipeCardContent = `
+            let recipeCardContent = `
          <div class="recipe-card card d-flex flex-row" id=${id}>
             <div class="recipe-image card-img-top" style="background: lightblue url(${recipes[0][i].image}) no-repeat center/cover";></div>
                <div class="card-body">
@@ -131,22 +133,22 @@ $(document).ready(function () {
                   <p>Ingredients:</p>
                   <ul class="ingredients-list">
                   ${ingredientArray.map(ingredient => (
-            `<li>${ingredient}</li>`
-         )).join("")}
+               `<li>${ingredient}</li>`
+            )).join("")}
                   </ul>
                   <br>
                   <p>Diet:</p>
                   <ul class="diet-list">
                   ${dietArray.map(diets => (
-            `<li>${diets}</li>`
-         )).join("")}
+               `<li>${diets}</li>`
+            )).join("")}
                   </ul>
                   <br>
                   <p>Health:</p>
                   <ul class="health-list">
                   ${healthArray.map(healths => (
-            `<li>${healths}</li>`
-         )).join("")}
+               `<li>${healths}</li>`
+            )).join("")}
                   </ul>
                   <br>
                   <div id=${userId}></div>
@@ -155,9 +157,11 @@ $(document).ready(function () {
          </div>
             `;
 
-         $("#savedRecipes").prepend(recipeCardContent);
+            $("#savedRecipes").prepend(recipeCardContent);
+         }
       }
    });
+
 
    $('#savedRecipes').on("click", '.saved-delete', function (event) {
 
@@ -221,6 +225,7 @@ $(document).ready(function () {
    });
 
    $('#search').click(function () {
+      $('#recipeResults').empty();
 
       let key = "";
       let health = [];
@@ -274,9 +279,8 @@ $(document).ready(function () {
 
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
+
          $('#recipeResults').empty();
-         console.log(queryURL);
-         console.log(response);
 
          // creating array to store search results
          const saveArray = [];
@@ -287,7 +291,7 @@ $(document).ready(function () {
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
-         console.log("user id for this saving", userId);
+         // console.log("user id for this saving", userId);
 
          // maps the results of the search to use in our template literal
          response.hits.map((recipeResult, index) => {
@@ -363,13 +367,10 @@ $(document).ready(function () {
          $(".save-recipe-btn").on("click", function (event) {
             event.preventDefault();
 
-            console.log("test")
             let i = this.id;
             $("#" + i).html(`<i class="fas fa-check"></i>`)
 
             var q = saveArray[i].label.split(' ');
-
-
 
             let recipeCardContent = `
                <div class="recipe-card card d-flex flex-row" id=${i + q[0]}>
@@ -400,23 +401,27 @@ $(document).ready(function () {
             )).join("")}
                         </ul>
                         <div id=${userId}></div>
-                        <button type="button" id="${i + q[0]}" class="btn delete-recipe-btn">Delete</button>
+                        <button type="button" id="${i + q[0]}" class="btn delete-recipe-btn" disabled>Check back soon</button>
                      </div>
                   </div>
                   `;
             // Save cards to saved recipes tab
             $("#savedRecipes").append(recipeCardContent);
-            // Remove "nothing saved" message when cards are appended
-            // $("#savedRecipesMessage").attr("style", "display:none;");
-            // if ($('#savedRecipes').children().length === 0 ){
-            //    console.log("no recipes saved!");
-            //    $("#savedRecipesMessage").attr("style", "display:block;");
-            //  }
          });
+
          $('#savedRecipes').on("click", '.delete-recipe-btn', function (event) {
             event.preventDefault();
             var id = "#" + this.id;
             $(id).remove();
+            let deleteId = $(this).data("recipeid");
+
+            var query = "/api/savedRecipes/" + deleteId;
+            $.ajax({
+               method: "DELETE",
+               url: query
+            }).then(function () {
+               event.preventDefault();
+            });
          });
       }
 
@@ -443,14 +448,13 @@ $(document).ready(function () {
    });
 });
 
-
 // A function for handling what happens when the a new recipe is saved via "Save" button
 function handleRecipeSave(res) {
-   console.log(res);
+
 }
 
 // Submits a saved recipe
-// Change console.log on line 278 to "submitPost"
+
 function submitPost(recipe) {
    $.post("/api/savedRecipes", recipe, function () {
 

@@ -61,8 +61,8 @@ $(document).ready(function () {
          healthId: "vegan"
       },
       {
-         healthLabel: "Paleo",
-         healthId: "paleo"
+         healthLabel: "Peanut Free",
+         healthId: "peanut-free"
       },
       {
          healthLabel: "Dairy Free",
@@ -77,32 +77,33 @@ $(document).ready(function () {
          healthId: "fat-free"
       },
       {
-         healthLabel: "Low Sugar",
-         healthId: "low-sugar"
+         healthLabel: "Sugar Conscious",
+         healthId: "sugar-conscious"
       }
    ];
    calorieAmountArray = [
       {
          calorieDisplay: "Any",
          calorieId: "calorieFour",
-         calorieSearch: "&calories=1-5000"
+         calorieSearch: "&calories=1-9000"
       },
       {
-         calorieDisplay: "1 to 200 Calories",
+         calorieDisplay: "1 to 250 Calories",
          calorieId: "calorieOne",
-         calorieSearch: "&calories=1-200"
+         calorieSearch: "&calories=1-250"
       },
       {
-         calorieDisplay: "200 to 600 Calories",
+         calorieDisplay: "250 to 700 Calories",
          calorieId: "calorieTwo",
-         calorieSearch: "&calories=200-600"
+         calorieSearch: "&calories=250-700"
       },
       {
-         calorieDisplay: "600 to 1000 Calories",
+         calorieDisplay: "700 to 1000 Calories",
          calorieId: "calorieThree",
-         calorieSearch: "&calories=600-1000"
+         calorieSearch: "&calories=700-1200"
       }
    ]
+
 
    keyWordArray.forEach(function (element) {
       let keyWord = /*html*/`
@@ -151,6 +152,7 @@ $(document).ready(function () {
 
 
    $('#search').click(function () {
+      $('#recipeResults').empty();
 
       let key = "";
       let health = [];
@@ -205,8 +207,6 @@ $(document).ready(function () {
       // response that parses recipe information to display to page
       function recipeSuccess(response) {
          $('#recipeResults').empty();
-         console.log(queryURL);
-         console.log(response);
 
          // creating array to store search results
          const saveArray = [];
@@ -217,7 +217,7 @@ $(document).ready(function () {
 
          // declaring userid to use to validate if member is signed in
          const userId = $("#userId").data("userid");
-         console.log("user id for this saving", userId);
+         // console.log("user id for this saving", userId);
 
          // maps the results of the search to use in our template literal
          response.hits.map((recipeResult, index) => {
