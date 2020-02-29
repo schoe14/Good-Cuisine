@@ -1,6 +1,6 @@
 # Good-Cuisine
 
-:: Tag line here ::
+We all have preferences on foods or even dietary restrictions, so we decided to make an app that makes it easier to filter recipes by these parameters and save recipes  in one location and easily accessible.
 
 ## Screenshots of Application
 
@@ -11,7 +11,36 @@
 
 ## Technologies Used
 
-:: Technology list here ::
+-Browser Based:
+  -Languages
+    -HTML, CSS, Sass, JavaScript/jQuery
+
+  -CSS Framework
+    -Bootstrap
+
+  -Other
+    -Handlebars, Toastr, 
+    -Adobe Illustrator
+    
+-Deployment:
+  -Web Deployment
+    -Heroku
+
+  -Server-Side Deployment
+    -Express.js, Node.js, 
+    -User Authentication 
+    -(Passport, Bcrypt),
+    -Sequelize
+
+  -Other
+    -Dotenv
+
+-API/Databse
+  -Third-party API
+    -Edamam Recipe Search API
+
+  -Database
+    -MySQL
 
 ## Features
 - Create a user account
