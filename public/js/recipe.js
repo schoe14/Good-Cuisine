@@ -226,7 +226,7 @@ $(document).ready(function () {
 
    $('#search').click(function () {
       $('#recipeResults').empty();
-      // $('#recipeResults').remove();
+
       let key = "";
       let health = [];
       let diet = "";
