@@ -88,8 +88,8 @@ Then I will have informational recipe cards that I can choose to save for later
 ```
 
 ## Contributors
--Madeline Jimenez [gitHub](https://github.com/mijimenez)
+- Madeline Jimenez [gitHub](https://github.com/mijimenez)
 
--Christian Jones [gitHub](https://github.com/jonesec2)
+- Christian Jones [gitHub](https://github.com/jonesec2)
 
--Seohui Choe [gitHub](https://github.com/schoe14)
+- Seohui Choe [gitHub](https://github.com/schoe14)
